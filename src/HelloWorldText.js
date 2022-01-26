@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function HelloWorldExample() {
+export default function HelloWorldText() {
     return (
         <div>
             Hello World
