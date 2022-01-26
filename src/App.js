@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react/cjs/react.production.min';
+
 import HelloWorldText from './HelloWorldText';
 
 class App extends Component{
@@ -13,20 +14,23 @@ class App extends Component{
   }
 
   componentDidMount(){
-    fetch('http://127.0.0.1:8000/')
-      .then((res) => res.json())
+    fetch('http://127.0.0.1:8000/', { mode: 'no-cors'})
+      .then(res => res.json)
       .then((json) =>{
           this.setState({
             isLoaded: true,
             items: json,
+            
           })
+          
       });
+      
   }
 
   render() {
-
+    
     var{ isLoaded, items} = this.state;
-
+    console.log("items:"+items)
     if(!isLoaded){
       return<div>Loading...</div>;
     } 
@@ -34,11 +38,11 @@ class App extends Component{
       return (
         <div className ="App">
           Data has been loaded
+          
         </div>
       )
     }
   }
-
 }
 
 export default App;
