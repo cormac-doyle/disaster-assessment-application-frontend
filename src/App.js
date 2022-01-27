@@ -14,31 +14,29 @@ class App extends Component{
   }
 
   componentDidMount(){
-    fetch('http://127.0.0.1:8000/', { mode: 'no-cors'})
-      .then(res => res.json)
-      .then((json) =>{
+    fetch('http://localhost:8000/')
+      .then(res => res.json())
+      .then(json =>{
           this.setState({
             isLoaded: true,
             items: json,
-            
           })
-          
       });
-      
   }
 
   render() {
     
     var{ isLoaded, items} = this.state;
-    console.log("items:"+items)
+
+    console.log( "items:" + JSON.stringify(items))
+
     if(!isLoaded){
       return<div>Loading...</div>;
     } 
     else {
       return (
         <div className ="App">
-          Data has been loaded
-          
+          {JSON.stringify(items)}
         </div>
       )
     }
