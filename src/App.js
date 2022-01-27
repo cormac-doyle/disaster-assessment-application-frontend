@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react/cjs/react.production.min';
 
-import HelloWorldText from './HelloWorldText';
 
 class App extends Component{
 
