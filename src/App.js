@@ -1,45 +1,36 @@
 import React from 'react';
 import { Component } from 'react/cjs/react.production.min';
-
+import {fetchResponseJson} from './fetchResponseJson'
 
 class App extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-      isLoaded: false,
       items: [],
     }
   }
-
-  componentDidMount(){
-    fetch('http://localhost:8000/')
-      .then(res => res.json())
-      .then(json =>{
-          this.setState({
-            isLoaded: true,
-            items: json,
-          })
-      });
+  
+  componentDidMount() {
+    return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
+      this.setState({
+        items: responseJson
+      })
+    })
   }
 
   render() {
     
-    var{ isLoaded, items} = this.state;
-
-    console.log( "items:" + JSON.stringify(items))
-
-    if(!isLoaded){
-      return<div>Loading...</div>;
+    if(this.state.items.length===0){
+      return<span>Loading...</span>;
     } 
     else {
       return (
-        <div className ="App">
-          {JSON.stringify(items)}
-        </div>
+        <span>{JSON.stringify(this.state.items)}</span>
       )
     }
   }
 }
+
 
 export default App;
