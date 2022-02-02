@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "leaflet": "^1.7.1",
     "nodemon": "^2.0.15",
+    "jest": "^27.4.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-watch-typeahead": "^0.6.5"
   }
 }
