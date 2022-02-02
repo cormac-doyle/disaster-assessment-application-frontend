@@ -1,6 +1,11 @@
 {
   "name": "disaster-application-frontend",
   "version": "0.1.0",
+  "jest":{
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
