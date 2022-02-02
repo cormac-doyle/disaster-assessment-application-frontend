@@ -1,36 +1,24 @@
-import React from 'react';
-import { Component } from 'react/cjs/react.production.min';
-import {fetchResponseJson} from './fetchResponseJson'
+import React from "react";
+import "./App.css";
 
-class App extends Component{
+import Map from "./components/Map/Map"
+import Title from "./components/Title"
 
-  constructor(props){
-    super(props);
-    this.state = {
-      items: [],
-    }
-  }
-  
-  componentDidMount() {
-    return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
-      this.setState({
-        items: responseJson
-      })
-    })
-  }
+import { hot } from 'react-hot-loader/root';
+import 'leaflet/dist/leaflet.css';
 
-  render() {
-    
-    if(this.state.items.length===0){
-      return<span>Loading...</span>;
-    } 
-    else {
-      return (
-        <span>{JSON.stringify(this.state.items)}</span>
-      )
-    }
-  }
-}
+function App() {
 
+  return (
+    <>
+      <nav>
+      </nav>
+      <main>
+        <Title/>
+        <Map />
+      </main>
+    </>
+  );
+};
 
-export default App;
+export default hot(App);

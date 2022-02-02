@@ -1,27 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import {fetchResponseJson} from './fetchResponseJson'
+import Map from "./components/Map/Map";
 
-
-test('check for loading text', () => {
+test('check for title text', () => {
   render(<App />);
-  const loadingElement = screen.getByText("Loading...");
-  expect(loadingElement).toBeInTheDocument();
+  const linkElement = screen.getByText(/Disaster Assesment Application/i);
+  expect(linkElement).toBeInTheDocument();
 });
 
-const MOCK_MESSAGE = {"message":"Hello World"}
-
-test('check data has been loaded', async () => {
-  fetch = jest.fn(() =>
-  Promise.resolve({
-      json: () => Promise.resolve(MOCK_MESSAGE),
-    })
-  );
-
-  const data = await fetchResponseJson('test-url')
-  expect(fetch).toBeCalledWith("test-url");
-  expect(data).toEqual(MOCK_MESSAGE)
-
+test('check if map', () => {
+  const { container } = render(<Map />)
+  expect(container.childElementCount).toEqual(1);
 });
-
-
