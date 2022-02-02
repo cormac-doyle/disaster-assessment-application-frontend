@@ -1,12 +1,6 @@
 {
   "name": "disaster-application-frontend",
   "version": "0.1.0",
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
-  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -26,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,6 +44,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "identity-obj-proxy": "^3.0.0",
-    "jest-watch-typeahead": "^0.6.5"
+    "jest-watch-typeahead": "^1.0.0"
   }
 }

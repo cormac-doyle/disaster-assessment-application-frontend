@@ -11,7 +11,7 @@ export default function Title() {
                 alignItems: "center",
                 backgroundColor: "white"
             }}
-            
+     
         >
             Disaster Assesment Application
         </div>
