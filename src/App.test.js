@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import Map from './App/';
+import Map from "./components/Map/Map";
 
 test('check for hello world text', () => {
   render(<App />);
