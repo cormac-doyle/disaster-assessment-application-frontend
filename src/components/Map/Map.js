@@ -61,6 +61,7 @@ const Map = () => {
     const defaultPosition = [53.348, -6.2603];  // Dublin City Centre
 
     return (<div className="map__container">
+        
         <MapContainer
             center={defaultPosition}
             zoom={13}
@@ -74,7 +75,9 @@ const Map = () => {
             />
             <LocationMarker />
             <AddMarker />
+            
         </MapContainer>
+        
     </div>);
 };
 export default (Map);
