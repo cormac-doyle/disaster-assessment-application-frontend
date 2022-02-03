@@ -5,9 +5,14 @@ export default function Title() {
         <div>
 
             <button
-                style={{ backgroundColor: 'red' }}
+                style={{
+                    fontSize: 25,
+                    fontWeight: 200,
+                    justifyContent: "center",
+                    backgroundColor: 'red'
+                }}
                 className='btn'>
-                {"Click Me"}
+                {"Report Disaster"}
             </button>
 
             <div
