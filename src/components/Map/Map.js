@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
+import DisasterStatus from '../DisasterStatus';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -27,6 +28,7 @@ function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
         click() {
+            
             map.locate()
         },
         locationfound(e) {
@@ -42,18 +44,24 @@ function LocationMarker() {
     )
 }
 
+
 function AddMarker() {
     const [position, setPosition] = useState(null)
     useMapEvents({
         click: (e) => {
+            
             setPosition(e.latlng);
         }
     })
+
+    
     return position === null ? null : (
+        
         <Marker position={position}>
-            <Popup>Added position</Popup>
+            <Popup>Disaster Location</Popup>
         </Marker>
     )
+    
 }
 
 const Map = () => {
@@ -69,14 +77,17 @@ const Map = () => {
             style={{ height: "100vh" }}
             zoomControl={false}
         >
+            
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <LocationMarker />
+            
             <AddMarker />
+            <DisasterStatus/>
             
         </MapContainer>
+        
         
     </div>);
 };

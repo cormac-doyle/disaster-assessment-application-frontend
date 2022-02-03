@@ -4,17 +4,17 @@ export default function Title() {
     return (
         <div
             style={{
-                fontSize: 30,
+                fontSize: 10,
                 fontWeight: 200,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "white"
+                backgroundColor: "white",
+                fontFamily: 'sans-serif',
             }}
-     
         >
-            Disaster Assesment Application
+            <h1>Disaster Assesment Application</h1>
+            
         </div>
-        
     )
 }
