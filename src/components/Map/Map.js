@@ -5,6 +5,7 @@ import "./Map.css";
 import DisasterStatus from '../DisasterStatus';
 
 import 'leaflet/dist/leaflet.css';
+import ReportDisasterPopUp from '../ReportDisasterPopUp';
 
 // For the marker icon
 delete L.Icon.Default.prototype._getIconUrl;
@@ -45,21 +46,28 @@ function LocationMarker() {
 }
 
 
+
 function AddMarker() {
     const [position, setPosition] = useState(null)
+    const [reportDisasterPopup, setReportDisasterPopup] = useState (false)
     useMapEvents({
         click: (e) => {
-            
+            setReportDisasterPopup(true)
             setPosition(e.latlng);
         }
     })
 
     
     return position === null ? null : (
-        
+        <>
         <Marker position={position}>
             <Popup>Disaster Location</Popup>
         </Marker>
+        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup}>
+            <h1>Report Disaster At this Location?</h1>
+        </ReportDisasterPopUp>
+        </>
+        
     )
     
 }
@@ -84,8 +92,6 @@ const Map = () => {
             />
             
             <AddMarker />
-            <DisasterStatus/>
-            
         </MapContainer>
         
         

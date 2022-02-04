@@ -1,21 +1,28 @@
 import React, {useState} from 'react'
-import ReportDisasterPopUp from './ReportDisasterPopUp'
-import Map from './Map/Map'
+import "./DisasterStatus.css"
 
+function DisasterStatus(props){
+    
+    const style ={
+        fontSize: 15,
+        fontWeight: 200,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+        fontFamily: 'sans-serif',
+    }
 
-export default function DisasterStatus() {
-    const [reportDisasterPopup, setreportDisasterPopup] = useState (false)
-
-    return (
-        
-        <div>
-        <button onClick={ () => setreportDisasterPopup(true)}>
-            ReportDisaster</button>
-        
-        <ReportDisasterPopUp trigger={reportDisasterPopup}>
-            <h1>Report Disaster?</h1>
-        </ReportDisasterPopUp>
-        
-        </div>
-    )
+    if(props.items.length===0){
+        return<span style={style}>Disaster Status: Loading...</span>;
+      } 
+    else{
+        return (
+            <div style={style}>
+                <span>Disaster Status: {JSON.stringify(props.items)}</span>
+            </div>
+        )
+    }  
 }
+
+export default DisasterStatus;

@@ -21,8 +21,15 @@
 }
 
 .popup-inner .close-button {
-    position: absolute;
+    position: center;
     top: 16px;
     right: 16px;
     z-index: 1002;
+}
+
+.popup-inner .confirm-button {
+    top: 16px;
+    right: 16px;
+    z-index: 1002;
+    position: absolute;
 }
