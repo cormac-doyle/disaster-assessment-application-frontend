@@ -7,12 +7,30 @@ export default function Title() {
             <button
                 style={{
                     fontSize: 25,
-                    fontWeight: 200,
+                    color: "white",
                     justifyContent: "center",
-                    backgroundColor: 'red'
+                    backgroundColor: 'teal',
+                    position: 'absolute',
+                    right: 7,
+                    top: 7,
+                    borderRadius: 5
                 }}
                 className='btn'>
-                {"Report Disaster"}
+                {"Emergency Services Login"}
+            </button>
+
+            <button
+                style={{
+                    fontSize: 25,
+                    justifyContent: "center",
+                    backgroundColor: 'fuchsia',
+                    position: 'absolute',
+                    left: 7,
+                    top: 7,
+                    borderRadius: 5
+                }}
+                className='btn'>
+                {"Help"}
             </button>
 
             <div
@@ -28,7 +46,8 @@ export default function Title() {
             >
                 Disaster Assesment Application
             </div>
-        </div>
+
+        </div >
 
     )
 }
