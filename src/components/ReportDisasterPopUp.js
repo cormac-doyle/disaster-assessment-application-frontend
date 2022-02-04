@@ -1,5 +1,4 @@
 import React from 'react';
-import { Popup } from 'react-leaflet';
 import './ReportDisasterPopUp.css';
 
 function ReportDisasterPopUp(props) {

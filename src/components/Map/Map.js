@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
-import DisasterStatus from '../DisasterStatus';
-
 import 'leaflet/dist/leaflet.css';
 import ReportDisasterPopUp from '../ReportDisasterPopUp';
 
@@ -24,7 +22,7 @@ L.Icon.Default.mergeOptions({
 //     shadowUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-shadow.png"
 // });
 
-
+/*
 function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
@@ -44,7 +42,7 @@ function LocationMarker() {
         </Marker>
     )
 }
-
+*/
 
 
 function AddMarker() {

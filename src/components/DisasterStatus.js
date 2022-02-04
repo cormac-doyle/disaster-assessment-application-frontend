@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import "./DisasterStatus.css"
+import React from 'react'
+
 
 function DisasterStatus(props){
     
