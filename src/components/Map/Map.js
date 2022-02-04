@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
-
 import 'leaflet/dist/leaflet.css';
+import ReportDisasterPopUp from '../ReportDisasterPopUp';
 
 // For the marker icon
 delete L.Icon.Default.prototype._getIconUrl;
@@ -22,11 +22,12 @@ L.Icon.Default.mergeOptions({
 //     shadowUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-shadow.png"
 // });
 
-
+/*
 function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
         click() {
+            
             map.locate()
         },
         locationfound(e) {
@@ -41,19 +42,32 @@ function LocationMarker() {
         </Marker>
     )
 }
+*/
+
 
 function AddMarker() {
     const [position, setPosition] = useState(null)
+    const [reportDisasterPopup, setReportDisasterPopup] = useState (false)
     useMapEvents({
         click: (e) => {
+            setReportDisasterPopup(true)
             setPosition(e.latlng);
         }
     })
+
+    
     return position === null ? null : (
+        <>
         <Marker position={position}>
-            <Popup>Added position</Popup>
+            <Popup>Disaster Location</Popup>
         </Marker>
+        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup}>
+            <h1>Report Disaster At this Location?</h1>
+        </ReportDisasterPopUp>
+        </>
+        
     )
+    
 }
 
 const Map = () => {
@@ -69,14 +83,15 @@ const Map = () => {
             style={{ height: "100vh" }}
             zoomControl={false}
         >
+            
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <LocationMarker />
-            <AddMarker />
             
+            <AddMarker />
         </MapContainer>
+        
         
     </div>);
 };
