@@ -44,6 +44,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "identity-obj-proxy": "^3.0.0",
-    "jest-watch-typeahead": "^1.0.0"
+    "jest-watch-typeahead": "^0.6.5"
   }
 }

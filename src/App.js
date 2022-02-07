@@ -8,7 +8,6 @@ import {fetchResponseJson} from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 
 
-
 class App extends Component{
 
   constructor(props){
