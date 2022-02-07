@@ -16,7 +16,7 @@ test('check if map', () => {
 
 const MOCK_MESSAGE = {"message":"Hello World"}
 
-test('check data has been loaded', async () => {
+test('check mock data has been loaded', async () => {
   fetch = jest.fn(() =>
   Promise.resolve({
       json: () => Promise.resolve(MOCK_MESSAGE),
