@@ -11,8 +11,8 @@ class ReportDisasterPopUp extends Component {
   }
 
   confirmButtonClick(event){
-    this.props.setReportDisasterPopup(false)
     this.postDisasterLocation()
+    this.props.setReportDisasterPopup(false)
   }
 
   async postDisasterLocation(){
