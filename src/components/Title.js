@@ -1,11 +1,31 @@
-import React from 'react'
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert'
+import { Navbar } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+
 
 
 export default function Title() {
     return (
         <div>
 
-            <button
+
+            <Navbar bg="light" expand="lg">
+                <Container>
+                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">Home</Nav.Link>
+                            <Nav.Link href="#link">Link</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+
+            {/* <button
                 style={{
                     fontSize: 25,
                     color: "white",
@@ -46,7 +66,7 @@ export default function Title() {
 
             >
                 Disaster Assesment Application
-            </div>
+            </div> */}
 
         </div >
 
