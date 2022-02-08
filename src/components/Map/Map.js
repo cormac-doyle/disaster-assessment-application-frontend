@@ -61,7 +61,7 @@ function AddMarker() {
         <Marker position={position}>
             <Popup>Disaster Location</Popup>
         </Marker>
-        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup}>
+        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup} position={position}>
             <h1>Report Disaster At this Location?</h1>
         </ReportDisasterPopUp>
         </>

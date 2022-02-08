@@ -5,14 +5,15 @@ class ReportDisasterPopUp extends Component {
   constructor(props){
     super(props)
     this.state={
-      latitude:0,
-      longitude:0,
+      latitude:this.props.location.lat,
+      longitude:this.props.location.lng,
     }
   }
 
   confirmButtonClick(event){
     this.postDisasterLocation()
     this.props.setReportDisasterPopup(false)
+
   }
 
   async postDisasterLocation(){
@@ -28,8 +29,8 @@ class ReportDisasterPopUp extends Component {
           {
           disasterStatus: true,
           disasterLocation : {
-            longitude: 0,
-            latitude: 0,
+            longitude: this.latitude,
+            latitude: this.longitude,
           }
         })
       });
