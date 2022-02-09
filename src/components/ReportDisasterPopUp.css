@@ -1,35 +1,73 @@
 .popup {
-    position: fixed;
-    top: 0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .popup-inner {
-    position: relative;
-    padding: 32px;
-    width: 400px;
-    background-color: #FFF;
-    z-index: 1001;
+  position: relative;
+  padding: 32px;
+  width: 400px;
+  background-color: #fff;
+  z-index: 1001;
 }
 
 .popup-inner .close-button {
-    position: center;
-    top: 16px;
-    right: 16px;
-    z-index: 1002;
+  position: center;
+  top: 16px;
+  right: 16px;
+  z-index: 1002;
 }
 
 .popup-inner .confirm-button {
-    top: 16px;
-    right: 16px;
-    z-index: 1002;
-    position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1002;
+  position: absolute;
+}
+
+.horizontal-slider {
+  width: 100%;
+  max-width: 300px;
+  height: 10vh;
+  margin: auto;
+}
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: #ffffff;
+  border: 5px solid #3774ff;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+.example-thumb.active {
+  background-color: grey;
+}
+.example-track {
+  position: relative;
+  background: #ddd;
+}
+.example-track.example-track-0 {
+  background: #83a9ff;
+}
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 4px;
+}
+.horizontal-slider .example-thumb {
+  top: 12px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
 }
