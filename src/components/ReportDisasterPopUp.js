@@ -17,7 +17,7 @@ class ReportDisasterPopUp extends Component {
 
   async postDisasterLocation(){
     try{
-      let disasterLocationJSON = await fetch("http://localhost:8000/", {
+      let disasterLocationJSON = await fetch("http://localhost:8000/disasters", {
         method: 'post',
         mode: 'no-cors',
         headers: {
