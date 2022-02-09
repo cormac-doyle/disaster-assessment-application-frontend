@@ -4,19 +4,20 @@ import { Component } from 'react/cjs/react.production.min';
 import Map from "./components/Map/Map"
 import Title from "./components/Title"
 import DisasterStatus from "./components/DisasterStatus";
-import {fetchResponseJson} from './fetchResponseJson'
+import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-class App extends Component{
+class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       items: [],
     }
   }
-  
+
   componentDidMount() {
     return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
       this.setState({
@@ -26,15 +27,15 @@ class App extends Component{
   }
 
   render() {
-    return(<>
+    return (<>
       <nav>
       </nav>
       <main>
-        
-        <Title/>
-        <DisasterStatus items = {this.state.items}></DisasterStatus>
+
+        <Title />
+        <DisasterStatus items={this.state.items}></DisasterStatus>
         <Map />
-        
+
       </main>
     </>)
 

@@ -47,7 +47,7 @@ function LocationMarker() {
 
 function AddMarker() {
     const [position, setPosition] = useState(null)
-    const [reportDisasterPopup, setReportDisasterPopup] = useState (false)
+    const [reportDisasterPopup, setReportDisasterPopup] = useState(false)
     useMapEvents({
         click: (e) => {
             setReportDisasterPopup(true)
@@ -55,19 +55,19 @@ function AddMarker() {
         }
     })
 
-    
+
     return position === null ? null : (
         <>
-        <Marker position={position}>
-            <Popup>Disaster Location</Popup>
-        </Marker>
-        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup}>
-            <h1>Report Disaster At this Location?</h1>
-        </ReportDisasterPopUp>
+            <Marker position={position}>
+                <Popup>Disaster Location</Popup>
+            </Marker>
+            <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup={setReportDisasterPopup}>
+                <h1>Report Disaster At this Location?</h1>
+            </ReportDisasterPopUp>
         </>
-        
+
     )
-    
+
 }
 
 const Map = () => {
@@ -75,24 +75,24 @@ const Map = () => {
     const defaultPosition = [53.348, -6.2603];  // Dublin City Centre
 
     return (<div className="map__container">
-        
+
         <MapContainer
             center={defaultPosition}
             zoom={13}
             scrollWheelZoom={true}
-            style={{ height: "100vh" }}
+            style={{ height: "80vh" }}
             zoomControl={false}
         >
-            
+
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            
+
             <AddMarker />
         </MapContainer>
-        
-        
+
+
     </div>);
 };
 export default (Map);
