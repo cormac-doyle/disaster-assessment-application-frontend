@@ -12,13 +12,13 @@ export default function Title() {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">Disaster Assesment Application</Navbar.Brand>
+                    <Navbar.Brand href="/home">Disaster Assesment Application</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Disaster Map</Nav.Link>
-                            <Nav.Link href="#report">Report a Disaster</Nav.Link>
-                            <Nav.Link href="#login">Emergency Services Login</Nav.Link>
+                            <Nav.Link href="/home">Disaster Map</Nav.Link>
+                            <Nav.Link href="/report">Report a Disaster</Nav.Link>
+                            <Nav.Link href="/login">Emergency Services Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
