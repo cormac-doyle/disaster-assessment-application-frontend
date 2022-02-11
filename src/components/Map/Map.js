@@ -92,7 +92,7 @@ const Map = () => {
           center={defaultPosition}
           zoom={13}
           scrollWheelZoom={true}
-          style={{ height: "100vh" }}
+          style={{ height: "90vh" }}
           zoomControl={false}
         >
           <TileLayer

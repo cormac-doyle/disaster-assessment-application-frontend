@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import ReactSlider from "react-slider";
 import "./ReportDisasterPopUp.css";
 import Step from "./Slider.js";
-import { Modal } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Modal ,Button, ButtonGroup, ButtonToolbar} from "react-bootstrap";
+
 
 function MyVerticallyCenteredModal(props){
     <Modal  
@@ -15,11 +15,25 @@ function MyVerticallyCenteredModal(props){
       <Modal.Header closeButton>
         <Modal.Title>Disaster Report</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Would you like to report a disaster at this location</Modal.Body>
+      <Modal.Body>
+        <h2>Would you like to report a disaster at this location</h2>
+        <ButtonToolbar aria-label="Toolbar with button groups">
+          <ButtonGroup className="me-2" aria-label="First group">
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button> 
+            <Button>5</Button>
+            <Button>6</Button>
+            <Button>7</Button>
+            <Button>8</Button>
+            <Button>9</Button>
+            <Button>10</Button>
+          </ButtonGroup>
+        </ButtonToolbar>
+        </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={this.props.onHide}>
-          Close
-        </Button>
+
         <Button variant="primary" onClick={() => this.confirmButtonClick()}>
           Confirm
         </Button>
@@ -76,25 +90,50 @@ class ReportDisasterPopUp extends Component {
     return (
       <div>
         <Modal  
-          {...this.props}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered= {true}
-          zIndex={1000}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Disaster Report</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Would you like to report a disaster at this location</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.props.onHide}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={() => this.confirmButtonClick()}>
-              Confirm
-            </Button>
-          </Modal.Footer>
-        </Modal>
+      {...this.props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered= {true}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title><h1>Disaster Report</h1></Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h3>Would you like to report a disaster at this location?  </h3>
+        <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
+        <h4>Scale:</h4>
+        <ButtonToolbar aria-label="Toolbar with button groups">
+          
+          <ButtonGroup className="me-2" aria-label="First group">
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button> 
+            <Button>5</Button>
+            <Button>6</Button>
+            <Button>7</Button>
+            <Button>8</Button>
+            <Button>9</Button>
+            <Button>10</Button>
+          </ButtonGroup>
+        </ButtonToolbar>
+        <h4>Type:</h4>
+        <ButtonToolbar aria-label="Toolbar with button groups">
+          <ButtonGroup className="me-2" aria-label="First group">
+            <Button>FIRE</Button>
+            <Button>FLOOD</Button>
+            <Button>TRAFFIC INCIDENT</Button>
+          </ButtonGroup>
+        </ButtonToolbar>
+
+        </Modal.Body>
+      <Modal.Footer>
+
+        <Button variant="primary" onClick={() => this.confirmButtonClick()}>
+          Confirm
+        </Button>
+      </Modal.Footer>
+    </Modal>
       </div>
       
       );

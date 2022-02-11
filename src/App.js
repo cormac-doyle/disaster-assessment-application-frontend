@@ -6,6 +6,8 @@ import Title from "./components/Title"
 import DisasterStatus from "./components/DisasterStatus";
 import {fetchResponseJson} from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component{
 
