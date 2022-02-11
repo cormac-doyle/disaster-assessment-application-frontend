@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from 'react/cjs/react.production.min';
-import Map from "../Map/MapDisaster"
+import Map from "../map/MapDisaster"
 import Title from "../Title"
 import DisasterStatus from "../DisasterStatus";
 // import { fetchResponseJson } from './fetchResponseJson'

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import App from './App';
-import Report from './components/Report/Report'
-import Login from './components/Login/Login'
+import Report from './components/report/Report'
+import Login from './components/login/Login'
 import reportWebVitals from './reportWebVitals';
 
 

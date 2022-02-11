@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
+import React from 'react'
+import { MapContainer, TileLayer } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
-import ReportDisasterPopUp from '../ReportDisasterPopUp';
 
 
 L.Icon.Default.mergeOptions({
