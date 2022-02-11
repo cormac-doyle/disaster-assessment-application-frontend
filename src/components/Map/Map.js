@@ -100,10 +100,8 @@ const Map = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <AddMarker />
-          
         </MapContainer>
       </div>
     );
-  
 };
 export default Map;

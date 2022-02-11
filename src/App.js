@@ -19,7 +19,7 @@ class App extends Component{
   }
   
   componentDidMount() {
-    return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
+    return fetchResponseJson('https://ase-backend-2.herokuapp.com/').then((responseJson) => {
       this.setState({
         items: responseJson
       })
@@ -31,11 +31,9 @@ class App extends Component{
       <nav>
       </nav>
       <main>
-        
         <Title/>
         <DisasterStatus items = {this.state.items}></DisasterStatus>
         <Map />
-        
       </main>
     </>)
 
