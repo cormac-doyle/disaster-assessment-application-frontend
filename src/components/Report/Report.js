@@ -1,8 +1,8 @@
 import React from "react";
 import { Component } from 'react/cjs/react.production.min';
-// import Map from "./components/Map/Map"
-// import Title from "./components/Title"
-// import DisasterStatus from "./components/DisasterStatus";
+import Map from "../Map/MapDisaster"
+import Title from "../Title"
+import DisasterStatus from "../DisasterStatus";
 // import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,12 +31,12 @@ class Report extends Component {
             </nav>
             <main>
 
-                {/* <Title /> */}
-                <div>
-                    I am a new page
-                </div>
-                {/* <DisasterStatus items={this.state.items}></DisasterStatus> */}
-                {/* <Map /> */}
+                <Title />
+                <h1>
+                    Report A Disaster
+                </h1>
+                <DisasterStatus items={this.state.items}></DisasterStatus>
+                <Map />
 
             </main>
         </>)
