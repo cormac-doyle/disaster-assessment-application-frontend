@@ -73,6 +73,8 @@ function AddMarker() {
         show={reportDisasterPopup}
         onHide={setReportDisasterPopup}
         position={position}
+        type={-1}
+        scale={-1}
       >
         <h1>Report Disaster At this Location?</h1>
       </ReportDisasterPopUp>

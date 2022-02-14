@@ -3,15 +3,15 @@ import ReactSlider from "react-slider";
 import "./ReportDisasterPopUp.css";
 import { Modal ,Button, ButtonGroup, ButtonToolbar, Spinner} from "react-bootstrap";
 
-
 class ReportDisasterPopUp extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      type: -1,
-      scale: -1
+      type: this.props.type,
+      scale: this.props.scale,
     };
+
   }
 
   confirmButtonClick(event) {
@@ -27,12 +27,11 @@ class ReportDisasterPopUp extends Component {
 
     const requestOptions = {
       method: "post",
-      mode: 'no-cors',
+      //mode: 'no-cors',
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 0,
         disaster_id: 99,
         scale: this.scale,
         disaster_type: this.type,
@@ -57,6 +56,7 @@ class ReportDisasterPopUp extends Component {
   }
 
   render(){
+
     return (
       <div>
         <Modal  
@@ -72,7 +72,10 @@ class ReportDisasterPopUp extends Component {
         <h3>Would you like to report a disaster at this location?  </h3>
         <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
         {this.scaleButtonToolBar()}
+        <div>Scale: {this.state.scale}</div>
         {this.disasterTypeButtonToolBar()}
+        <div>Type: {this.state.type}</div>
+
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={() => this.confirmButtonClick()}>
