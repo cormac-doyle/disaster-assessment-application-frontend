@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
-import Map from "./components/Map/Map";
-import {fetchResponseJson} from './fetchResponseJson'
+import Home from '../components/home/Home';
+import MapTraffic from "../components/map/MapTraffic";
+import { fetchResponseJson } from '../components/home/fetchResponseJson'
 
 test('check for title text', () => {
-  render(<App />);
+  render(<Home />);
   const linkElement = screen.getByText(/Disaster Assesment Application/i);
   expect(linkElement).toBeInTheDocument();
 });
 
-test('check if map', () => {
-  const { container } = render(<Map />)
+test('check if map exists', () => {
+  const { container } = render(<MapTraffic />)
   expect(container.childElementCount).toEqual(1);
 });
 
-const MOCK_MESSAGE = {"message":"Hello World"}
+const MOCK_MESSAGE = { "message": "Hello World" }
 
 test('check mock data has been loaded', async () => {
   fetch = jest.fn(() =>
-  Promise.resolve({
+    Promise.resolve({
       json: () => Promise.resolve(MOCK_MESSAGE),
     })
   );

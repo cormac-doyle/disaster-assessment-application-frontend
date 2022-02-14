@@ -1,52 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { Navbar } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+
 
 
 export default function Title() {
+    const pathname = window.location.pathname;
     return (
         <div>
+            <Navbar bg="light" expand="lg">
+                <Container>
+                    <Navbar.Brand href="/">Disaster Assesment Application</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav defaultActiveKey="/" activeKey={pathname} variant="tabs">
+                            <Nav.Item>
+                                <Nav.Link href="/">Disaster Map</Nav.Link>
+                            </Nav.Item>
 
-            <button
-                style={{
-                    fontSize: 25,
-                    color: "white",
-                    justifyContent: "center",
-                    backgroundColor: 'teal',
-                    position: 'absolute',
-                    right: 7,
-                    top: 7,
-                    borderRadius: 5
-                }}
-                className='btn'>
-                {"Emergency Services Login"}
-            </button>
+                            <Nav.Item>
+                                <Nav.Link eventKey="/report" href="/report">Report a Disaster</Nav.Link>
+                            </Nav.Item>
 
-            <button
-                style={{
-                    fontSize: 25,
-                    justifyContent: "center",
-                    backgroundColor: 'fuchsia',
-                    position: 'absolute',
-                    left: 7,
-                    top: 7,
-                    borderRadius: 5
-                }}
-                className='btn'>
-                {"Help"}
-            </button>
-
-            <div
-                style={{
-                    fontSize: 30,
-                    fontWeight: 200,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "white"
-                }}
-
-            >
-                Disaster Assesment Application
-            </div>
+                            <Nav.Item>
+                                <Nav.Link eventKey="/login" href="/login">Emergency Services Login</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
 
         </div >
 
