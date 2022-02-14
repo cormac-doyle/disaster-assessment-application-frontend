@@ -9,7 +9,7 @@ import {
 import L from "leaflet";
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
-import ReportDisasterPopUp from "../ReportDisasterPopUp";
+import ReportDisasterPopUp from "../report/ReportDisasterPopUp";
 
 // For the marker icon
 delete L.Icon.Default.prototype._getIconUrl;
