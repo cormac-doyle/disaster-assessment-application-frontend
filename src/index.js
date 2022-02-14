@@ -6,6 +6,7 @@ import App from './App';
 import Report from './components/report/Report'
 import Login from './components/login/Login'
 import reportWebVitals from './reportWebVitals';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(
