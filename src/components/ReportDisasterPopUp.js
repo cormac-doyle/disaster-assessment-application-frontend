@@ -16,32 +16,6 @@ class ReportDisasterPopUp extends Component {
   
   async postDisasterLocation() {
 
-<<<<<<< HEAD
-  async postDisasterLocation(){
-    try{
-      let disasterLocationJSON = await fetch("http://localhost:8000/", {
-        method: 'post',
-        mode: 'no-cors',
-        headers: {
-          'Accept':'application/json',
-          'Content-type':'application/json',
-        },
-        body: JSON.stringify(
-          {
-          disasterStatus: true,
-          disasterLocation : {
-            longitude: this.latitude,
-            latitude: this.longitude,
-          }
-        })
-      });
-
-      //alert(disasterLocationJSON)
-      console.log(JSON.stringify(disasterLocationJSON))
-    }catch (e){
-      alert('posting data failed')
-      console.log(e)
-=======
     const requestOptions = {
       method: "post",
       //mode: 'no-cors',
@@ -70,7 +44,6 @@ class ReportDisasterPopUp extends Component {
       
       this.props.onHide();
       console.log(e);
->>>>>>> e425613a0eda9dab9c7917090e5d81dd85ff85b9
     }
   }
 
