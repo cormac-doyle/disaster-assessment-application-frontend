@@ -5,28 +5,37 @@ import { Modal ,Button, ButtonGroup, ButtonToolbar, Spinner} from "react-bootstr
 
 
 class ReportDisasterPopUp extends Component {
+  
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      type: -1,
+      scale: -1
+    };
   }
 
   confirmButtonClick(event) {
-    this.postDisasterLocation();
+    
+    if(this.state.scale!==-1 && this.state.type!==-1){
+      this.postDisasterLocation();
+    }else{
+      alert("Please select disaster scale and type")
+    }
   }
   
   async postDisasterLocation() {
 
     const requestOptions = {
       method: "post",
-      //mode: 'no-cors',
+      mode: 'no-cors',
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
         user_id: 0,
         disaster_id: 99,
-        scale: 10,
-        disaster_type: 1,
+        scale: this.scale,
+        disaster_type: this.type,
         long: this.props.position.lng,
         lat: this.props.position.lat,
       }),
@@ -72,9 +81,7 @@ class ReportDisasterPopUp extends Component {
       </Modal.Footer>
     </Modal>
       </div>
-      
       );
-    
   }
 
   disasterTypeButtonToolBar() {
@@ -82,9 +89,9 @@ class ReportDisasterPopUp extends Component {
     <h4>Type:</h4>
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="First group">
-        <Button>FIRE</Button>
-        <Button>FLOOD</Button>
-        <Button>TRAFFIC INCIDENT</Button>
+        <Button onClick={() => this.setState({type: 1})}>FIRE</Button>
+        <Button onClick={() => this.setState({type: 2})}>FLOOD</Button>
+        <Button onClick={() => this.setState({type: 3})}>TRAFFIC INCIDENT</Button>
       </ButtonGroup>
     </ButtonToolbar>
     </>
@@ -95,16 +102,16 @@ class ReportDisasterPopUp extends Component {
     <h4>Scale:</h4>
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="First group">
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <Button>4</Button>
-        <Button>5</Button>
-        <Button>6</Button>
-        <Button>7</Button>
-        <Button>8</Button>
-        <Button>9</Button>
-        <Button>10</Button>
+        <Button onClick={ () => this.setState({scale: 1})}>1</Button>
+        <Button onClick={ () => this.setState({scale: 2})}>2</Button>
+        <Button onClick={ () => this.setState({scale: 3})}>3</Button>
+        <Button onClick={ () => this.setState({scale: 4})}>4</Button>
+        <Button onClick={ () => this.setState({scale: 5})}>5</Button>
+        <Button onClick={ () => this.setState({scale: 6})}>6</Button>
+        <Button onClick={ () => this.setState({scale: 7})}>7</Button>
+        <Button onClick={ () => this.setState({scale: 8})}>8</Button>
+        <Button onClick={ () => this.setState({scale: 9})}>9</Button>
+        <Button onClick={ () => this.setState({scale: 10})}>10</Button>
       </ButtonGroup>
     </ButtonToolbar>
     </>

@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    return fetchResponseJson('https://ase-backend-2.herokuapp.com/').then((responseJson) => {
+    return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
       this.setState({
         items: responseJson
       })
