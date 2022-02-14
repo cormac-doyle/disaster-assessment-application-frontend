@@ -29,14 +29,14 @@ class Login extends Component {
                         <Form>
                             <Form.Group className="mx-5" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
+                                <Form.Control type="email" placeholder="Enter email" onChange={e => this.setState({ value: e.target.value })} value={this.state.value} />
                             </Form.Group>
 
                             <Form.Group className="mx-5" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
-                            <Button variant="primary" className="m-5" type="submit">
+                            <Button variant="primary" className="m-5" type="submit" disabled={!this.state.value}>
                                 Submit
                             </Button>
                         </Form>

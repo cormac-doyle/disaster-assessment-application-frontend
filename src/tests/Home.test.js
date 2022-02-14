@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../Home';
+import Home from '../components/home/Home';
 import MapTraffic from "../components/map/MapTraffic";
 import { fetchResponseJson } from '../components/home/fetchResponseJson'
 
