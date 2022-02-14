@@ -19,7 +19,7 @@ function DisasterStatus(props){
     else{
         return (
             <div style={style}>
-                <span>Disaster Status: {JSON.stringify(props.items)}</span>
+                <span>{JSON.stringify(props.items)}</span>
             </div>
         )
     }  

@@ -6,6 +6,8 @@ import Title from "./components/Title"
 import DisasterStatus from "./components/DisasterStatus";
 import {fetchResponseJson} from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component{
 
@@ -17,7 +19,7 @@ class App extends Component{
   }
   
   componentDidMount() {
-    return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
+    return fetchResponseJson('https://ase-backend-2.herokuapp.com/').then((responseJson) => {
       this.setState({
         items: responseJson
       })
@@ -29,11 +31,9 @@ class App extends Component{
       <nav>
       </nav>
       <main>
-        
         <Title/>
         <DisasterStatus items = {this.state.items}></DisasterStatus>
         <Map />
-        
       </main>
     </>)
 
