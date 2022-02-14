@@ -11,4 +11,4 @@ async function fetchResponseJson (url) {
     }
   }
 
-  export { fetchResponseJson }
+export { fetchResponseJson }

@@ -8,11 +8,11 @@ class ReportDisasterPopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: this.props.type,
-      scale: this.props.scale,
+      type: "-1",
+      scale: "-1",
     };
-
   }
+
 
   confirmButtonClick(event) {
     
@@ -34,7 +34,7 @@ class ReportDisasterPopUp extends Component {
       body: JSON.stringify({
         disaster_id: 99,
         scale: this.scale,
-        disaster_type: this.type,
+        disaster_type: 1,
         long: this.props.position.lng,
         lat: this.props.position.lat,
       }),
@@ -70,7 +70,7 @@ class ReportDisasterPopUp extends Component {
       </Modal.Header>
       <Modal.Body>
         <h3>Would you like to report a disaster at this location?  </h3>
-        <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
+        <div>Longitude:{this.props.position.lng.toFixed(4)} Latitude: {this.props.position.lat.toFixed(4)}</div>
         {this.scaleButtonToolBar()}
         <div>Scale: {this.state.scale}</div>
         {this.disasterTypeButtonToolBar()}
@@ -105,8 +105,8 @@ class ReportDisasterPopUp extends Component {
     <h4>Scale:</h4>
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="First group">
-        <Button onClick={ () => this.setState({scale: 1})}>1</Button>
-        <Button onClick={ () => this.setState({scale: 2})}>2</Button>
+        <Button onClick={ () => this.setState({scale: "1"})}>1</Button>
+        <Button onClick={ () => this.setState({scale: "2"})}>2</Button>
         <Button onClick={ () => this.setState({scale: 3})}>3</Button>
         <Button onClick={ () => this.setState({scale: 4})}>4</Button>
         <Button onClick={ () => this.setState({scale: 5})}>5</Button>
