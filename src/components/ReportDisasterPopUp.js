@@ -108,7 +108,6 @@ class ReportDisasterPopUp extends Component {
       </ButtonGroup>
     </ButtonToolbar>
     </>
-    
   }
 }
 

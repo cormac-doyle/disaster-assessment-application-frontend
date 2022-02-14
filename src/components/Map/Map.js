@@ -63,20 +63,6 @@ function AddMarker() {
     },
   });
 
-<<<<<<< HEAD
-    return position === null ? null : (
-        <>
-        <Marker position={position}>
-            <Popup>Disaster Location</Popup>
-        </Marker>
-        <ReportDisasterPopUp trigger={reportDisasterPopup} setReportDisasterPopup = {setReportDisasterPopup} position={position}>
-            <h1>Report Disaster At this Location?</h1>
-        </ReportDisasterPopUp>
-        </>
-        
-    )
-    
-=======
   return position === null ? null : (
     <>
      
@@ -94,7 +80,6 @@ function AddMarker() {
       
     </>
   );
->>>>>>> e425613a0eda9dab9c7917090e5d81dd85ff85b9
 }
 
 
