@@ -3,8 +3,6 @@ import "../../App.css";
 import { Component } from 'react/cjs/react.production.min';
 import Map from "../map/MapTraffic"
 import Title from "../Title"
-import DisasterStatus from "../DisasterStatus";
-import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
@@ -20,14 +18,6 @@ class Home extends Component {
         }
     }
 
-    componentDidMount() {
-        return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
-            this.setState({
-                items: responseJson
-            })
-        })
-    }
-
     render() {
         return (<>
             <nav>
@@ -35,12 +25,10 @@ class Home extends Component {
             <main>
                 <Title />
                 <GDPRAlert />
-                <DisasterStatus items={this.state.items}></DisasterStatus>
                 <Map />
 
             </main>
         </>)
-
     }
 };
 

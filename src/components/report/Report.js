@@ -2,10 +2,12 @@ import React from "react";
 import { Component } from 'react/cjs/react.production.min';
 import Map from "../map/MapDisaster"
 import Title from "../Title"
-import DisasterStatus from "../DisasterStatus";
+import UserStatus from "../UserStatus";
 // import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { fetchResponseJson } from '../fetchResponseJson'
+
 
 
 class Report extends Component {
@@ -17,13 +19,13 @@ class Report extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
-    //         this.setState({
-    //             items: responseJson
-    //         })
-    //     })
-    // }
+    componentDidMount() {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
+            this.setState({
+                items: responseJson
+            })
+        })
+    }
 
     render() {
         return (<>
@@ -35,7 +37,7 @@ class Report extends Component {
                 <h1>
                     Report A Disaster
                 </h1>
-                <DisasterStatus items={this.state.items}></DisasterStatus>
+                <UserStatus items={this.state.items}></UserStatus>
                 <Map />
 
             </main>

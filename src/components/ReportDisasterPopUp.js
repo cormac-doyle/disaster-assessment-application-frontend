@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import ReactSlider from "react-slider";
 import "./ReportDisasterPopUp.css";
-import { Modal ,Button, ButtonGroup, ButtonToolbar, Spinner} from "react-bootstrap";
+import { Modal ,Button, ButtonGroup, ButtonToolbar} from "react-bootstrap";
 
 
 class ReportDisasterPopUp extends Component {
@@ -12,6 +11,15 @@ class ReportDisasterPopUp extends Component {
       type: -1,
       scale: -1
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props !== prevProps){
+      this.setState(()=>({
+        type: -1,
+        scale: -1
+      }))
+    }
   }
 
   confirmButtonClick(event) {
@@ -27,15 +35,13 @@ class ReportDisasterPopUp extends Component {
 
     const requestOptions = {
       method: "post",
-      mode: 'no-cors',
+      //mode: 'no-cors',
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 0,
-        disaster_id: 99,
-        scale: this.scale,
-        disaster_type: this.type,
+        scale: this.state.scale,
+        disaster_type: this.state.type,
         long: this.props.position.lng,
         lat: this.props.position.lat,
       }),
