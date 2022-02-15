@@ -8,15 +8,23 @@ class ReportDisasterPopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "-1",
-      scale: "-1",
+      type: -1,
+      scale: -1,
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props !== prevProps){
+      this.setState(()=>({
+        type: -1,
+        scale: -1
+      }))
+    }
+  }
 
   confirmButtonClick(event) {
     
-    if(this.state.scale!==-1 && this.state.type!==-1){
+    if(this.state.scale!== -1 && this.state.type!== -1){
       this.postDisasterLocation();
     }else{
       alert("Please select disaster scale and type")
@@ -24,7 +32,7 @@ class ReportDisasterPopUp extends Component {
   }
   
   async postDisasterLocation() {
-
+ 
     const requestOptions = {
       method: "post",
       //mode: 'no-cors',
@@ -32,9 +40,9 @@ class ReportDisasterPopUp extends Component {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        disaster_id: 99,
-        scale: this.scale,
-        disaster_type: 1,
+        disaster_id: 98,
+        scale: this.state.scale,
+        disaster_type: this.state.type,
         long: this.props.position.lng,
         lat: this.props.position.lat,
       }),
@@ -72,10 +80,7 @@ class ReportDisasterPopUp extends Component {
         <h3>Would you like to report a disaster at this location?  </h3>
         <div>Longitude:{this.props.position.lng.toFixed(4)} Latitude: {this.props.position.lat.toFixed(4)}</div>
         {this.scaleButtonToolBar()}
-        <div>Scale: {this.state.scale}</div>
         {this.disasterTypeButtonToolBar()}
-        <div>Type: {this.state.type}</div>
-
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={() => this.confirmButtonClick()}>
@@ -105,8 +110,8 @@ class ReportDisasterPopUp extends Component {
     <h4>Scale:</h4>
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="First group">
-        <Button onClick={ () => this.setState({scale: "1"})}>1</Button>
-        <Button onClick={ () => this.setState({scale: "2"})}>2</Button>
+        <Button onClick={ () => this.setState({scale: 1})}>1</Button>
+        <Button onClick={ () => this.setState({scale: 2})}>2</Button>
         <Button onClick={ () => this.setState({scale: 3})}>3</Button>
         <Button onClick={ () => this.setState({scale: 4})}>4</Button>
         <Button onClick={ () => this.setState({scale: 5})}>5</Button>
