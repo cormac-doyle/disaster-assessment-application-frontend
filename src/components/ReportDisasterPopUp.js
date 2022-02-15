@@ -23,7 +23,6 @@ class ReportDisasterPopUp extends Component {
   }
 
   confirmButtonClick(event) {
-    
     if(this.state.scale!== -1 && this.state.type!== -1){
       this.postDisasterLocation();
     }else{
@@ -57,7 +56,6 @@ class ReportDisasterPopUp extends Component {
       
     } catch (e) {
       alert("Report Disaster Failed");
-      
       this.props.onHide();
       console.log(e);
     }
