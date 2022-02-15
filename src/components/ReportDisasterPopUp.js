@@ -41,8 +41,6 @@ class ReportDisasterPopUp extends Component {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 0,
-        disaster_id: 99,
         scale: this.state.scale,
         disaster_type: this.state.type,
         long: this.props.position.lng,
