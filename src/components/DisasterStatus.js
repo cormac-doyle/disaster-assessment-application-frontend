@@ -14,7 +14,7 @@ function DisasterStatus(props){
     }
 
     if(props.items.length===0){
-        return<span style={style}>Disaster Status: Loading...</span>;
+        return<span style={style}>User ID: Loading...</span>;
       } 
     else{
         return (

@@ -14,6 +14,15 @@ class ReportDisasterPopUp extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props !== prevProps){
+      this.setState(()=>({
+        type: -1,
+        scale: -1
+      }))
+    }
+  }
+
   confirmButtonClick(event) {
     
     if(this.state.scale!==-1 && this.state.type!==-1){
@@ -27,15 +36,15 @@ class ReportDisasterPopUp extends Component {
 
     const requestOptions = {
       method: "post",
-      mode: 'no-cors',
+      //mode: 'no-cors',
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
         user_id: 0,
         disaster_id: 99,
-        scale: this.scale,
-        disaster_type: this.type,
+        scale: this.state.scale,
+        disaster_type: this.state.type,
         long: this.props.position.lng,
         lat: this.props.position.lat,
       }),

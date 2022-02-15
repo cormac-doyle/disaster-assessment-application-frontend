@@ -6,6 +6,8 @@ import DisasterStatus from "../DisasterStatus";
 // import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { fetchResponseJson } from '../fetchResponseJson'
+
 
 
 class Report extends Component {
@@ -17,13 +19,13 @@ class Report extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
-    //         this.setState({
-    //             items: responseJson
-    //         })
-    //     })
-    // }
+    componentDidMount() {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
+            this.setState({
+                items: responseJson
+            })
+        })
+    }
 
     render() {
         return (<>

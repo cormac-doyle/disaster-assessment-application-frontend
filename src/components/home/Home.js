@@ -4,7 +4,7 @@ import { Component } from 'react/cjs/react.production.min';
 import Map from "../map/MapTraffic"
 import Title from "../Title"
 import DisasterStatus from "../DisasterStatus";
-import { fetchResponseJson } from './fetchResponseJson'
+import { fetchResponseJson } from '../fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
@@ -21,7 +21,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('http://localhost:8000/').then((responseJson) => {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
             this.setState({
                 items: responseJson
             })

@@ -4,7 +4,7 @@ import { Component } from 'react/cjs/react.production.min';
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./components/home/Home";
-import { fetchResponseJson } from "./components/home/fetchResponseJson";
+import { fetchResponseJson } from "./components/fetchResponseJson";
 
 class App extends Component {
 
