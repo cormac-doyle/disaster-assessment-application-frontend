@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function DisasterStatus(props){
+function UserStatus(props){
     
     const style ={
         fontSize: 15,
@@ -19,10 +19,10 @@ function DisasterStatus(props){
     else{
         return (
             <div style={style}>
-                <span>{JSON.stringify(props.items)}</span>
+                <span>UserID identified. Ready To Report</span>
             </div>
         )
     }  
 }
 
-export default DisasterStatus;
+export default UserStatus;
