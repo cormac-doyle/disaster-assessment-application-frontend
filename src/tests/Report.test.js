@@ -11,6 +11,7 @@ test('check if map exists', () => {
 });
 
 //TODO popup test
+/*
 test('modal shows the children and a close button', () => {
     // Arrange
     const handleClose = jest.fn()
@@ -30,3 +31,4 @@ test('modal shows the children and a close button', () => {
     // Assert
     expect(handleClose).toHaveBeenCalledTimes(1)
 })
+*/

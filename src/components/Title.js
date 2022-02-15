@@ -11,7 +11,7 @@ export default function Title() {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="/">Disaster Assesment Application</Navbar.Brand>
+                    <Navbar.Brand href="/" data-testid="brandhome">Disaster Assesment Application</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav defaultActiveKey="/" activeKey={pathname} variant="tabs">
