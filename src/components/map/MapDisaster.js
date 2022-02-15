@@ -52,7 +52,6 @@ function LocationMarker() {
 
 
 function AddMarker() {
-  const disasterCount = 0;
   const [position, setPosition] = useState(null);
   const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
 
