@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
-import { Modal ,Button, ButtonGroup, ButtonToolbar} from "react-bootstrap";
+import { Modal ,Button, ButtonGroup, ButtonToolbar, Dropdown} from "react-bootstrap";
 
 
 class ReportDisasterPopUp extends Component {
@@ -92,34 +92,43 @@ class ReportDisasterPopUp extends Component {
 
   disasterTypeButtonToolBar() {
     return <>
-    <h4>Type:</h4>
-    <ButtonToolbar aria-label="Toolbar with button groups">
-      <ButtonGroup className="me-2" aria-label="First group">
-        <Button onClick={() => this.setState({type: 1})}>FIRE</Button>
-        <Button onClick={() => this.setState({type: 2})}>FLOOD</Button>
-        <Button onClick={() => this.setState({type: 3})}>TRAFFIC INCIDENT</Button>
-      </ButtonGroup>
-    </ButtonToolbar>
+    <Dropdown className="d-inline mx-2">
+    <Dropdown.Toggle id="dropdown-autoclose-true">
+      Disaster Type
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 1})}>FIRE</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 2})}>FLOOD</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 3})}>TRAFFIC INCIDENT</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+
     </>
   }
 
   scaleButtonToolBar() {
     return <>
-    <h4>Scale:</h4>
-    <ButtonToolbar aria-label="Toolbar with button groups">
-      <ButtonGroup className="me-2" aria-label="First group">
-        <Button onClick={ () => this.setState({scale: 1})}>1</Button>
-        <Button onClick={ () => this.setState({scale: 2})}>2</Button>
-        <Button onClick={ () => this.setState({scale: 3})}>3</Button>
-        <Button onClick={ () => this.setState({scale: 4})}>4</Button>
-        <Button onClick={ () => this.setState({scale: 5})}>5</Button>
-        <Button onClick={ () => this.setState({scale: 6})}>6</Button>
-        <Button onClick={ () => this.setState({scale: 7})}>7</Button>
-        <Button onClick={ () => this.setState({scale: 8})}>8</Button>
-        <Button onClick={ () => this.setState({scale: 9})}>9</Button>
-        <Button onClick={ () => this.setState({scale: 10})}>10</Button>
-      </ButtonGroup>
-    </ButtonToolbar>
+    
+    <Dropdown className="d-inline mx-2">
+      <Dropdown.Toggle id="dropdown-autoclose-true">
+        Select Scale
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={ () => this.setState({scale: 1})}>1</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 2})}>2</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 3})}>3</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 4})}>4</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 5})}>5</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 6})}>6</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 6})}>6</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 7})}>7</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 8})}>8</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 9})}>9</Dropdown.Item>
+        <Dropdown.Item onClick={ () => this.setState({scale: 10})}>10</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
     </>
   }
 }
