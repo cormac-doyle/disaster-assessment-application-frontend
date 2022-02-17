@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
-import { Modal, Button, ButtonGroup, ButtonToolbar, Spinner } from "react-bootstrap";
+import { Modal, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 
 class ReportDisasterPopUp extends Component {
