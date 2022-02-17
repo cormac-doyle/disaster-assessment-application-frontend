@@ -52,7 +52,6 @@ function LocationMarker() {
 
 
 function AddMarker() {
-  const disasterCount = 0;
   const [position, setPosition] = useState(null);
   const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
 
@@ -77,7 +76,6 @@ function AddMarker() {
         <h1>Report Disaster At this Location?</h1>
       </ReportDisasterPopUp>
 
-
     </>
   );
 }
@@ -92,7 +90,7 @@ const Map = () => {
         center={defaultPosition}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "90vh" }}
+        style={{ height: "80vh" }}
         zoomControl={false}
       >
         <TileLayer

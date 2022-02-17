@@ -1,6 +1,6 @@
 import { getByRole, render, screen, fireEvent } from '@testing-library/react';
 import Login from '../components/login/Login';
-import { fetchResponseJson } from '../components/home/fetchResponseJson';
+import { fetchResponseJson } from '../components/fetchResponseJson';
 
 
 test('check for title text', () => {

@@ -4,7 +4,6 @@ import { Component } from 'react/cjs/react.production.min';
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./components/home/Home";
-import { fetchResponseJson } from "./components/home/fetchResponseJson";
 
 class App extends Component {
 
@@ -13,14 +12,6 @@ class App extends Component {
     this.state = {
       items: [],
     }
-  }
-
-  componentDidMount() {
-    return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
-      this.setState({
-        items: responseJson
-      })
-    })
   }
 
   render() {
