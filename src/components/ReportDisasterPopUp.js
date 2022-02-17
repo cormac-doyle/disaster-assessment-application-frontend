@@ -9,15 +9,21 @@ class ReportDisasterPopUp extends Component {
     super(props);
     this.state = {
       type: -1,
-      scale: -1
+      scale: -1,
+      radius: 0
     };
+  }
+
+  handleRadius(){
+    this.props.onRadiusChange(this.state.radius)
   }
 
   componentDidUpdate(prevProps) {
     if(this.props !== prevProps){
       this.setState(()=>({
         type: -1,
-        scale: -1
+        scale: -1,
+        radius: -1
       }))
     }
   }
@@ -27,7 +33,7 @@ class ReportDisasterPopUp extends Component {
     if(this.state.scale!==-1 && this.state.type!==-1){
       this.postDisasterLocation();
     }else{
-      alert("Please select disaster scale and type")
+      
     }
   }
   
@@ -49,7 +55,7 @@ class ReportDisasterPopUp extends Component {
 
     try {
       
-      let disasterLocationJSON = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters/", requestOptions).then(response => response.json());
+      let disasterLocationJSON = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions).then(response => response.json());
 
       alert("Disaster Reported: " + JSON.stringify(disasterLocationJSON));
       this.props.onHide();
@@ -77,8 +83,10 @@ class ReportDisasterPopUp extends Component {
       <Modal.Body>
         <h3>Would you like to report a disaster at this location?  </h3>
         <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
-        {this.scaleButtonToolBar()}
-        {this.disasterTypeButtonToolBar()}
+        {this.scaleDropDown()}
+        {this.disasterTypeDropDown()}
+        {this.disasterRadius()}
+        
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={() => this.confirmButtonClick()}>
@@ -90,7 +98,32 @@ class ReportDisasterPopUp extends Component {
       );
   }
 
-  disasterTypeButtonToolBar() {
+  disasterRadius(){
+    if(this.state.type===1 || this.state.type===2){
+      return<>
+      <Dropdown className="d-inline mx-2">
+          <Dropdown.Toggle id="dropdown-autoclose-true">
+            Disaster Radius
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 0})}>0m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 100})}>100m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 200})}>200m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>300m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>400m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>500m</Dropdown.Item>
+            
+
+          </Dropdown.Menu>
+    </Dropdown>
+    </>
+    }
+    return null
+
+  }
+
+  disasterTypeDropDown() {
     return <>
     <Dropdown className="d-inline mx-2">
     <Dropdown.Toggle id="dropdown-autoclose-true">
@@ -107,7 +140,7 @@ class ReportDisasterPopUp extends Component {
     </>
   }
 
-  scaleButtonToolBar() {
+  scaleDropDown() {
     return <>
     
     <Dropdown className="d-inline mx-2">
@@ -121,7 +154,6 @@ class ReportDisasterPopUp extends Component {
         <Dropdown.Item onClick={ () => this.setState({scale: 3})}>3</Dropdown.Item>
         <Dropdown.Item onClick={ () => this.setState({scale: 4})}>4</Dropdown.Item>
         <Dropdown.Item onClick={ () => this.setState({scale: 5})}>5</Dropdown.Item>
-        <Dropdown.Item onClick={ () => this.setState({scale: 6})}>6</Dropdown.Item>
         <Dropdown.Item onClick={ () => this.setState({scale: 6})}>6</Dropdown.Item>
         <Dropdown.Item onClick={ () => this.setState({scale: 7})}>7</Dropdown.Item>
         <Dropdown.Item onClick={ () => this.setState({scale: 8})}>8</Dropdown.Item>

@@ -1,23 +1,73 @@
-// import React, { useState } from "react";
-// import { Marker, useMapEvents } from "react-leaflet";
+import React, { useState } from "react";
+import {
+  Marker,
+  Popup,
+  useMapEvents,
+  Circle
+} from "react-leaflet";
+import ReportDisasterPopUp from "../ReportDisasterPopUp";
+
+// const icon = L.icon({
+//     iconSize: [25, 41],
+//     iconAnchor: [10, 41],
+//     popupAnchor: [2, -40],
+//     iconUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-icon.png",
+//     shadowUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-shadow.png"
+// });
+/*
+function LocationMarker() {
+    const [position, setPosition] = useState(null)
+    const map = useMapEvents({
+        click() {
+            
+            map.locate()
+        },
+        locationfound(e) {
+            setPosition(e.latlng)
+            map.flyTo(e.latlng, map.getZoom())
+        },
+    })
+
+    return position === null ? null : (
+        <Marker position={position}>
+            <Popup>There you are...</Popup>
+        </Marker>
+    )
+}
+*/
+export function AddMarker() {
+  const [position, setPosition] = useState(null);
+  const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
+  const [radius,setRadius] = useState(null)
+
+  useMapEvents({
+    click: (e) => {
+      setReportDisasterPopup(true);
+      setPosition(e.latlng);
+    },
+  });
+
+  return position === null ? null : (
+    <>
 
 
-// const AddMarker = ({ formIsOpen, toggleForm, setLocation }) => {
-//     const [position, setPosition] = useState(
-//         null
-//     );
+      <ReportDisasterPopUp
+        show={reportDisasterPopup}
+        onHide={setReportDisasterPopup}
+        position={position}
+        onRadiusChange={this.setRadius}
+      >
+        <h1>Report Disaster At this Location?</h1>
+      </ReportDisasterPopUp>
 
-//     useMapEvents({
-//         click: (e) => {
-//             setPosition(e.latlng);
-//             setLocation(e.latlng);
-//             toggleForm(true);
-//         },
-//     });
+      <Circle center={position} radius={this.radius}>
+        <Marker position={position}>
+          <Popup>Disaster Location</Popup>
+        </Marker>
+      </Circle>
 
-//     return !formIsOpen || position === null ? null : (
-//         <Marker position={position}></Marker>
-//     );
-// };
+    </>
+  );
+}
 
-// export default (AddMarker);
+
