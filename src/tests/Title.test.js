@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Title from '../components/Title';
-import { fetchResponseJson } from '../components/home/fetchResponseJson';
+import { fetchResponseJson } from '../components/fetchResponseJson';
 
 //links
 const links = [
