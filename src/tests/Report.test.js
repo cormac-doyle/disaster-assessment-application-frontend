@@ -3,7 +3,7 @@ import Report from '../components/report/Report';
 import MapDisaster from "../components/map/MapDisaster";
 import ReportDisasterPopUp from "../components/report/ReportDisasterPopUp";
 import { Modal } from "react-bootstrap";
-import { fetchResponseJson } from '../components/home/fetchResponseJson';
+import { fetchResponseJson } from '../components/fetchResponseJson';
 
 test('check if map exists', () => {
     const { container } = render(<MapDisaster />)
