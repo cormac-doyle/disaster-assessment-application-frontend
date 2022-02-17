@@ -10,6 +10,7 @@ test('check if map exists', () => {
     expect(container.childElementCount).toEqual(1);
 });
 
+/*
 let MOCK_RESPONSE = JSON.stringify({
     user_id: 0,
     disaster_id: 99,
@@ -55,7 +56,7 @@ test('modal shows the children and a close button', () => {
     // Assert
     expect(handleClose).toHaveBeenCalledTimes(1)
 });
-
+*/
 //TODO popup test
 
 
