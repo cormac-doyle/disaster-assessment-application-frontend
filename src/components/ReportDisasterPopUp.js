@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
-import { Modal ,Button, ButtonGroup, ButtonToolbar, Dropdown} from "react-bootstrap";
+import { Modal , Button, Dropdown} from "react-bootstrap";
 
 
 class ReportDisasterPopUp extends Component {
@@ -12,10 +12,6 @@ class ReportDisasterPopUp extends Component {
       scale: -1,
       radius: 0
     };
-  }
-
-  handleRadius(){
-    this.props.onRadiusChange(this.state.radius)
   }
 
   componentDidUpdate(prevProps) {
@@ -99,7 +95,7 @@ class ReportDisasterPopUp extends Component {
   }
 
   disasterRadius(){
-    if(this.state.type===1 || this.state.type===2){
+    
       return<>
       <Dropdown className="d-inline mx-2">
           <Dropdown.Toggle id="dropdown-autoclose-true">
@@ -113,13 +109,11 @@ class ReportDisasterPopUp extends Component {
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>300m</Dropdown.Item>
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>400m</Dropdown.Item>
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>500m</Dropdown.Item>
-            
 
           </Dropdown.Menu>
     </Dropdown>
     </>
-    }
-    return null
+    
 
   }
 

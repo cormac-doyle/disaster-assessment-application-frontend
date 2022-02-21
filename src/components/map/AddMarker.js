@@ -55,12 +55,11 @@ export function AddMarker() {
         show={reportDisasterPopup}
         onHide={setReportDisasterPopup}
         position={position}
-        onRadiusChange={this.setRadius}
       >
         <h1>Report Disaster At this Location?</h1>
       </ReportDisasterPopUp>
 
-      <Circle center={position} radius={this.radius}>
+      <Circle center={position} radius={0}>
         <Marker position={position}>
           <Popup>Disaster Location</Popup>
         </Marker>
