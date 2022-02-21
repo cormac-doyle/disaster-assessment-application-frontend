@@ -62,7 +62,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-        <EmergencyServiceLocations/>
+            <EmergencyServiceLocations/>
         </MapContainer>
 
 
