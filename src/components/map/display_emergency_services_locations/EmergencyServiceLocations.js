@@ -8,21 +8,21 @@ import L from "leaflet";
 
 const HospitalIcon = L.icon({
     iconUrl: require("./images/hospital.png"),
-    iconSize: [25, 41],
+    iconSize: [40, 40],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
 });
 
 const PoliceIcon = L.icon({
-    iconUrl: require("./images/gardai.png"),
-    iconSize: [25, 41],
+    iconUrl: require("./images/policeIcon.png"),
+    iconSize: [40, 40],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
 });
 
 const FirestationIcon = L.icon({
     iconUrl: require("./images/firestation.png"),
-    iconSize: [25, 41],
+    iconSize: [40, 40],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
 });
