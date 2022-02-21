@@ -2,14 +2,11 @@ import React from "react";
 import {
   MapContainer,
   TileLayer,
-  Pane,
-  CircleMarker
 } from "react-leaflet";
 import L from "leaflet";
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
 import { AddMarker } from "./AddMarker";
-import ReportDisasterPopUp from "../report/ReportDisasterPopUp";
 
 // For the marker icon
 delete L.Icon.Default.prototype._getIconUrl;

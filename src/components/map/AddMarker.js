@@ -5,7 +5,7 @@ import {
   useMapEvents,
   Circle
 } from "react-leaflet";
-import ReportDisasterPopUp from "../ReportDisasterPopUp";
+import ReportDisasterPopUp from "../report/ReportDisasterPopUp";
 
 // const icon = L.icon({
 //     iconSize: [25, 41],
@@ -38,7 +38,6 @@ function LocationMarker() {
 export function AddMarker() {
   const [position, setPosition] = useState(null);
   const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
-  const [radius,setRadius] = useState(null)
 
   useMapEvents({
     click: (e) => {
