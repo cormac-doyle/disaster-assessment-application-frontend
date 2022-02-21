@@ -3,6 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
+import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 
 
 L.Icon.Default.mergeOptions({
@@ -60,6 +61,8 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+
+            <EmergencyServiceLocations/>
         </MapContainer>
 
 
