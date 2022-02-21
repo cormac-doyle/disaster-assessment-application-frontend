@@ -4,10 +4,7 @@ import "leaflet-routing-machine";
 
 const createRoutingMachineLayer = (props) => {
     const instance = L.Routing.control({
-        waypoints: [
-            L.latLng(53.348, -6.2603),
-            L.latLng(53.58, -6.5603)
-        ],
+        waypoints: props.waypoints,
         lineOptions: {
             styles: [{ color: "#6FA1EC", weight: 4 }]
         },

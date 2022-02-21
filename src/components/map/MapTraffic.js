@@ -61,7 +61,12 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <RoutingMachine />
+            <RoutingMachine waypoints={[
+                L.latLng(53.348, -6.2603),
+                L.latLng(53.448, -6.3603),
+                L.latLng(53.548, -6.4603),
+                L.latLng(53.748, -6.4603),
+            ]} />
         </MapContainer>
 
 
