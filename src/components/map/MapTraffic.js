@@ -3,6 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
+import RoutingMachine from "./RoutingMachine";
 
 
 L.Icon.Default.mergeOptions({
@@ -61,6 +62,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
         </MapContainer>
+        <RoutingMachine />
 
 
     </div>);
