@@ -63,7 +63,6 @@ export function AddMarker() {
           <Popup>Disaster Location</Popup>
         </Marker>
       </Circle>
-
     </>
   );
 }
