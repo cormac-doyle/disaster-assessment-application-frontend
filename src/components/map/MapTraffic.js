@@ -63,9 +63,9 @@ const Map = () => {
             />
             <RoutingMachine waypoints={[
                 L.latLng(53.348, -6.2603),
-                L.latLng(53.448, -6.3603),
-                L.latLng(53.548, -6.4603),
-                L.latLng(53.748, -6.4603),
+                L.latLng(53.358, -6.2703),
+                L.latLng(53.368, -6.2803),
+                L.latLng(53.378, -6.2903),
             ]} />
         </MapContainer>
 
