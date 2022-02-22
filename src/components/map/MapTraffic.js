@@ -4,6 +4,7 @@ import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
+import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
 
 L.Icon.Default.mergeOptions({
@@ -63,6 +64,7 @@ const Map = () => {
             />
 
             <EmergencyServiceLocations/>
+            <DisasterLocations/>
         </MapContainer>
 
 
