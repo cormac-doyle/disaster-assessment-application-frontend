@@ -4,7 +4,7 @@ import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import RoutingMachine from "./RoutingMachine";
-
+import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -67,6 +67,8 @@ const Map = () => {
                 L.latLng(53.368, -6.2803),
                 L.latLng(53.378, -6.2903),
             ]} />
+
+            <EmergencyServiceLocations/>
         </MapContainer>
 
 

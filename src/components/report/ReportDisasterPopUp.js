@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
 import { Modal , Button, Dropdown} from "react-bootstrap";
 
-
 class ReportDisasterPopUp extends Component {
   
   constructor(props) {
