@@ -54,7 +54,7 @@ const Map = () => {
             center={defaultPosition}
             zoom={13}
             scrollWheelZoom={true}
-            style={{ height: "80vh" }}
+            style={{ height: "90vh" }}
             zoomControl={false}
         >
 
@@ -62,11 +62,9 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-
-            <EmergencyServiceLocations/>
-            <DisasterLocations/>
+            <DisasterLocations />
+            <EmergencyServiceLocations />
         </MapContainer>
-
 
     </div>);
 };
