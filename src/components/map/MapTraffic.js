@@ -68,7 +68,7 @@ const Map = () => {
                 L.latLng(53.378, -6.2903),
             ]} />
 
-            <EmergencyServiceLocations/>
+            <EmergencyServiceLocations />
         </MapContainer>
 
 
