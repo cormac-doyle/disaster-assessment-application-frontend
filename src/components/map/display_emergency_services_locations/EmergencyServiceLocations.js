@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {
   Marker,
-  Popup,
-  Pane
+  Popup
 } from "react-leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
