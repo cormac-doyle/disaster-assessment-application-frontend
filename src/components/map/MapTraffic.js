@@ -5,6 +5,7 @@ import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import RoutingMachine from "./RoutingMachine";
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
+import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -53,7 +54,7 @@ const Map = () => {
             center={defaultPosition}
             zoom={13}
             scrollWheelZoom={true}
-            style={{ height: "80vh" }}
+            style={{ height: "90vh" }}
             zoomControl={false}
         >
 
@@ -61,6 +62,10 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <DisasterLocations />
+            <EmergencyServiceLocations />
+        
+
             <RoutingMachine waypoints={[
                 L.latLng(53.348, -6.2603),
                 L.latLng(53.358, -6.2703),

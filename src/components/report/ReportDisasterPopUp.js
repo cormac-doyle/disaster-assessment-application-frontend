@@ -45,6 +45,7 @@ class ReportDisasterPopUp extends Component {
         disaster_type: this.state.type,
         long: this.props.position.lng,
         lat: this.props.position.lat,
+        radius: this.state.radius
       }),
     };
 
@@ -106,8 +107,14 @@ class ReportDisasterPopUp extends Component {
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 100})}>100m</Dropdown.Item>
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 200})}>200m</Dropdown.Item>
             <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>300m</Dropdown.Item>
-            <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>400m</Dropdown.Item>
-            <Dropdown.Item href="#" onClick={() => this.setState({radius: 300})}>500m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 400})}>400m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 500})}>500m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 600})}>600m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 700})}>700m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 800})}>800m</Dropdown.Item>
+            <Dropdown.Item href="#" onClick={() => this.setState({radius: 900})}>900m</Dropdown.Item>
+
+
 
           </Dropdown.Menu>
     </Dropdown>
@@ -124,9 +131,15 @@ class ReportDisasterPopUp extends Component {
     </Dropdown.Toggle>
 
     <Dropdown.Menu>
-      <Dropdown.Item href="#" onClick={() => this.setState({type: 1})}>FIRE</Dropdown.Item>
-      <Dropdown.Item href="#" onClick={() => this.setState({type: 2})}>FLOOD</Dropdown.Item>
-      <Dropdown.Item href="#" onClick={() => this.setState({type: 3})}>TRAFFIC INCIDENT</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 0})}>FIRE</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 1})}>FLOOD</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 2})}>TRAFFIC INCIDENT</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 3})}>PUBLIC DISTURBANCE</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 4})}>BIO HAZARD</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 5})}>METEOR</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 6})}>STORM</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={() => this.setState({type: 7})}>OTHER</Dropdown.Item>
+
     </Dropdown.Menu>
   </Dropdown>
 
