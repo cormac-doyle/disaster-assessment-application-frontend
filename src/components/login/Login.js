@@ -26,6 +26,7 @@ class Login extends Component {
     };
 
     async postEmailAndPassword() {
+        console.log("have been called");
 
         const requestOptions = {
             method: "post",
@@ -40,13 +41,15 @@ class Login extends Component {
         };
 
         try {
-
-            let emailAndPasswordJSON = await fetch("http://localhost:8000/api/1/token", requestOptions).then(response => response.json());
+            console.log("am trying");
+            console.log(requestOptions);
+            let emailAndPasswordJSON = await fetch("http://localhost:5000/api/1/token/", requestOptions).then(response => response.json());
 
             alert("Email and Password Sent: " + JSON.stringify(emailAndPasswordJSON));
             this.props.onHide();
 
         } catch (e) {
+            console.log(e);
             alert("Login Failed");
 
             this.props.onHide();
