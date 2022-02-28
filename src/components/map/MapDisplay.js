@@ -63,14 +63,7 @@ const Map = () => {
             />
             <DisasterLocations />
             <EmergencyServiceLocations />
-        
-
-            
-
-           
         </MapContainer>
-
-
 
     </div>);
 };

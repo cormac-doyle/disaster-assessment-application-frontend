@@ -5,6 +5,7 @@ import "leaflet-routing-machine";
 const createRoutingMachineLayer = (props) => {
     const instance = L.Routing.control({
         waypoints: props.waypoints,
+        createMarker: function() { return null; },
         lineOptions: {
             styles: [{ color: "#6FA1EC", weight: 4 }]
         },

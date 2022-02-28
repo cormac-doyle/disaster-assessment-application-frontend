@@ -62,12 +62,12 @@ get_icon(id){
       return (
       <>
         {this.state.markers.map((location, idx) => 
-        
-          <Marker  key={`marker-${idx}`} position={[location.lat, location.long]} icon={this.get_icon(location.type)} >
+          <>
+           <Marker  key={`marker-${idx}`} position={[location.lat, location.long]} icon={this.get_icon(location.type)} >
             <Popup>{location.name}</Popup>
-          </Marker>
-        
-          
+            </Marker>
+          </>
+
         )}
       </>
         
