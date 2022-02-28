@@ -26,16 +26,28 @@ class Login extends Component {
     async postEmailAndPassword() {
         console.log("have been called");
 
+        const details = {
+            username: this.state.email,
+            password: this.state.password,
+        };
+
+        let formBody = [];
+        for (var property in details) {
+            let encodedKey = encodeURIComponent(property);
+            let encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+
+
         const requestOptions = {
             method: "POST",
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
             },
             credentials: 'same-origin',
-            body: JSON.stringify({
-                username: this.state.email,
-                password: this.state.password,
-            }),
+            body: formBody
         };
 
         try {
