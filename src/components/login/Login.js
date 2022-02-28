@@ -29,8 +29,9 @@ class Login extends Component {
         const requestOptions = {
             method: "POST",
             headers: {
-                "Content-type": "application/json",
+                "Content-type": "application/x-www-form-urlencoded",
             },
+            credentials: 'same-origin',
             body: JSON.stringify({
                 username: this.state.email,
                 password: this.state.password,
