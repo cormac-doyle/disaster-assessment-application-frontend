@@ -46,7 +46,7 @@ class Login extends Component {
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
             },
-            credentials: 'same-origin',
+            credentials: 'include',
             body: formBody
         };
 
