@@ -20,7 +20,7 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
+        return fetchResponseJson('http://localhost:5000/api/1/handshake').then((responseJson) => {
             this.setState({
                 items: responseJson
             })

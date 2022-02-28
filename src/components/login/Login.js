@@ -20,8 +20,6 @@ class Login extends Component {
     }
 
     onSubmit = () => {
-        console.log(this.state.email);
-        console.log(this.state.password);
         this.postEmailAndPassword()
     };
 
@@ -29,8 +27,7 @@ class Login extends Component {
         console.log("have been called");
 
         const requestOptions = {
-            method: "post",
-            //mode: 'no-cors',
+            method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
@@ -43,7 +40,7 @@ class Login extends Component {
         try {
             console.log("am trying");
             console.log(requestOptions);
-            let emailAndPasswordJSON = await fetch("http://localhost:5000/api/1/token/", requestOptions).then(response => response.json());
+            let emailAndPasswordJSON = await fetch("http://localhost:5000/api/1/login", requestOptions).then(response => response.json());
 
             alert("Email and Password Sent: " + JSON.stringify(emailAndPasswordJSON));
             this.props.onHide();
