@@ -7,6 +7,7 @@ import {
 import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
 import RoutingMachine from ".././RoutingMachine";
+import EmergencyServiceRoutes from './EmergencyServiceRoutes';
 
 
 const FloodIcon = L.icon({
@@ -80,7 +81,7 @@ export default class DisasterLocations extends Component {
         this.setState({
             disasters: responseJson
         })
-        console.log(this.state.disasters[0])
+        //console.log(this.state.disasters[0])
     })
     }
 
@@ -179,10 +180,8 @@ export default class DisasterLocations extends Component {
                         <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
                     </Marker>
                 </Circle>
-                <RoutingMachine waypoints={[
-                L.latLng(disaster.lat, disaster.long),
-                L.latLng(disaster.lat + disaster.radius/111111, disaster.long),
-              ]} />
+                {this.displayEvacRoutes(disaster)}
+                <EmergencyServiceRoutes disaster = {disaster}></EmergencyServiceRoutes>
             </>
         )}
       </>
@@ -192,4 +191,11 @@ export default class DisasterLocations extends Component {
     }
     
   }
+
+    displayEvacRoutes(disaster) {
+        return <RoutingMachine waypoints={[
+            L.latLng(disaster.lat, disaster.long),
+            L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
+        ]} />;
+    }
 }
