@@ -77,11 +77,10 @@ export default class DisasterLocations extends Component {
 
     componentDidMount() {
     return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
-        
         this.setState({
             disasters: responseJson
         })
-        //console.log(this.state.disasters[0])
+        console.log(JSON.stringify(this.state.disasters))
     })
     }
 
