@@ -188,7 +188,6 @@ export default class DisasterLocations extends Component {
     }else{
       return null
     }
-    
   }
 
     displayEvacRoutes(disaster) {
