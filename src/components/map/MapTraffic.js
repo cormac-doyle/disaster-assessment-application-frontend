@@ -3,7 +3,6 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
-import RoutingMachine from "./RoutingMachine";
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
@@ -64,19 +63,8 @@ const Map = () => {
             />
             <DisasterLocations />
             <EmergencyServiceLocations />
-        
-
-            <RoutingMachine waypoints={[
-                L.latLng(53.348, -6.2603),
-                L.latLng(53.358, -6.2703),
-                L.latLng(53.368, -6.2803),
-                L.latLng(53.378, -6.2903),
-            ]} />
-
-            <EmergencyServiceLocations />
+          
         </MapContainer>
-
-
 
     </div>);
 };
