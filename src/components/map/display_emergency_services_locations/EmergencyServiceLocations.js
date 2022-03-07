@@ -30,7 +30,7 @@ export default class EmergencyServiceLocations extends Component {
 
   constructor(props) {
     super(props);
-    fetchResponseJson('http://localhost:5000/api/1/emergency_services').then((responseJson) => {
+    fetchResponseJson('http://localhost:8000/api/1/emergency_services').then((responseJson) => {
 
       this.setState({
         markers: responseJson
