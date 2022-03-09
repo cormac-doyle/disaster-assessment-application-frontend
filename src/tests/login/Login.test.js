@@ -1,7 +1,6 @@
-import { getByRole, render, screen, fireEvent } from '@testing-library/react';
-import Login from '../components/login/Login';
-import { fetchResponseJson } from '../components/fetchResponseJson';
-import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { render, screen, fireEvent } from '@testing-library/react';
+import Login from '../../components/login/Login';
+import { BrowserRouter } from "react-router-dom";
 
 
 test('check for title text', () => {
