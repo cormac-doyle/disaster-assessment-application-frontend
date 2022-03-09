@@ -20,7 +20,7 @@ const createRoutingMachineLayer = (props) => {
         fitSelectedRoutes: true,
         showAlternatives: false
     });
-
+    instance._router.options.serviceUrl='https://routing.openstreetmap.de/routed-car/route/v1';
     return instance;
 };
 
