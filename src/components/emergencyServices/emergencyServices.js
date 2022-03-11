@@ -7,8 +7,6 @@ import UserStatus from "../UserStatus";
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 class Verify extends Component {
 
     constructor(props) {
