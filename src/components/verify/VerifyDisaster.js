@@ -73,7 +73,7 @@ export default class VerifyDisaster extends Component {
 
     async componentDidMount() {
 
-        const response = await fetch("http://localhost:8000/api/1/disasters/?skip=0&limit=100&verified=false")
+        const response = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters/?skip=0&limit=100&verified=false")
         const responseJson = await response.json()
         this.setState({
             disasters: responseJson
@@ -177,7 +177,7 @@ export default class VerifyDisaster extends Component {
         };
 
 
-        await fetch("http://localhost:8000/api/1/disaster_verification", requestOptions)
+        await fetch("https://ase-backend-2.herokuapp.com/api/1/disaster_verification", requestOptions)
             .then(() => {
                 alert("Disaster " + details.id + " has been verified");
                 console.log("Verified: " + details.id)
