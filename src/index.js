@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import App from './App';
 import Report from './components/report/Report'
 import WithNavigate from './components/login/Login'
-import Verify from './components/emergencyServices/EmergencyServices'
+import Verify from './components/emergencyServices/emergencyServices'
 import reportWebVitals from './reportWebVitals';
 import { RequireToken } from './components/login/Auth';
 //import 'bootstrap/dist/css/bootstrap.min.css';
