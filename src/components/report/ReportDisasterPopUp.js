@@ -51,7 +51,7 @@ class ReportDisasterPopUp extends Component {
 
     try {
 
-      let disasterLocationJSON = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions).then(response => response.json());
+      let disasterLocationJSON = await fetch("http://localhost:8000/api/1/disasters-civ/", requestOptions).then(response => response.json());
 
       alert("Disaster Reported: " + JSON.stringify(disasterLocationJSON));
       this.props.onHide();

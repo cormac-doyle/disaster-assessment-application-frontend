@@ -4,6 +4,7 @@ import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import VerifyDisaster from "../verify/VerifyDisaster.js";
+import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -33,6 +34,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <VerifyDisaster />
+            <EmergencyServiceLocations />
 
 
         </MapContainer>
