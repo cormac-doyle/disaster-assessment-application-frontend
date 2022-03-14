@@ -69,6 +69,7 @@ const DisturbanceIcon = L.icon({
 export default class DisasterLocations extends Component {
 
   constructor(props) {
+    
     super(props);
     this.state = {
         disasters: [],
@@ -165,6 +166,7 @@ export default class DisasterLocations extends Component {
     }
 
   render() {
+    
     if(this.state.disasters.length>0){
       return (
       <>
@@ -188,7 +190,6 @@ export default class DisasterLocations extends Component {
     }else{
       return null
     }
-    
   }
 
     displayEvacRoutes(disaster) {
