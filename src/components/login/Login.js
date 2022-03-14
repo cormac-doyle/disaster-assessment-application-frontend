@@ -40,7 +40,7 @@ class Login extends Component {
 
 
 
-        fetch("http://localhost:8000/api/1/login", requestOptions)
+        fetch("https://ase-backend-2.herokuapp.com/api/1/login", requestOptions)
             .then(response => {
                 if (!response.ok) { throw response }
                 return response.json()

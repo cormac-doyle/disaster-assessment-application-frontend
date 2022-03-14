@@ -6,6 +6,9 @@ import {
 } from "react-leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
+import RoutingMachine from ".././RoutingMachine";
+import EmergencyServiceRoutes from './EmergencyServiceRoutes';
+
 
 const FloodIcon = L.icon({
     iconUrl: require("./images/flood.png"),
@@ -73,7 +76,7 @@ export default class DisasterLocations extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson
@@ -167,24 +170,32 @@ export default class DisasterLocations extends Component {
             return (
                 <>
                     {this.state.disasters.map((disaster, idx) =>
-                        <Circle
-                            key={`marker-${idx}`}
-                            center={[disaster.lat, disaster.long]}
-                            radius={disaster.radius}
-                            color={this.getDisasterColor(disaster.disaster_type)}>
-                            <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
-                                <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
-                            </Marker>
-                        </Circle>
-
+                        <>
+                            <Circle
+                                key={`marker-${idx}`}
+                                center={[disaster.lat, disaster.long]}
+                                radius={disaster.radius}
+                                color={this.getDisasterColor(disaster.disaster_type)}>
+                                <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
+                                    <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
+                                </Marker>
+                            </Circle>
+                            {this.displayEvacRoutes(disaster)}
+                            <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
+                        </>
                     )}
                 </>
-
-
             )
         } else {
             return null
         }
 
+    }
+
+    displayEvacRoutes(disaster) {
+        return <RoutingMachine waypoints={[
+            L.latLng(disaster.lat, disaster.long),
+            L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
+        ]} />;
     }
 }

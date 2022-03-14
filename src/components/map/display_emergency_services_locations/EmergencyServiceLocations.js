@@ -30,7 +30,7 @@ export default class EmergencyServiceLocations extends Component {
 
   constructor(props) {
     super(props);
-    fetchResponseJson('http://localhost:8000/api/1/emergency_services').then((responseJson) => {
+    fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/emergency_services').then((responseJson) => {
 
       this.setState({
         markers: responseJson
@@ -62,11 +62,11 @@ export default class EmergencyServiceLocations extends Component {
       return (
         <>
           {this.state.markers.map((location, idx) =>
-
-            <Marker key={`marker-${idx}`} position={[location.lat, location.long]} icon={this.get_icon(location.type)} >
-              <Popup>{location.name}</Popup>
-            </Marker>
-
+            <>
+              <Marker key={`marker-${idx}`} position={[location.lat, location.long]} icon={this.get_icon(location.type)} >
+                <Popup>{location.name}</Popup>
+              </Marker>
+            </>
 
           )}
         </>
