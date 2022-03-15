@@ -25,32 +25,43 @@ function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
         click() {
-            
             map.locate()
         },
         locationfound(e) {
-            
             setPosition(e.latlng)
             map.flyTo(e.latlng, map.getZoom())
         },
     })
 
+    console.log("position: "+position)
+    if(position!=null){
+        return(
+            <>
+                <Marker position={position}>
+                    <Popup>There you are...</Popup>
+                </Marker>
+                <DisasterLocations position = {position}/>
+            </>
+            
+        )
+    }else{
+        return(
+            <>
+                <DisasterLocations position = {position} />
 
-    return position === null ? null : (
-        <Marker position={position}>
-            <Popup>There you are...</Popup>
-        </Marker>
-    )
+            </>
+        )
+    }
+    
 }
 
-
-
 const Map = () => {
+    
     const userLocation=useState(null)
     const defaultPosition = [53.348, -6.2603];  // Dublin City Centre
-    console.log("userLocation")
+    
 
-    console.log(userLocation)
+    
     return (<div className="map__container">
 
         <MapContainer
@@ -66,7 +77,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LocationMarker  />
-            <DisasterLocations />
+            
             <EmergencyServiceLocations />
           
         </MapContainer>

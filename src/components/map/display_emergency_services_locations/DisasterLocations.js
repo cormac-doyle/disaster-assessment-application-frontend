@@ -73,8 +73,8 @@ export default class DisasterLocations extends Component {
     super(props);
     this.state = {
         disasters: [],
+        }
     }
-}
 
     componentDidMount() {
     return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
@@ -164,6 +164,7 @@ export default class DisasterLocations extends Component {
             return "grey"
         }
     }
+    
 
   render() {
     
@@ -193,9 +194,14 @@ export default class DisasterLocations extends Component {
   }
 
     displayEvacRoutes(disaster) {
-        return <RoutingMachine routeTravelMode={"walking"} waypoints={[
-            L.latLng(disaster.lat, disaster.long),
-            L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
-        ]} />;
+        if(this.props.position){
+            return <RoutingMachine routeTravelMode={"walking"} waypoints={[
+                L.latLng(this.props.position.lat, this.props.position.long),
+                L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
+            ]} />;
+        } else{
+            //alert("No User location Found. No Evacuation Routes Calculated")
+            return null;
+        }
     }
 }
