@@ -67,13 +67,13 @@ const DisturbanceIcon = L.icon({
 
 
 export default class DisasterLocations extends Component {
-
     constructor(props) {
+
         super(props);
         this.state = {
             disasters: [],
         }
-    }
+    };
 
     componentDidMount() {
         return fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
@@ -193,7 +193,7 @@ export default class DisasterLocations extends Component {
     }
 
     displayEvacRoutes(disaster) {
-        return <RoutingMachine waypoints={[
+        return <RoutingMachine routeTravelMode={"walking"} waypoints={[
             L.latLng(disaster.lat, disaster.long),
             L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
         ]} />;
