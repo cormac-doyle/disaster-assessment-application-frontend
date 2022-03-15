@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {
     Circle,
-  Marker,
-  Popup
+    Marker,
+    Popup
 } from "react-leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
@@ -67,132 +67,133 @@ const DisturbanceIcon = L.icon({
 
 
 export default class DisasterLocations extends Component {
+    constructor(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        disasters: [],
-    }
-}
+        super(props);
+        this.state = {
+            disasters: [],
+        }
+    };
 
     componentDidMount() {
-    return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
-        this.setState({
-            disasters: responseJson
+        return fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
+
+            this.setState({
+                disasters: responseJson
+            })
+            console.log(this.state.disasters[0])
         })
-        console.log(JSON.stringify(this.state.disasters))
-    })
     }
 
-    getDisasterIcon(id){
-        if (id === 0){
+    getDisasterIcon(id) {
+        if (id === 0) {
             return FireIcon
         }
-        else if (id === 1){
+        else if (id === 1) {
             return FloodIcon
         }
-        else if (id === 2){
+        else if (id === 2) {
             return TrafficIcon
         }
-        else if (id === 3){
+        else if (id === 3) {
             return DisturbanceIcon
         }
-        else if (id === 4){
+        else if (id === 4) {
             return BioHazardIcon
         }
-        else if (id === 5){
+        else if (id === 5) {
             return MeteorIcon
         }
-        else if (id === 6){
+        else if (id === 6) {
             return StormIcon
         }
-        else if (id === 7){
-            return  AlertIcon
+        else if (id === 7) {
+            return AlertIcon
         }
     }
 
-    getDisasterName(type){
-        if(type===0){
+    getDisasterName(type) {
+        if (type === 0) {
             return "Fire"
         }
-        if(type===1){
+        if (type === 1) {
             return "Flood"
         }
-        if(type===2){
+        if (type === 2) {
             return "Traffic Incident"
         }
-        if(type===3){
+        if (type === 3) {
             return "Public Disturbance"
         }
-        if(type===4){
+        if (type === 4) {
             return "Bio Hazard"
         }
-        if(type===5){
+        if (type === 5) {
             return "Meteor"
         }
-        if(type===6){
+        if (type === 6) {
             return "Storm"
         }
-        if(type===7){
+        if (type === 7) {
             return "Other"
         }
     }
-    getDisasterColor(type){
-        if(type === 0){
+    getDisasterColor(type) {
+        if (type === 0) {
             return "red"
         }
-        if(type === 1){
+        if (type === 1) {
             return "blue"
         }
-        if(type === 2){
+        if (type === 2) {
             return "grey"
         }
-        if(type === 3){
+        if (type === 3) {
             return "grey"
         }
-        if(type === 4){
+        if (type === 4) {
             return "yellow"
         }
-        if(type === 5){
+        if (type === 5) {
             return "orange"
         }
-        if(type === 6){
+        if (type === 6) {
             return "blue"
         }
-        if(type === 7){
+        if (type === 7) {
             return "grey"
         }
     }
 
-  render() {
-    if(this.state.disasters.length>0){
-      return (
-      <>
-        {this.state.disasters.map((disaster, idx) => 
-            <>
-                <Circle 
-                    key={`marker-${idx}`} 
-                    center={[disaster.lat, disaster.long]}
-                    radius = {disaster.radius}
-                    color = {this.getDisasterColor(disaster.disaster_type)}>
-                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
-                        <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
-                    </Marker>
-                </Circle>
-                {this.displayEvacRoutes(disaster)}
-                <EmergencyServiceRoutes disaster = {disaster}></EmergencyServiceRoutes>
-            </>
-        )}
-      </>
-       )
-    }else{
-      return null
+    render() {
+        if (this.state.disasters.length > 0) {
+            return (
+                <>
+                    {this.state.disasters.map((disaster, idx) =>
+                        <>
+                            <Circle
+                                key={`marker-${idx}`}
+                                center={[disaster.lat, disaster.long]}
+                                radius={disaster.radius}
+                                color={this.getDisasterColor(disaster.disaster_type)}>
+                                <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
+                                    <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
+                                </Marker>
+                            </Circle>
+                            {this.displayEvacRoutes(disaster)}
+                            <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
+                        </>
+                    )}
+                </>
+            )
+        } else {
+            return null
+        }
+
     }
-    
-  }
 
     displayEvacRoutes(disaster) {
-        return <RoutingMachine waypoints={[
+        return <RoutingMachine routeTravelMode={"walking"} waypoints={[
             L.latLng(disaster.lat, disaster.long),
             L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
         ]} />;

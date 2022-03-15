@@ -51,7 +51,7 @@ export default function Title() {
                             </Nav.Item>
 
                             <Nav.Item>
-                                <Nav.Link eventKey="/login" href="/login">Emergency Services Login</Nav.Link>
+                                <Nav.Link eventKey="/login" href="/login">Emergency Services</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <div className="dropdown">
