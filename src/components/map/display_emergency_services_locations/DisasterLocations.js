@@ -68,11 +68,12 @@ const DisturbanceIcon = L.icon({
 
 export default class DisasterLocations extends Component {
     constructor(props) {
-    
-    super(props);
-    this.state = {
-        disasters: [],
-    }
+
+        super(props);
+        this.state = {
+            disasters: [],
+        }
+    };
 
     componentDidMount() {
         return fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
