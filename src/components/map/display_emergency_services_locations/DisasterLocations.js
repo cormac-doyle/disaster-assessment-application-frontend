@@ -76,11 +76,12 @@ export default class DisasterLocations extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        return fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
+
             this.setState({
                 disasters: responseJson
             })
-            console.log(JSON.stringify(this.state.disasters))
+            console.log(this.state.disasters[0])
         })
     }
 
@@ -165,7 +166,6 @@ export default class DisasterLocations extends Component {
     }
 
     render() {
-
         if (this.state.disasters.length > 0) {
             return (
                 <>
@@ -189,6 +189,7 @@ export default class DisasterLocations extends Component {
         } else {
             return null
         }
+
     }
 
     displayEvacRoutes(disaster) {
