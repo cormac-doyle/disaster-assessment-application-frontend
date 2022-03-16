@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../../components/home/Home';
-import MapTraffic from "../../components/map/MapTraffic";
-import { fetchResponseJson } from '../../components/fetchResponseJson'
+import Home from '../components/home/Home';
+import MapTraffic from "../components/map/MapTraffic";
+import { fetchResponseJson } from '../components/fetchResponseJson'
 
 // test('check for title text', async () => {
 //   render(<Home />);

@@ -4,10 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import App from './App';
 import Report from './components/report/Report'
-import WithNavigate from './components/login/Login'
-import Verify from './components/emergencyServices/emergencyServices'
+import Login from './components/login/Login'
 import reportWebVitals from './reportWebVitals';
-import { RequireToken } from './components/login/Auth';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -17,8 +15,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/report" element={<Report />} />
-        <Route path="/login" element={<WithNavigate />} />
-        <Route path="/disaster_verification" element={<RequireToken><Verify /></RequireToken>} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   </React.StrictMode>,

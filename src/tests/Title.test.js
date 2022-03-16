@@ -6,7 +6,7 @@ import { fetchResponseJson } from '../components/fetchResponseJson';
 const links = [
     { text: 'Disaster Map', location: "/" },
     { text: 'Report a Disaster', location: "/report" },
-    { text: 'Emergency Services', location: "/login" },
+    { text: 'Emergency Services Login', location: "/login" },
 ];
 
 test.each(links)("Check if Nav Bar have %s link", (link) => {
