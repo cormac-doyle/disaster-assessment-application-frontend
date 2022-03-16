@@ -11,7 +11,7 @@ export default async function fetchDisasters() {
         }
     };
 
-    const disasters = await fetch("http://localhost:8000/api/1/disasters-civ/", requestOptions)
+    const disasters = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions)
         .then(response => {
             if (!response.ok) { throw response }
             return response.json()

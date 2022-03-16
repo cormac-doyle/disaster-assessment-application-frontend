@@ -12,7 +12,7 @@ export default class EmergencyServiceRoutes extends Component {
         }
     }
     componentDidMount() {
-        return fetchResponseJson('http://localhost:8000/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson

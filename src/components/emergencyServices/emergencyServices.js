@@ -17,7 +17,7 @@ class Verify extends Component {
     }
 
     componentDidMount() {
-        // return fetchResponseJson('http://localhost:8000/api/1/handshake').then((responseJson) => {
+        // return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
         //     this.setState({
         //         items: responseJson
         //     })
