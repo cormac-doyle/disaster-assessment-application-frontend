@@ -8,6 +8,8 @@ import "flag-icon-css/css/flag-icons.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 import "bootstrap/dist/css/bootstrap.min.css"
 import GlobeIcon from './globeIcon';
+import i18next from 'i18next';
+import classNames from 'classnames';
 
 const languages = [
     {
@@ -30,7 +32,7 @@ export default function Title() {
 
     useEffect(() => {
         console.log('Setting page stuff')
-        document.body.dir = currentLanguage.dir || 'ltr'
+        document.body.dir = currentLanguage.dir
         document.title = t('app_title')
       }, [currentLanguage, t])
 
@@ -38,20 +40,20 @@ export default function Title() {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="/" data-testid="brandhome">Disaster Assesment Application</Navbar.Brand>
+                    <Navbar.Brand href="/" data-testid="brandhome">{t("Disaster_assessment_application")}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav defaultActiveKey="/" activeKey={pathname} variant="tabs">
                             <Nav.Item>
-                                <Nav.Link href="/">Disaster Map</Nav.Link>
+                                <Nav.Link href="/">{t("Disaster_map")}</Nav.Link>
                             </Nav.Item>
 
                             <Nav.Item>
-                                <Nav.Link eventKey="/report" href="/report">Report a Disaster</Nav.Link>
+                                <Nav.Link eventKey="/report" href="/report">{t("report_disaster")}</Nav.Link>
                             </Nav.Item>
 
                             <Nav.Item>
-                                <Nav.Link eventKey="/login" href="/login">Emergency Services Login</Nav.Link>
+                                <Nav.Link eventKey="/login" href="/login">{t("Emergency_services_login")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <div className="dropdown">
@@ -67,10 +69,20 @@ export default function Title() {
                                 <ul className='dropdown-menu' aria-labelledby="dropdownMenuButton1">
                                     {languages.map(({code, name, country_code}) => (
                                         <li key = {country_code}>
+                                            <a
+                                            href="#"
+                                            className={classNames('dropdown-item', {
+                                              disabled: currentLanguageCode === code,
+                                            })}
+                                            onClick={() => {
+                                              i18next.changeLanguage(code)
+                                            }}
+                                            >
                                             <button className="dropdown-item">
                                                 <span className={`flag-icon flag-icon-${country_code} mx-2`}></span>
                                                 {name}
                                             </button>
+                                            </a>
                                         </li>
                                     ))}     
                                 </ul>

@@ -1,5 +1,14 @@
 {
     "app_title": "Disaster Assessment Application",
-    "language": "Language",
-    "welcome_message": "Welcome"
+    "Disaster_assessment_application": "Disaster Assessment Application",
+    "Disaster_map": "Disaster Map",
+    "report_disaster": "Report a Disaster",
+    "Emergency_services_login": "Emergency Services Login",
+    "Disclaimer": "Disclaimer",
+    "GDPR_text":"By proceeding with this application you are consenting to the use of your location data for routing purposes",
+    "user_status":"User ID: Loading...",
+    "user_identifier":"UserID identified. Ready To Report",
+    "EMAIL":"Email address",
+    "PASSWORD":"Password",
+    "Submit":"Submit"
 }

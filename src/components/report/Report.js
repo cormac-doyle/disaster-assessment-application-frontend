@@ -3,15 +3,15 @@ import { Component } from 'react/cjs/react.production.min';
 import Map from "../map/MapDisaster"
 import Title from "../Title"
 import UserStatus from "../UserStatus";
-// import { fetchResponseJson } from './fetchResponseJson'
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchResponseJson } from '../fetchResponseJson'
+import {useTranslation} from "react-i18next";
 
 
 
 class Report extends Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -34,9 +34,7 @@ class Report extends Component {
             <main>
 
                 <Title />
-                <h1>
-                    Report A Disaster
-                </h1>
+                <ReportDisasterText/>
                 <UserStatus items={this.state.items}></UserStatus>
                 <Map />
 
@@ -44,6 +42,15 @@ class Report extends Component {
         </>)
 
     }
+
 };
 
+function ReportDisasterText() {
+    const {t} = useTranslation()
+    return (
+        <h1>
+            {t("report_disaster")}
+        </h1>
+    )
+}
 export default Report;

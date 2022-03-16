@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
+import { useTranslation } from "react-i18next";
 import { fetchResponseJson } from "../fetchResponseJson";
 
 
@@ -40,13 +41,14 @@ export default Home;
 
 function GDPRAlert() {
     const [show, setShow] = useState(true);
+    const { t } = useTranslation();
 
     if (show) {
         return (
             <Alert variant="primary" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Disclaimer</Alert.Heading>
+                <Alert.Heading>{t("Disclaimer")}</Alert.Heading>
                 <p>
-                    By proceeding with this application you are consenting to the use of your location data for routing purposes
+                    {t("GDPR_text")}
                 </p>
             </Alert>
         );
