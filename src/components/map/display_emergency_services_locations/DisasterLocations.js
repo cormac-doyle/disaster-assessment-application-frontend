@@ -194,11 +194,23 @@ export default class DisasterLocations extends Component {
   }
 
     displayEvacRoutes(disaster) {
+        console.log(this.props.position);
         if(this.props.position){
-            return <RoutingMachine routeTravelMode={"walking"} waypoints={[
-                L.latLng(this.props.position.lat, this.props.position.long),
-                L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
-            ]} />;
+            let waypointUserLocation = L.latLng(this.props.position.lat, this.props.position.lng)
+            let waypointDisaster = L.latLng(disaster.lat + disaster.radius / 111111, disaster.long)
+            let distanceToDisaster = Math.sqrt(Math.pow((waypointUserLocation.lat-waypointDisaster.lat),2) 
+                                    +Math.pow((waypointUserLocation.lng-waypointDisaster.lng),2) );
+            console.log("dist: "+distanceToDisaster)
+            console.log("radius: "+disaster.radius)
+            if(distanceToDisaster >disaster.radius / 111111){
+                return <RoutingMachine routeTravelMode={"walking"} waypoints={[
+                    waypointUserLocation,
+                    waypointDisaster,
+                ]} />;
+            } else{
+                return null;
+            }
+            
         } else{
             //alert("No User location Found. No Evacuation Routes Calculated")
             return null;
