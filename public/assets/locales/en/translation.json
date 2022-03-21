@@ -1,0 +1,14 @@
+{
+    "app_title": "Disaster Assessment Application",
+    "Disaster_assessment_application": "Disaster Assessment Application",
+    "Disaster_map": "Disaster Map",
+    "report_disaster": "Report a Disaster",
+    "Emergency_services_login": "Emergency Services Login",
+    "Disclaimer": "Disclaimer",
+    "GDPR_text": "By proceeding with this application you are consenting to the use of your location data for routing purposes",
+    "user_id_available": "UserID identified. Ready To Report",
+    "user_id_unavailable": "User ID: Loading...",
+    "EMAIL": "Email address",
+    "PASSWORD": "Password",
+    "Submit": "Submit"
+}
