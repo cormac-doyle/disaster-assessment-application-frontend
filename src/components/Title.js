@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
@@ -13,29 +13,29 @@ import classNames from 'classnames';
 
 const languages = [
     {
-      code: 'en',
-      name: 'English',
-      country_code: 'gb',
+        code: 'en',
+        name: 'English',
+        country_code: 'gb',
     },
     {
-      code: 'ga',
-      name: 'Gaeilge',
-      country_code: 'ie',
+        code: 'ga',
+        name: 'Gaeilge',
+        country_code: 'ie',
     },
-  ]
+]
 
 
 export default function Title() {
     const currentLanguageCode = cookies.get('i18next') || 'en'
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const pathname = window.location.pathname;
 
     useEffect(() => {
-        console.log('Setting page stuff')
+        // console.log('Setting page stuff')
         document.body.dir = currentLanguage.dir
         document.title = t('app_title')
-      }, [currentLanguage, t])
+    }, [currentLanguage, t])
 
 
     return (
@@ -59,37 +59,37 @@ export default function Title() {
                             </Nav.Item>
                             <Nav.Item>
                                 <div className="dropdown">
-                                 <button
-                                    className="btn btn-link dropdown-toggle"
-                                    type="button"
-                                    id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                  <GlobeIcon />
-                                </button>
-                                <ul className='dropdown-menu' aria-labelledby="dropdownMenuButton1">
-                                    {languages.map(({code, name, country_code}) => (
-                                        <li key = {country_code}>
-                                            <a
-                                            href="#"
-                                            className={classNames('dropdown-item', {
-                                              disabled: currentLanguageCode === code,
-                                            })}
-                                            onClick={() => {
-                                              i18next.changeLanguage(code)
-                                            }}
-                                            >
-                                            <button className="dropdown-item">
-                                                <span className={`flag-icon flag-icon-${country_code} mx-2`}></span>
-                                                {name}
-                                            </button>
-                                            </a>
-                                        </li>
-                                    ))}     
-                                </ul>
+                                    <button
+                                        className="btn btn-link dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <GlobeIcon />
+                                    </button>
+                                    <ul className='dropdown-menu' aria-labelledby="dropdownMenuButton1">
+                                        {languages.map(({ code, name, country_code }) => (
+                                            <li key={country_code}>
+                                                <a
+                                                    href="#"
+                                                    className={classNames('dropdown-item', {
+                                                        disabled: currentLanguageCode === code,
+                                                    })}
+                                                    onClick={() => {
+                                                        i18next.changeLanguage(code)
+                                                    }}
+                                                >
+                                                    <button className="dropdown-item">
+                                                        <span className={`flag-icon flag-icon-${country_code} mx-2`}></span>
+                                                        {name}
+                                                    </button>
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                              </Nav.Item>
+                            </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
