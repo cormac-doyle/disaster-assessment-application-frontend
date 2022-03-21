@@ -1,8 +1,9 @@
 import React from 'react'
+import {useTranslation} from "react-i18next";
 
 
 function UserStatus(props){
-    
+    const {t} = useTranslation();
     const style ={
         fontSize: 15,
         fontWeight: 200,
@@ -14,12 +15,12 @@ function UserStatus(props){
     }
 
     if(props.items.length===0){
-        return<span style={style}>User ID: Loading...</span>;
+        return<span style={style}>{t("user_status")}</span>;
       } 
     else{
         return (
             <div style={style}>
-                <span>UserID identified. Ready To Report</span>
+                <span>{t("user_identifier")}</span>
             </div>
         )
     }  
