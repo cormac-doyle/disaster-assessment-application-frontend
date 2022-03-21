@@ -72,7 +72,7 @@ export default function Title() {
                                         {languages.map(({ code, name, country_code }) => (
                                             <li key={country_code}>
                                                 <a
-                                                    href="#"
+                                                    href="/"
                                                     className={classNames('dropdown-item', {
                                                         disabled: currentLanguageCode === code,
                                                     })}
