@@ -5,10 +5,10 @@
     "report_disaster": "Tuairiscigh Tubaiste",
     "Emergency_services_login": "Logáil isteach Seirbhísí Éigeandála",
     "Disclaimer": "Séanadh",
-    "GDPR_text":"Trí leanúint ar aghaidh leis an iarratas seo tá tú ag toiliú le húsáid do shonraí suímh chun críocha ródaithe",
-    "user_status":"Aitheantas Úsáideora: Ag lódáil...",
-    "user_identifier":"Aitheantas Úsáideora. Réidh le Tuairisciú",
-    "EMAIL":"Seoladh ríomhphoist",
-    "PASSWORD":"Pasfhocal",
-    "Submit":"Cuir isteach"
-} 
+    "GDPR_text": "Trí leanúint ar aghaidh leis an iarratas seo tá tú ag toiliú le húsáid do shonraí suímh chun críocha ródaithe",
+    "user_id_available": "Aitheantas Úsáideora: Ag lódáil...",
+    "user_id_unavailable": "Aitheantas Úsáideora. Réidh le Tuairisciú",
+    "EMAIL": "Seoladh ríomhphoist",
+    "PASSWORD": "Pasfhocal",
+    "Submit": "Cuir isteach"
+}

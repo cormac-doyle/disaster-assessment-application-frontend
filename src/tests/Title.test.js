@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Title from '../components/Title';
-import { fetchResponseJson } from '../components/fetchResponseJson';
 
 jest.mock('react-i18next', () => ({
     // this mock makes sure any components using the translate hook can use it without a warning being shown
@@ -38,6 +37,6 @@ test('Check if have brand and link to home page', () => {
 
 test('check for title text', () => {
     render(<Title />);
-    const linkElement = screen.getByText(/Disaster Assesment Application/i);
+    const linkElement = screen.getByText(/Disaster_assessment_application/i);
     expect(linkElement).toBeInTheDocument();
 });
