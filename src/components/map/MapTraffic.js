@@ -32,10 +32,10 @@ function LocationMarker() {
     //if(position!=null){
     return(
         <>
-            <Marker position={[53.3483, -6.2875]}>
+            <Marker position={position}>
                 <Popup>There you are...</Popup>
             </Marker>
-            <DisasterLocations userLocation = {[53.3483, -6.2875]}/>
+            <DisasterLocations userLocation = {position}/>
         </>
     )
     //}else{
