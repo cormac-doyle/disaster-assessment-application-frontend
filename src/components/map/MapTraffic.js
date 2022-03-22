@@ -29,17 +29,17 @@ function LocationMarker() {
     //position = latLng()
     console.log("position: " + position)
     //position = LatLng(53,-6)
-    //if(position!=null){
-    return(
-        <>
-            <Marker position={position}>
-                <Popup>There you are...</Popup>
-            </Marker>
-            <DisasterLocations userLocation = {position}/>
-        </>
-    )
-    //}else{
-        /*
+    if(position!=null){
+        return(
+            <>
+                <Marker position={position}>
+                    <Popup>There you are...</Popup>
+                </Marker>
+                <DisasterLocations userLocation = {position}/>
+            </>
+        )
+    }else{
+        
         return(
             <>
                 <DisasterLocations position = {position} />
@@ -47,7 +47,7 @@ function LocationMarker() {
             </>
         )
     }
-    */
+    
     
 }
 
