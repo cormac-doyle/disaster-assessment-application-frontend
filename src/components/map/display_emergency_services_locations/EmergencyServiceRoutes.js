@@ -17,7 +17,7 @@ export default class EmergencyServiceRoutes extends Component {
             this.setState({
                 emergency_services: responseJson
             })
-            console.log(JSON.stringify(this.state.emergency_services))
+            console.log("ES routes: "+JSON.stringify(this.state.emergency_services))
         })
     }
 
@@ -28,7 +28,6 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeFireBrigades()}
                     {this.routePolice()}
                     {this.routeAmbulances()}
-
                 </>
             )
         } else {

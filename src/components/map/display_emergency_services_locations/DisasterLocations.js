@@ -8,6 +8,7 @@ import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
 import RoutingMachine from ".././RoutingMachine";
 import EmergencyServiceRoutes from './EmergencyServiceRoutes';
+import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
 
 
 const FloodIcon = L.icon({
@@ -81,7 +82,7 @@ export default class DisasterLocations extends Component {
             this.setState({
                 disasters: responseJson
             })
-            console.log(this.state.disasters[0])
+            console.log("Disasters: "+JSON.stringify(this.state.disasters))
         })
     }
 
@@ -193,9 +194,47 @@ export default class DisasterLocations extends Component {
     }
 
     displayEvacRoutes(disaster) {
-        return <RoutingMachine waypoints={[
-            L.latLng(disaster.lat, disaster.long),
-            L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
-        ]} />;
+        let distanceToDisaster = getDistance(
+                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
+                {latitude:disaster.lat, longitude: disaster.long}
+             )
+        console.log("user distance to disaster: "+ distanceToDisaster)
+        console.log("disaster radius: "+ disaster.radius)
+
+        if(isPointWithinRadius(
+            {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
+                {latitude:disaster.lat, longitude: disaster.long},
+            disaster.radius
+        )){
+            let evacPoint = this.getEvacuationPoint(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
+            
+            return <RoutingMachine routeTravelMode={"walking"} waypoints={[
+                L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                L.latLng(evacPoint.latitude , evacPoint.longitude),
+                //L.latLng(evacPoint[0], evacPoint[1]),
+            ]} />;
+        }else{
+            return null
+        }
+        
     }
+
+   
+    getEvacuationPoint(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster){
+        let bearing = getRhumbLineBearing(
+            { latitude: disasterLat, longitude: disasterLong },
+            { latitude: userLat, longitude: userLong }
+        );
+        let distToEvacPoint = (disasterRadius-distanceToDisaster)
+
+        let evacPoint = computeDestinationPoint(
+            { latitude: userLat, longitude: userLong },
+            distToEvacPoint,
+            bearing )
+
+        
+
+        return evacPoint
+    }
+
 }
