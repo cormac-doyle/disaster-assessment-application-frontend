@@ -2,7 +2,10 @@ import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 
+
+var distance =-1
 const createRoutingMachineLayer = (props) => {
+    let distance = -1
     let lineColor = "#6FA1EC"
     if(props.lineColor){
         lineColor=props.lineColor
@@ -23,23 +26,20 @@ const createRoutingMachineLayer = (props) => {
     });
     if(props.routeTravelMode==="walking"){
         instance.options.router.options.profile= "mapbox/walking"
-        
+        //console.log("route distance: " + instance.router)
     }else{
-        instance.options.router.options.profile= "mapbox/driving"
-        
+        instance.options.router.options.profile= "mapbox/driving-traffic"
     }
-    /**
-     * 
-     * instance.on('routesfound', function(e) {
-        var routes = e.routes;
-        var summary = routes[0].summary;
-        // alert distance and time in km and minutes
-        alert('Total distance is ' + summary.totalDistance / 1000 + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
-     });
-     */
+
     
+    instance.on('routesfound', function (e) {
+        distance = e.routes[0].summary.totalDistance
+        console.log("route dist:"+distance);
+        return instance;
+    });
 
     return instance;
+    
 };
 
 const RoutingMachine = createControlComponent(createRoutingMachineLayer);

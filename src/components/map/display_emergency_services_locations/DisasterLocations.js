@@ -194,28 +194,43 @@ export default class DisasterLocations extends Component {
     }
 
     displayEvacRoutes(disaster) {
-        let distanceToDisaster = getDistance(
+        if(this.props.userLocation){
+            let distanceToDisaster = getDistance(
                 {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
                 {latitude:disaster.lat, longitude: disaster.long}
              )
-        console.log("user distance to disaster: "+ distanceToDisaster)
-        console.log("disaster radius: "+ disaster.radius)
+            console.log("user distance to disaster: "+ distanceToDisaster)
+            console.log("disaster radius: "+ disaster.radius)
 
-        if(isPointWithinRadius(
-            {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
-                {latitude:disaster.lat, longitude: disaster.long},
-            disaster.radius
-        )){
-            let evacPoint = this.getEvacuationPoint(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
-            
-            return <RoutingMachine routeTravelMode={"walking"} waypoints={[
-                L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
-                L.latLng(evacPoint.latitude , evacPoint.longitude),
-                //L.latLng(evacPoint[0], evacPoint[1]),
-            ]} />;
-        }else{
-            return null
+            if(isPointWithinRadius(
+                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
+                    {latitude:disaster.lat, longitude: disaster.long},
+                disaster.radius
+            )){
+                let evacPoint = this.getEvacuationPoint(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
+                
+                let evacRoutDistance = <RoutingMachine 
+                    returnDistance = {true}
+                    routeTravelMode={"walking"} waypoints={[
+                    L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                    L.latLng(evacPoint.latitude , evacPoint.longitude),
+                    
+                ]} />
+                
+                console.log("evac route distance: " + evacRoutDistance)
+
+                return <RoutingMachine routeTravelMode={"walking"} waypoints={[
+                    L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                    L.latLng(evacPoint.latitude , evacPoint.longitude),
+                    
+                ]} />;
+            }else{
+                return null;
+            }
+        } else{
+            return null;
         }
+        
         
     }
 

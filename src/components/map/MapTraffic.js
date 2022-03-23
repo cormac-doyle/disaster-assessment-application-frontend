@@ -18,7 +18,7 @@ L.Icon.Default.mergeOptions({
 function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
-        click() {
+        click(){
             map.locate()
         },
         locationfound(e) {
@@ -30,20 +30,20 @@ function LocationMarker() {
     console.log("position: " + position)
     //position = LatLng(53,-6)
     if(position!=null){
+        console.log("position set")
         return(
             <>
-                <Marker position={position}>
+                <Marker position={[position.lat, position.lng]}>
                     <Popup>There you are...</Popup>
                 </Marker>
-                <DisasterLocations userLocation = {position}/>
+                <DisasterLocations userLocation = {[position.lat, position.lng]}/>
             </>
         )
     }else{
         
         return(
             <>
-                <DisasterLocations position = {position} />
-
+                <DisasterLocations />
             </>
         )
     }
