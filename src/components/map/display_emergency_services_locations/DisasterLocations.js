@@ -209,15 +209,18 @@ export default class DisasterLocations extends Component {
             )){
                 let evacPoint = this.getEvacuationPoint(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
                 
-                
-                
-                
+               
+                const sendDistanceToParent = (distance) => { // the callback. Use a better name
+                    console.log("DISTANCE: "+distance);
+                };
 
-                return <RoutingMachine routeTravelMode={"walking"} waypoints={[
+                return <RoutingMachine 
+                    sendDistanceToParent = {sendDistanceToParent}    
+                    routeTravelMode={"walking"} waypoints={[
                     L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                     L.latLng(evacPoint.latitude , evacPoint.longitude),
-                    
                 ]} />;
+
             }else{
                 return null;
             }

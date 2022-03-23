@@ -31,10 +31,10 @@ const createRoutingMachineLayer = (props) => {
         instance.options.router.options.profile= "mapbox/driving-traffic"
     }
 
-    
     instance.on('routesfound', function (e) {
         distance = e.routes[0].summary.totalDistance
         console.log("route dist:"+distance);
+        props.sendDistanceToParent(distance)
         return instance;
     });
 
