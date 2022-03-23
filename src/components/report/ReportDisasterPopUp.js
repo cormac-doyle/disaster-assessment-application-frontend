@@ -1,6 +1,22 @@
-import React, { Component } from "react";
+import React, { useEffect, Component } from "react";
 import "./ReportDisasterPopUp.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
+import cookies from 'js-cookie'
+import i18next from 'i18next';
+
+const languages = [
+  {
+    code: 'en',
+    name: 'English',
+    country_code: 'gb',
+  },
+  {
+    code: 'ga',
+    name: 'Gaeilge',
+    country_code: 'ie',
+  },
+]
 
 class ReportDisasterPopUp extends Component {
 
@@ -62,113 +78,123 @@ class ReportDisasterPopUp extends Component {
       this.props.onHide();
       console.log(e);
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <Modal
-          {...this.props}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered={true}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title><h1>Disaster Report</h1></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h3>Would you like to report a disaster at this location?  </h3>
-            <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
-            {this.scaleDropDown()}
-            {this.disasterTypeDropDown()}
-            {this.disasterRadius()}
+  const currentLanguageCode = cookies.get('i18next') || 'en'
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
+const { t } = useTranslation()
+const pathname = window.location.pathname;
 
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={() => this.confirmButtonClick()}>
-              Confirm
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  }
+useEffect(() => {
+  // console.log('Setting page stuff')
+  document.body.dir = currentLanguage.dir
+}, [currentLanguage, t])
 
-  disasterRadius() {
+render() {
+  return (
+    <div>
+      <Modal
+        {...this.props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered={true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title><h1>{t("Disaster_Report")}</h1></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h3>Would you like to report a disaster at this location?  </h3>
+          <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
+          {this.scaleDropDown()}
+          {this.disasterTypeDropDown()}
+          {this.disasterRadius()}
 
-    return <>
-      <Dropdown className="d-inline mx-2">
-        <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Radius
-        </Dropdown.Toggle>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => this.confirmButtonClick()}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 0 })}>0m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 100 })}>100m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 200 })}>200m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 300 })}>300m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 400 })}>400m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 500 })}>500m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 600 })}>600m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 700 })}>700m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 800 })}>800m</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ radius: 900 })}>900m</Dropdown.Item>
+disasterRadius() {
+
+  return <>
+    <Dropdown className="d-inline mx-2">
+      <Dropdown.Toggle id="dropdown-autoclose-true">
+        Disaster Radius
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 0 })}>0m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 100 })}>100m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 200 })}>200m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 300 })}>300m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 400 })}>400m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 500 })}>500m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 600 })}>600m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 700 })}>700m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 800 })}>800m</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ radius: 900 })}>900m</Dropdown.Item>
 
 
 
-        </Dropdown.Menu>
-      </Dropdown>
-    </>
+      </Dropdown.Menu>
+    </Dropdown>
+  </>
 
 
-  }
+}
 
-  disasterTypeDropDown() {
-    return <>
-      <Dropdown className="d-inline mx-2">
-        <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Type
-        </Dropdown.Toggle>
+disasterTypeDropDown() {
+  return <>
+    <Dropdown className="d-inline mx-2">
+      <Dropdown.Toggle id="dropdown-autoclose-true">
+        Disaster Type
+      </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>FIRE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>FLOOD</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>TRAFFIC INCIDENT</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>PUBLIC DISTURBANCE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>BIO HAZARD</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}>METEOR</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}>STORM</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>OTHER</Dropdown.Item>
+      <Dropdown.Menu>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>FIRE</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>FLOOD</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>TRAFFIC INCIDENT</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>PUBLIC DISTURBANCE</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>BIO HAZARD</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}>METEOR</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}>STORM</Dropdown.Item>
+        <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>OTHER</Dropdown.Item>
 
-        </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown.Menu>
+    </Dropdown>
 
-    </>
-  }
+  </>
+}
 
-  scaleDropDown() {
-    return <>
+scaleDropDown() {
+  return <>
 
-      <Dropdown className="d-inline mx-2">
-        <Dropdown.Toggle id="dropdown-autoclose-true">
-          Select Scale
-        </Dropdown.Toggle>
+    <Dropdown className="d-inline mx-2">
+      <Dropdown.Toggle id="dropdown-autoclose-true">
+        Select Scale
+      </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => this.setState({ scale: 1 })}>1</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 2 })}>2</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 3 })}>3</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 4 })}>4</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 5 })}>5</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 6 })}>6</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 7 })}>7</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 8 })}>8</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 9 })}>9</Dropdown.Item>
-          <Dropdown.Item onClick={() => this.setState({ scale: 10 })}>10</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </>
-  }
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={() => this.setState({ scale: 1 })}>1</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 2 })}>2</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 3 })}>3</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 4 })}>4</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 5 })}>5</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 6 })}>6</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 7 })}>7</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 8 })}>8</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 9 })}>9</Dropdown.Item>
+        <Dropdown.Item onClick={() => this.setState({ scale: 10 })}>10</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  </>
+}
 }
 
 export default ReportDisasterPopUp;

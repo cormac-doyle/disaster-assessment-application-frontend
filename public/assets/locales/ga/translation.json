@@ -10,5 +10,21 @@
     "user_id_unavailable": "Aitheantas Úsáideora: Ag lódáil...",
     "EMAIL": "Seoladh ríomhphoist",
     "PASSWORD": "Pasfhocal",
-    "Submit": "Cuir isteach"
+    "Submit": "Cuir isteach",
+    "Disaster_Report": "Tuairisc Thubaiste",
+    "longitude": "Domhanfhad: ",
+    "latitude": "Domhanleithead: ",
+    "like_to_report_question": "Ar mhaith leat tubaiste a thuairisc ag an suíomh seo?",
+    "Confirm": "Deimhnigh",
+    "disaster_radius": "Raon Tubaiste",
+    "disaster_type": "Saghas Tubaiste",
+    "fire": "Tine",
+    "flood": "Tuile",
+    "traffic_incident": "Eachtra Trácht",
+    "public_disturbance": "Achrann Poblach",
+    "biohazard": "Bithghuais",
+    "meteor": "Dreige",
+    "storm": "Stoirm",
+    "other": "Eile",
+    "select_scale": "Roghnaigh Scála"
 }
