@@ -34,6 +34,12 @@ test('renders the form correctly', () => {
     expect(input).toHaveAttribute('type', 'email')
 });
 
+test('submit button exist', () => {
+    const { getByRole } = render(<BrowserRouter><Login /></BrowserRouter>);
+    const submitBtn = getByRole('button', { name: 'Submit' });
+    expect(submitBtn).toBeInTheDocument();
+})
+
 test('submit button should be disabled when email address is empty', () => {
 
     const { getByLabelText, getByRole } = render(<BrowserRouter><Login /></BrowserRouter>);
@@ -43,8 +49,4 @@ test('submit button should be disabled when email address is empty', () => {
 
     expect(submitBtn).toHaveAttribute('disabled');
 });
-/*
-test('submit button exist', () => {
-    const submitBtn = getByRole('button', { type="submit" });
-    expect(submitBtn).toBeInTheDocument();
-})*/
+
