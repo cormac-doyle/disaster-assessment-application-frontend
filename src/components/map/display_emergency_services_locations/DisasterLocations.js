@@ -85,34 +85,7 @@ export default class DisasterLocations extends Component {
         })
     }
 
-    // getDisasterIcon(id) {
-    //     if (id === 0) {
-    //         return FireIcon
-    //     }
-    //     else if (id === 1) {
-    //         return FloodIcon
-    //     }
-    //     else if (id === 2) {
-    //         return TrafficIcon
-    //     }
-    //     else if (id === 3) {
-    //         return DisturbanceIcon
-    //     }
-    //     else if (id === 4) {
-    //         return BioHazardIcon
-    //     }
-    //     else if (id === 5) {
-    //         return MeteorIcon
-    //     }
-    //     else if (id === 6) {
-    //         return StormIcon
-    //     }
-    //     else if (id === 7) {
-    //         return AlertIcon
-    //     }
-    // }
-
-    getDisasterIcon(id){
+    getDisasterIcon(id) {
         switch (id) {
             case 0:
                 return FireIcon
@@ -130,35 +103,8 @@ export default class DisasterLocations extends Component {
                 return StormIcon
             case 7:
                 return AlertIcon
-
+        }
     }
-
-    // getDisasterName(type) {
-    //     if (type === 0) {
-    //         return "Fire"
-    //     }
-    //     if (type === 1) {
-    //         return "Flood"
-    //     }
-    //     if (type === 2) {
-    //         return "Traffic Incident"
-    //     }
-    //     if (type === 3) {
-    //         return "Public Disturbance"
-    //     }
-    //     if (type === 4) {
-    //         return "Bio Hazard"
-    //     }
-    //     if (type === 5) {
-    //         return "Meteor"
-    //     }
-    //     if (type === 6) {
-    //         return "Storm"
-    //     }
-    //     if (type === 7) {
-    //         return "Other"
-    //     }
-    // }
 
     getDisasterName(type) {
         switch (type) {
@@ -178,37 +124,8 @@ export default class DisasterLocations extends Component {
                 return "Storm"
             case 7:
                 return "Other"
-            
-
-
-
-
-    // getDisasterColor(type) {
-    //     if (type === 0) {
-    //         return "red"
-    //     }
-    //     if (type === 1) {
-    //         return "blue"
-    //     }
-    //     if (type === 2) {
-    //         return "grey"
-    //     }
-    //     if (type === 3) {
-    //         return "grey"
-    //     }
-    //     if (type === 4) {
-    //         return "yellow"
-    //     }
-    //     if (type === 5) {
-    //         return "orange"
-    //     }
-    //     if (type === 6) {
-    //         return "blue"
-    //     }
-    //     if (type === 7) {
-    //         return "grey"
-    //     }
-    // }
+        }
+    }
 
     getDisasterColor(type) {
         switch (type) {
@@ -229,6 +146,7 @@ export default class DisasterLocations extends Component {
             case 7:
                 return "grey"
         }
+    }
 
     render() {
         if (this.state.disasters.length > 0) {
