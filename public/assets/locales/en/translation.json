@@ -10,21 +10,5 @@
     "user_id_unavailable": "User ID: Loading...",
     "EMAIL": "Email address",
     "PASSWORD": "Password",
-    "Submit": "Submit",
-    "Disaster_Report": "Disaster Report",
-    "longitude": "Longitude: ",
-    "latitude": "Latitude: ",
-    "like_to_report_question": "Would you like to report a disaster at this location?",
-    "Confirm": "Confirm",
-    "disaster_radius": "Disaster Radius",
-    "disaster_type": "Disaster Type",
-    "fire": "Fire",
-    "flood": "Flood",
-    "traffic_incident": "Traffic Incident",
-    "public_disturbance": "Public Disturbance",
-    "biohazard": "Biohazard",
-    "meteor": "Meteor",
-    "storm": "Storm",
-    "other": "Other",
-    "select_scale": "Select Scale"
+    "Submit": "Submit"
 }
