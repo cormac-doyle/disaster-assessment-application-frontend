@@ -74,11 +74,14 @@ class ReportDisasterPopUp extends Component {
           centered={true}
         >
           <Modal.Header closeButton>
-            <Modal.Title><h1>Disaster Report</h1></Modal.Title>
+            <Modal.Title>
+              <h1>Disaster Report/Tuairisc Thubaiste</h1>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <h3>Would you like to report a disaster at this location?  </h3>
-            <div>Longitude:{this.props.position.lng.toFixed(3)} Latitude: {this.props.position.lat.toFixed(3)}</div>
+            <h3>Ar mhaith leat tubaiste a thuairisc ag an suíomh seo?  </h3>
+            <div>Longitude/Domhanfhad:{this.props.position.lng.toFixed(3)} Latitude/Domhanleithead: {this.props.position.lat.toFixed(3)}</div>
             {this.scaleDropDown()}
             {this.disasterTypeDropDown()}
             {this.disasterRadius()}
@@ -99,7 +102,7 @@ class ReportDisasterPopUp extends Component {
     return <>
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Radius
+          Disaster Radius/Raon Tubaiste
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -127,18 +130,18 @@ class ReportDisasterPopUp extends Component {
     return <>
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Type
+          Disaster Type/Saghas Tubaiste
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>FIRE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>FLOOD</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>TRAFFIC INCIDENT</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>PUBLIC DISTURBANCE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>BIO HAZARD</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}>METEOR</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}>STORM</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>OTHER</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>FIRE/TINE</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>FLOOD/TUILE</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>TRAFFIC INCIDENT/EACHTRA TRÁCHT</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>PUBLIC DISTURBANCE/ACHRANN POBLACH</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>BIO HAZARD/BITHGHUAIS</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}>METEOR/DREIGE</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}>STORM/STOIRM</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>OTHER/EILE</Dropdown.Item>
 
         </Dropdown.Menu>
       </Dropdown>
@@ -151,7 +154,7 @@ class ReportDisasterPopUp extends Component {
 
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Select Scale
+          Select Scale/Roghnaigh Scála
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
