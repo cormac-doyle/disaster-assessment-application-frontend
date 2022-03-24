@@ -17,7 +17,7 @@ jest.mock('react-i18next', () => ({
 test('check for title text', () => {
 
     render(<BrowserRouter><Verify /></BrowserRouter>);
-    const linkElement = screen.getByText(/Verify a Disaster/i);
+    const linkElement = screen.getByText(/VerifyDisaster/i);
 
     expect(linkElement).toBeInTheDocument();
 });
