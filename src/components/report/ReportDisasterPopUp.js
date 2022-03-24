@@ -24,7 +24,6 @@ class ReportDisasterPopUp extends Component {
   }
 
   confirmButtonClick(event) {
-
     if (this.state.scale !== -1 && this.state.type !== -1) {
       this.postDisasterLocation();
     } else {
@@ -33,7 +32,6 @@ class ReportDisasterPopUp extends Component {
   }
 
   async postDisasterLocation() {
-
     const requestOptions = {
       method: "post",
       //mode: 'no-cors',
@@ -50,7 +48,6 @@ class ReportDisasterPopUp extends Component {
     };
 
     try {
-
       let disasterLocationJSON = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions).then(response => response.json());
 
       alert("Disaster Reported: " + JSON.stringify(disasterLocationJSON));
@@ -114,12 +111,9 @@ class ReportDisasterPopUp extends Component {
           <Dropdown.Item href="#" onClick={() => this.setState({ radius: 800 })}>800m</Dropdown.Item>
           <Dropdown.Item href="#" onClick={() => this.setState({ radius: 900 })}>900m</Dropdown.Item>
 
-
-
         </Dropdown.Menu>
       </Dropdown>
     </>
-
 
   }
 
@@ -148,7 +142,6 @@ class ReportDisasterPopUp extends Component {
 
   scaleDropDown() {
     return <>
-
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
           Select Scale
