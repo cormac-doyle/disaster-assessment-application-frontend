@@ -10,5 +10,6 @@
     "user_id_unavailable": "User ID: Loading...",
     "EMAIL": "Email address",
     "PASSWORD": "Password",
-    "Submit": "Submit"
+    "Submit": "Submit",
+    "VerifyDisaster": "Verify a disaster"
 }
