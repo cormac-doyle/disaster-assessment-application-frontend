@@ -49,7 +49,3 @@ const Map = () => {
     </div>);
 };
 export default (Map);
-<TileLayer
-attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-url="https://api.tomtom.com/traffic/map/4/tile/flow/relative0/{z}/{x}/{y}.png?tileSize=256&key=XUUhWmJAmCIxeKWiGD31ra6ftKxwAAwD"
-/>
