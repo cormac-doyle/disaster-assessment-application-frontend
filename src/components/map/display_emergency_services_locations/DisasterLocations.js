@@ -85,85 +85,150 @@ export default class DisasterLocations extends Component {
         })
     }
 
-    getDisasterIcon(id) {
-        if (id === 0) {
-            return FireIcon
-        }
-        else if (id === 1) {
-            return FloodIcon
-        }
-        else if (id === 2) {
-            return TrafficIcon
-        }
-        else if (id === 3) {
-            return DisturbanceIcon
-        }
-        else if (id === 4) {
-            return BioHazardIcon
-        }
-        else if (id === 5) {
-            return MeteorIcon
-        }
-        else if (id === 6) {
-            return StormIcon
-        }
-        else if (id === 7) {
-            return AlertIcon
-        }
+    // getDisasterIcon(id) {
+    //     if (id === 0) {
+    //         return FireIcon
+    //     }
+    //     else if (id === 1) {
+    //         return FloodIcon
+    //     }
+    //     else if (id === 2) {
+    //         return TrafficIcon
+    //     }
+    //     else if (id === 3) {
+    //         return DisturbanceIcon
+    //     }
+    //     else if (id === 4) {
+    //         return BioHazardIcon
+    //     }
+    //     else if (id === 5) {
+    //         return MeteorIcon
+    //     }
+    //     else if (id === 6) {
+    //         return StormIcon
+    //     }
+    //     else if (id === 7) {
+    //         return AlertIcon
+    //     }
+    // }
+
+    getDisasterIcon(id){
+        switch (id) {
+            case 0:
+                return FireIcon
+            case 1:
+                return FloodIcon
+            case 2:
+                return TrafficIcon
+            case 3:
+                return DisturbanceIcon
+            case 4:
+                return BioHazardIcon
+            case 5:
+                return MeteorIcon
+            case 6:
+                return StormIcon
+            case 7:
+                return AlertIcon
+
     }
 
+    // getDisasterName(type) {
+    //     if (type === 0) {
+    //         return "Fire"
+    //     }
+    //     if (type === 1) {
+    //         return "Flood"
+    //     }
+    //     if (type === 2) {
+    //         return "Traffic Incident"
+    //     }
+    //     if (type === 3) {
+    //         return "Public Disturbance"
+    //     }
+    //     if (type === 4) {
+    //         return "Bio Hazard"
+    //     }
+    //     if (type === 5) {
+    //         return "Meteor"
+    //     }
+    //     if (type === 6) {
+    //         return "Storm"
+    //     }
+    //     if (type === 7) {
+    //         return "Other"
+    //     }
+    // }
+
     getDisasterName(type) {
-        if (type === 0) {
-            return "Fire"
-        }
-        if (type === 1) {
-            return "Flood"
-        }
-        if (type === 2) {
-            return "Traffic Incident"
-        }
-        if (type === 3) {
-            return "Public Disturbance"
-        }
-        if (type === 4) {
-            return "Bio Hazard"
-        }
-        if (type === 5) {
-            return "Meteor"
-        }
-        if (type === 6) {
-            return "Storm"
-        }
-        if (type === 7) {
-            return "Other"
-        }
-    }
+        switch (type) {
+            case 0:
+                return "Fire"
+            case 1:
+                return "Flood"
+            case 2:
+                return "Traffic Incident"
+            case 3:
+                return "Public Disturbance"
+            case 4:
+                return "Bio Hazard"
+            case 5:
+                return "Meteor"
+            case 6:
+                return "Storm"
+            case 7:
+                return "Other"
+            
+
+
+
+
+    // getDisasterColor(type) {
+    //     if (type === 0) {
+    //         return "red"
+    //     }
+    //     if (type === 1) {
+    //         return "blue"
+    //     }
+    //     if (type === 2) {
+    //         return "grey"
+    //     }
+    //     if (type === 3) {
+    //         return "grey"
+    //     }
+    //     if (type === 4) {
+    //         return "yellow"
+    //     }
+    //     if (type === 5) {
+    //         return "orange"
+    //     }
+    //     if (type === 6) {
+    //         return "blue"
+    //     }
+    //     if (type === 7) {
+    //         return "grey"
+    //     }
+    // }
+
     getDisasterColor(type) {
-        if (type === 0) {
-            return "red"
+        switch (type) {
+            case 0:
+                return "red"
+            case 1:
+                return "blue"
+            case 2:
+                return "grey"
+            case 3:
+                return "grey"
+            case 4:
+                return "yellow"
+            case 5:
+                return "orange"
+            case 6:
+                return "blue"
+            case 7:
+                return "grey"
         }
-        if (type === 1) {
-            return "blue"
-        }
-        if (type === 2) {
-            return "grey"
-        }
-        if (type === 3) {
-            return "grey"
-        }
-        if (type === 4) {
-            return "yellow"
-        }
-        if (type === 5) {
-            return "orange"
-        }
-        if (type === 6) {
-            return "blue"
-        }
-        if (type === 7) {
-            return "grey"
-        }
-    }
 
     render() {
         if (this.state.disasters.length > 0) {
