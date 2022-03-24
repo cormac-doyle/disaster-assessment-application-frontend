@@ -34,6 +34,7 @@ test('renders the form correctly', () => {
     expect(input).toHaveAttribute('type', 'email')
 });
 
+// IMPORTANT: DO NOT DELETE
 test('submit button exist', () => {
     const { getByRole } = render(<BrowserRouter><Login /></BrowserRouter>);
     const submitBtn = getByRole('button', { name: 'Submit' });
