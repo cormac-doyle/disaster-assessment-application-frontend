@@ -74,7 +74,7 @@ export default class DisasterLocations extends Component {
         this.state = {
             disasters: [],
             minDistance: null,
-            evacPoint: []
+            evacPoints: []
         }
     }
 
@@ -210,13 +210,22 @@ export default class DisasterLocations extends Component {
     }
     
     displayEvacRoute(){
-        console.log("evacPoint: "+this.state.evacPoint)
-        if(this.state.evacPoint.length > 0){
-            return <RoutingMachine       
-                routeTravelMode={"walking"} waypoints={[
-                L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
-                L.latLng(this.state.evacPoint[0] , this.state.evacPoint[1]),
-            ]} />;
+        console.log("evacPoint: "+this.state.evacPoints)
+        if(this.state.evacPoints.length > 0){
+            
+            return<>
+            
+                <RoutingMachine   
+                evacuationRoutePoints = {this.state.evacPoints}
+                userLocation = {
+                    L.latLng(this.props.userLocation[0], this.props.userLocation[1])
+                    }
+                routeTravelMode={"walking"} 
+                 />
+            
+            </>
+            
+            
         } else{
             return null
         }
@@ -236,13 +245,10 @@ export default class DisasterLocations extends Component {
                     {latitude:disaster.lat, longitude: disaster.long},
                 disaster.radius
             )){
-                let evacPoint = this.getEvacuationPoint(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
-                
-               
-                this.getRouteDistance(this.props.userLocation[0], this.props.userLocation[1],evacPoint.latitude , evacPoint.longitude);
+                let evacPoints = this.getEvacuationPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
                 
                 this.setState({
-                    evacPoint : [evacPoint.latitude , evacPoint.longitude]
+                    evacPoints : evacPoints
                 })
 
             }else{
@@ -254,36 +260,27 @@ export default class DisasterLocations extends Component {
         
     }
 
-    getRouteDistance(x1,y1,x2,y2){
-        console.log("getRouteDistance called")
-        const sendDistanceToParent = (routeDistance) => {
-            console.log("RouteDistance from function: " + routeDistance);
-            return routeDistance;
-        };
-        console.log("RoutingMachine get dist")
-        
-        return(<RoutingMachine 
-            getDistance = {"test call"}
-            sendDistanceToParent = {sendDistanceToParent}    
-            routeTravelMode={"walking"} waypoints={[
-            L.latLng(x1, y1),
-            L.latLng(x2, y2),
-        ]} />)
 
-    }
    
-    getEvacuationPoint(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster){
+    getEvacuationPoints(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster){
+        let evacPoints = []
+
         let bearing = getRhumbLineBearing(
             { latitude: disasterLat, longitude: disasterLong },
             { latitude: userLat, longitude: userLong }
         );
+
         let distToEvacPoint = (disasterRadius-distanceToDisaster)
-
-        let evacPoint = computeDestinationPoint(
-            { latitude: userLat, longitude: userLong },
-            distToEvacPoint,
-            bearing )
-
-        return evacPoint
+        console.log("bearing: "+(bearing+10))
+        console.log(typeof(bearing))
+        for (let i = 0; i < 10; i++) {
+            let evacPoint = computeDestinationPoint(
+                { latitude: disasterLat, longitude: disasterLong },
+                disasterRadius,
+                (bearing+(i*5 - 25)));
+            evacPoints.push(evacPoint);
+        }
+        
+        return evacPoints
     }
 }
