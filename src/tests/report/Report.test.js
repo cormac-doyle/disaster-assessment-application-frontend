@@ -1,3 +1,5 @@
+import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
 import Report from '../../components/report/Report';
 import MapDisaster from "../../components/map/MapDisaster";
@@ -9,6 +11,36 @@ test('check if map exists', () => {
     const { container } = render(<MapDisaster />)
     expect(container.childElementCount).toEqual(1);
 });
+
+// test("mock fetch call, empty response",
+//     async () => {
+
+//         //const fakeResponse = [];
+
+//         // jest.spyOn(window, "fetch").mockImplementation(() => {
+//         //     const fetchResponse = {
+//         //         json: () => Promise.resolve(fakeResponse),
+//         //     };
+//         //     return Promise.resolve(fetchResponse);
+//         // });
+
+//         const { container } = render(<Report />);
+//         expect(container.state.items).toEqual([]);
+//         window.fetch.mockRestore();
+
+//         // act(() => {
+
+//         // });
+//     }
+// );
+
+
+
+
+
+
+
+
 
 /*
 let MOCK_RESPONSE = JSON.stringify({
@@ -61,7 +93,7 @@ test('modal shows the children and a close button', () => {
 // test('modal shows the children and a close button', () => {
 //     // Arrange
 //     const handleClose = jest.fn()
-  
+
 //     // Act
 //     const {getByText} = render(
 //       <Modal onClose={handleClose}>
@@ -70,10 +102,10 @@ test('modal shows the children and a close button', () => {
 //     )
 //     // Assert
 //     expect(getByText('test')).toBeTruthy()
-  
+
 //     // Act
 //     fireEvent.click(getByText(/close/i))
-  
+
 //     // Assert
 //     expect(handleClose).toHaveBeenCalledTimes(1)
 //   })

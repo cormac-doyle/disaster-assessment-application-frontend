@@ -1,5 +1,4 @@
-import { fireEvent } from "@testing-library/react";
-import DisasterLocations, { FireIcon } from "../../../components/map/display_emergency_services_locations/DisasterLocations"
+import DisasterLocations from "../../../components/map/display_emergency_services_locations/DisasterLocations"
 
 //testing enumeration
 
@@ -18,7 +17,7 @@ const disasterIconParams = [
 
 
 
-//run parameterised test
+//run parameterised test on enumerations
 const disasterLocations = new DisasterLocations()
 
 describe("test getDisasterIcons", () => {
@@ -31,3 +30,21 @@ describe("test getDisasterIcons", () => {
         }
     );
 });
+
+
+// jest.mock('../../../components/map/display_emergency_services_locations/DisasterLocations', () => ({
+//     fetchDisasters: jest.fn()
+// }));
+
+
+// describe("test render", () => {
+//     test('without params', () => {
+//         fetchDisasters.mockReturnValue('{[]}');
+
+//         const output = disasterLocations.render(<DisasterLocations />)
+
+//         expect(rendered.state.disasters.length).toEqual(0);  // SUCCESS
+
+//         mock.mockRestore();  // restore original implementa
+//     });
+// });

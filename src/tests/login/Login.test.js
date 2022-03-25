@@ -2,18 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Login from '../../components/login/Login';
 import { BrowserRouter } from "react-router-dom";
 
-jest.mock('react-i18next', () => ({
-    // this mock makes sure any components using the translate hook can use it without a warning being shown
-    useTranslation: () => {
-        return {
-            t: (str) => str,
-            i18n: {
-                changeLanguage: () => new Promise(() => { }),
-            },
-        };
-    },
-}));
-
 test('check for title text', () => {
 
     render(<BrowserRouter><Login /></BrowserRouter>);
@@ -34,7 +22,6 @@ test('renders the form correctly', () => {
     expect(input).toHaveAttribute('type', 'email')
 });
 
-// IMPORTANT: DO NOT DELETE
 test('submit button exist', () => {
     const { getByRole } = render(<BrowserRouter><Login /></BrowserRouter>);
     const submitBtn = getByRole('button', { name: 'Submit' });
