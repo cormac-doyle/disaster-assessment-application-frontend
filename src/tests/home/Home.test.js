@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Home from '../../components/home/Home';
+import GDPRAlert from '../../components/home/Home';
 import MapTraffic from "../../components/map/MapTraffic";
 import { fetchResponseJson } from '../../components/fetchResponseJson'
 
@@ -13,6 +14,15 @@ import { fetchResponseJson } from '../../components/fetchResponseJson'
 //   const { container } = render(<MapTraffic />)
 //   expect(container.childElementCount).toEqual(1);
 // });
+
+test('check if GDPR warning is displayed', () => {
+  const { getByText } = render(<Home />)
+  new GDPRAlert()
+  const gdpr = screen.getByText('Disclaimer')
+
+  expect(gdpr).toBeTruthy();
+});
+
 
 const MOCK_MESSAGE = { "message": "Hello World" }
 
