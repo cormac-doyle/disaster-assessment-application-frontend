@@ -73,8 +73,10 @@ export default class DisasterLocations extends Component {
         super(props);
         this.state = {
             disasters: [],
-            minDistance: null,
-            evacPoints: []
+            minDistance: 99999999,
+            minDistanceIndex: null,
+            evacPoints: [],
+            minDistFound: false
         }
     }
 
@@ -99,7 +101,17 @@ export default class DisasterLocations extends Component {
         
     }
 
-    
+    handleDistance = (distance,index) => {
+        
+        if(distance<this.state.minDistance){
+            this.setState({ minDistance: distance});
+            this.setState({ minDistanceIndex: index});
+        }
+        if(index==this.state.evacPoints.length-1){
+            console.log("min dist: "+this.state.minDistance)
+            this.setState({minDistFound: true})
+        }
+    }
 
     getDisasterIcon(id) {
         if (id === 0) {
@@ -201,7 +213,9 @@ export default class DisasterLocations extends Component {
                             <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
                         </>
                     )}
+
                     {this.displayEvacRoute()}
+                    
                 </>
             )
         } else {
@@ -210,25 +224,35 @@ export default class DisasterLocations extends Component {
     }
     
     displayEvacRoute(){
-        console.log("evacPoint: "+this.state.evacPoints)
-        if(this.state.evacPoints.length > 0){
-            
-            return<>
-            
-                <RoutingMachine   
-                evacuationRoutePoints = {this.state.evacPoints}
-                userLocation = {
-                    L.latLng(this.props.userLocation[0], this.props.userLocation[1])
-                    }
-                routeTravelMode={"walking"} 
-                 />
-            
+        if(!this.state.minDistFound){
+            return <>{this.state.evacPoints.map((evacPoint,idx) =>
+                <RoutingMachine 
+                    getDistance={true}
+                    handleDistance={this.handleDistance}
+                    index={idx}
+                    key={`route-${idx}`}
+                    waypoints = {[
+                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                        L.latLng(evacPoint.latitude, evacPoint.longitude),
+                    ]}
+                    routeTravelMode={"walking"} 
+                />
+            )}</>
+        }else{
+            return <>
+                <RoutingMachine 
+                    
+                    waypoints = {[
+                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                        L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
+                    ]}
+                    routeTravelMode={"walking"} 
+                />
             </>
-            
-            
-        } else{
-            return null
+
         }
+        
+            
     }
 
     getEvacRoutes(disaster) {
