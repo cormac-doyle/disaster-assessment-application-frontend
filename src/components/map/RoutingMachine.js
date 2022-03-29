@@ -1,14 +1,20 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
+import "./animate.css"
 
 
 const createRoutingMachineLayer = (props) => {
 
-    let lineColor = "#6FA1EC"
+    var lineColor = "#6FA1EC"
     if(props.lineColor){
         lineColor=props.lineColor
     }
+    var lineWeight=7
+    if(props.lineWeight){
+        lineWeight = props.lineWeight
+    }
+
     var instance;
    
     instance = L.Routing.control({
@@ -16,7 +22,7 @@ const createRoutingMachineLayer = (props) => {
             waypoints: props.waypoints,
             createMarker: function() { return null; },
             lineOptions: {
-                styles: [{ color: lineColor, weight: 7 }]
+                styles: [{color:lineColor, weight:lineWeight, className: props.animationClassName }]
             },
             show: false,
             addWaypoints: false,

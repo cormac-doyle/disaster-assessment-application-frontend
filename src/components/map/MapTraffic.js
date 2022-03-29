@@ -6,7 +6,6 @@ import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
-
 const center = {
     lat: 53.348,
     lng: -6.2603,
