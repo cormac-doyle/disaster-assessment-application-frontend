@@ -17,7 +17,7 @@ export default class EmergencyServiceRoutes extends Component {
             this.setState({
                 emergency_services: responseJson
             })
-            console.log(JSON.stringify(this.state.emergency_services))
+            console.log("ES routes: "+JSON.stringify(this.state.emergency_services))
         })
     }
 
@@ -28,7 +28,6 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeFireBrigades()}
                     {this.routePolice()}
                     {this.routeAmbulances()}
-
                 </>
             )
         } else {
@@ -43,6 +42,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#f59342"
+                        routeTravelMode={"walking"} 
                         waypoints={[
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
                             L.latLng(fire_station_loc.lat, fire_station_loc.long),
@@ -62,6 +62,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#f54242"
+                        routeTravelMode={"walking"} 
                         waypoints={[
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
                             L.latLng(hospital_loc.lat, hospital_loc.long),
@@ -80,6 +81,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["police"].map((police_station_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#2509b3"
+                        routeTravelMode={"walking"} 
                         waypoints={[
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
                             L.latLng(police_station_loc.lat, police_station_loc.long),

@@ -8,6 +8,7 @@ import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
 import RoutingMachine from ".././RoutingMachine";
 import EmergencyServiceRoutes from './EmergencyServiceRoutes';
+import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
 
 
 const FloodIcon = L.icon({
@@ -72,17 +73,43 @@ export default class DisasterLocations extends Component {
         super(props);
         this.state = {
             disasters: [],
+            minDistance: 99999999,
+            minDistanceIndex: null,
+            evacPoints: [],
+            minDistFound: false
         }
     }
 
+    componentDidUpdate() {
+       
+
+    }
+
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        
+        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson
             })
-            console.log(this.state.disasters[0])
+            console.log("Disasters: "+JSON.stringify(this.state.disasters))
+
+            this.state.disasters.map((disaster, idx) =>
+                this.getEvacRoutes(disaster)
+            )
         })
+        
+    }
+
+    handleDistance = (distance,index) => {
+        if(distance<this.state.minDistance){
+            this.setState({ minDistance: distance});
+            this.setState({ minDistanceIndex: index});
+        }
+        if(index===this.state.evacPoints.length-1){
+            console.log("min dist: "+this.state.minDistance)
+            this.setState({minDistFound: true})
+        }
     }
 
     getDisasterIcon(id) {
@@ -166,6 +193,7 @@ export default class DisasterLocations extends Component {
     }
 
     render() {
+        
         if (this.state.disasters.length > 0) {
             return (
                 <>
@@ -180,22 +208,101 @@ export default class DisasterLocations extends Component {
                                     <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
                                 </Marker>
                             </Circle>
-                            {this.displayEvacRoutes(disaster)}
+                            
                             <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
                         </>
                     )}
+
+                    {this.displayEvacRoute()}
+                    
                 </>
             )
         } else {
             return null
         }
+    }
+    
+    displayEvacRoute(){
+        if(!this.state.minDistFound){
+            return <>{this.state.evacPoints.map((evacPoint,idx) =>
+                <RoutingMachine 
+                    getDistance={true}
+                    handleDistance={this.handleDistance}
+                    index={idx}
+                    key={`route-${idx}`}
+                    waypoints = {[
+                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                        L.latLng(evacPoint.latitude, evacPoint.longitude),
+                    ]}
+                    routeTravelMode={"walking"} 
+                />
+            )}</>
+        }else{
+            return <>
+                <RoutingMachine 
+                    
+                    waypoints = {[
+                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
+                        L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
+                    ]}
+                    routeTravelMode={"walking"} 
+                />
+            </>
 
+        }
+        
+            
     }
 
-    displayEvacRoutes(disaster) {
-        return <RoutingMachine waypoints={[
-            L.latLng(disaster.lat, disaster.long),
-            L.latLng(disaster.lat + disaster.radius / 111111, disaster.long),
-        ]} />;
+    getEvacRoutes(disaster) {
+        if(this.props.userLocation){
+            let distanceToDisaster = getDistance(
+                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
+                {latitude:disaster.lat, longitude: disaster.long}
+            )
+            // console.log("user distance to disaster: "+ distanceToDisaster)
+            // console.log("disaster radius: "+ disaster.radius)
+
+            if(isPointWithinRadius(
+                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
+                    {latitude:disaster.lat, longitude: disaster.long},
+                disaster.radius
+            )){
+                let evacPoints = this.getEvacuationPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
+                
+                this.setState({
+                    evacPoints : evacPoints
+                })
+
+            }else{
+                return null;
+            }
+        } else{
+            return null;
+        }
+        
+    }
+
+
+   
+    getEvacuationPoints(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster){
+        let evacPoints = []
+
+        let bearing = getRhumbLineBearing(
+            { latitude: disasterLat, longitude: disasterLong },
+            { latitude: userLat, longitude: userLong }
+        );
+
+        console.log("bearing: "+(bearing+10))
+        console.log(typeof(bearing))
+        for (let i = 0; i < 10; i++) {
+            let evacPoint = computeDestinationPoint(
+                { latitude: disasterLat, longitude: disasterLong },
+                disasterRadius,
+                (bearing+(i*5 - 25)));
+            evacPoints.push(evacPoint);
+        }
+        
+        return evacPoints
     }
 }

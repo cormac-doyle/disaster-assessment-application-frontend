@@ -1,10 +1,11 @@
-import React from 'react'
-import { MapContainer, TileLayer } from "react-leaflet";
+import {React, useState} from 'react'
+import { MapContainer, TileLayer, Marker,Popup,useMapEvents} from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
+
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -12,20 +13,12 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-// const icon = L.icon({
-//     iconSize: [25, 41],
-//     iconAnchor: [10, 41],
-//     popupAnchor: [2, -40],
-//     iconUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-icon.png",
-//     shadowUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-shadow.png"
-// });
 
-/*
+
 function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
-        click() {
-            
+        click(){
             map.locate()
         },
         locationfound(e) {
@@ -33,14 +26,30 @@ function LocationMarker() {
             map.flyTo(e.latlng, map.getZoom())
         },
     })
-
-    return position === null ? null : (
-        <Marker position={position}>
-            <Popup>There you are...</Popup>
-        </Marker>
-    )
+    //position = latLng()
+    console.log("position: " + position)
+    //position = LatLng(53,-6)
+    if(position!=null){
+        console.log("position set")
+        return(
+            <>
+                <Marker position={[position.lat, position.lng]}>
+                    <Popup>There you are...</Popup>
+                </Marker>
+                <DisasterLocations userLocation = {[position.lat, position.lng]}/>
+            </>
+        )
+    }else{
+        return(
+            <>
+                <DisasterLocations />
+            </>
+        )
+    }
+    
+    
 }
-*/
+
 
 
 const Map = () => {
@@ -65,7 +74,7 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://api.tomtom.com/traffic/map/4/tile/flow/relative0/{z}/{x}/{y}.png?tileSize=256&key=XUUhWmJAmCIxeKWiGD31ra6ftKxwAAwD"
             />
-            <DisasterLocations />
+            <LocationMarker />
             <EmergencyServiceLocations />
 
         </MapContainer>
