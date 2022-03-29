@@ -4,7 +4,7 @@ import "leaflet-routing-machine";
 
 
 const createRoutingMachineLayer = (props) => {
-    let minDistance = 99999999999
+
     let lineColor = "#6FA1EC"
     if(props.lineColor){
         lineColor=props.lineColor
@@ -52,7 +52,6 @@ const createRoutingMachineLayer = (props) => {
 
 
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const RoutingMachine = createControlComponent(createRoutingMachineLayer);
 

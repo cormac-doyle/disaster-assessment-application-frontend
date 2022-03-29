@@ -106,7 +106,7 @@ export default class DisasterLocations extends Component {
             this.setState({ minDistance: distance});
             this.setState({ minDistanceIndex: index});
         }
-        if(index==this.state.evacPoints.length-1){
+        if(index===this.state.evacPoints.length-1){
             console.log("min dist: "+this.state.minDistance)
             this.setState({minDistFound: true})
         }
@@ -293,7 +293,6 @@ export default class DisasterLocations extends Component {
             { latitude: userLat, longitude: userLong }
         );
 
-        let distToEvacPoint = (disasterRadius-distanceToDisaster)
         console.log("bearing: "+(bearing+10))
         console.log(typeof(bearing))
         for (let i = 0; i < 10; i++) {

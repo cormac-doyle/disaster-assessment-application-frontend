@@ -5,7 +5,7 @@ import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
-import { LatLng } from 'leaflet';
+
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
