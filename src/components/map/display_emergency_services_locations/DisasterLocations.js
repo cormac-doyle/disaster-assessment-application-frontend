@@ -80,13 +80,16 @@ export default class DisasterLocations extends Component {
         }
     }
 
-    componentDidUpdate() {
-       
-
-    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.userLocation !== this.props.userLocation) {
+            this.setState({minDistFound:false})
+            this.state.disasters.map((disaster, idx) =>
+                this.getEvacRoutes(disaster)
+            )
+        }
+      }
 
     componentDidMount() {
-        
         fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
 
             this.setState({
@@ -98,6 +101,7 @@ export default class DisasterLocations extends Component {
                 this.getEvacRoutes(disaster)
             )
         })
+        
         
     }
 

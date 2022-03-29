@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState,useCallback, useMemo, useRef} from 'react'
 import { MapContainer, TileLayer, Marker,Popup,useMapEvents} from "react-leaflet";
 import L from 'leaflet';
 import "./Map.css";
@@ -7,13 +7,56 @@ import EmergencyServiceLocations from './display_emergency_services_locations/Em
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
 
+const center = {
+    lat: 53.348,
+    lng: -6.2603,
+  }
+
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-
+function DraggableMarker() {
+    const [draggable, setDraggable] = useState(false)
+    const [position, setPosition] = useState(center)
+    const markerRef = useRef(null)
+    const eventHandlers = useMemo(
+      () => ({
+        dragend() {
+          const marker = markerRef.current
+          if (marker != null) {
+            setPosition(marker.getLatLng())
+          }
+        },
+      }),
+      [],
+    )
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d)
+    }, [])
+  
+    return (
+        <>
+        <Marker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={markerRef}>
+        <Popup minWidth={90}>
+          <span onClick={toggleDraggable}>
+            {draggable
+              ? 'Marker is draggable'
+              : 'Click here to make marker draggable'}
+          </span>
+        </Popup>
+      </Marker>
+      <DisasterLocations userLocation = {[position.lat, position.lng]}/>
+        </>
+      
+    )
+  }
 
 function LocationMarker() {
     const [position, setPosition] = useState(null)
@@ -54,7 +97,7 @@ function LocationMarker() {
 
 const Map = () => {
 
-    const defaultPosition = [53.348, -6.2603];  // Dublin City Centre
+    const defaultPosition = center;  // Dublin City Centre
 
     return (<div className="map__container">
 
@@ -74,7 +117,8 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://api.tomtom.com/traffic/map/4/tile/flow/relative0/{z}/{x}/{y}.png?tileSize=256&key=XUUhWmJAmCIxeKWiGD31ra6ftKxwAAwD"
             />
-            <LocationMarker />
+            
+            <DraggableMarker/>
             <EmergencyServiceLocations />
 
         </MapContainer>
