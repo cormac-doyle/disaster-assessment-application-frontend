@@ -17,10 +17,7 @@ import { fetchResponseJson } from '../../components/fetchResponseJson'
 
 test('check if GDPR warning is displayed', () => {
   const { getByText } = render(<Home />)
-  new GDPRAlert()
-  const gdpr = screen.getByText('Disclaimer')
-
-  expect(gdpr).toBeTruthy();
+  expect(screen.getByText('Disclaimer')).toBeTruthy();
 });
 
 
