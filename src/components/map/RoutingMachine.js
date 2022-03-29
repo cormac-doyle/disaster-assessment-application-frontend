@@ -1,14 +1,22 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
+import "./animate.css"
+import "./evac-route-line.css"
+
 
 
 const createRoutingMachineLayer = (props) => {
 
-    let lineColor = "#6FA1EC"
+    var lineColor = "#6FA1EC"
     if(props.lineColor){
         lineColor=props.lineColor
     }
+    var lineWeight=7
+    if(props.lineWeight){
+        lineWeight = props.lineWeight
+    }
+
     var instance;
    
     instance = L.Routing.control({
@@ -16,7 +24,7 @@ const createRoutingMachineLayer = (props) => {
             waypoints: props.waypoints,
             createMarker: function() { return null; },
             lineOptions: {
-                styles: [{ color: lineColor, weight: 7 }]
+                styles: [{color:lineColor, weight:lineWeight, className: props.animationClassName }]
             },
             show: false,
             addWaypoints: false,
@@ -42,16 +50,17 @@ const createRoutingMachineLayer = (props) => {
             props.handleDistance(distance,props.index)
         });
     }
-    
+    if(props.getTime){
+        instance.on('routesfound', function (e) {
+            var time = e.routes[0].summary.totalTime
+            console.log("ES Route Time: "+Math.round(time % 3600 / 60)+" minutes");
+            props.handleTime(time)
+        });
+    }
 
-    
-    
     return instance;
     
 };
-
-
-
 
 const RoutingMachine = createControlComponent(createRoutingMachineLayer);
 
