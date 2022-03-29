@@ -57,40 +57,40 @@ function DraggableMarker() {
     )
   }
 
-function LocationMarker() {
-    const [position, setPosition] = useState(null)
-    const map = useMapEvents({
-        click(){
-            map.locate()
-        },
-        locationfound(e) {
-            setPosition(e.latlng)
-            map.flyTo(e.latlng, map.getZoom())
-        },
-    })
-    //position = latLng()
-    console.log("position: " + position)
-    //position = LatLng(53,-6)
-    if(position!=null){
-        console.log("position set")
-        return(
-            <>
-                <Marker position={[position.lat, position.lng]}>
-                    <Popup>There you are...</Popup>
-                </Marker>
-                <DisasterLocations userLocation = {[position.lat, position.lng]}/>
-            </>
-        )
-    }else{
-        return(
-            <>
-                <DisasterLocations />
-            </>
-        )
-    }
+// function LocationMarker() {
+//     const [position, setPosition] = useState(null)
+//     const map = useMapEvents({
+//         click(){
+//             map.locate()
+//         },
+//         locationfound(e) {
+//             setPosition(e.latlng)
+//             map.flyTo(e.latlng, map.getZoom())
+//         },
+//     })
+//     //position = latLng()
+//     console.log("position: " + position)
+//     //position = LatLng(53,-6)
+//     if(position!=null){
+//         console.log("position set")
+//         return(
+//             <>
+//                 <Marker position={[position.lat, position.lng]}>
+//                     <Popup>There you are...</Popup>
+//                 </Marker>
+//                 <DisasterLocations userLocation = {[position.lat, position.lng]}/>
+//             </>
+//         )
+//     }else{
+//         return(
+//             <>
+//                 <DisasterLocations />
+//             </>
+//         )
+//     }
     
     
-}
+// }
 
 
 
