@@ -2,6 +2,8 @@ import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "./animate.css"
+import "./evac-route-line.css"
+
 
 
 const createRoutingMachineLayer = (props) => {
@@ -48,16 +50,17 @@ const createRoutingMachineLayer = (props) => {
             props.handleDistance(distance,props.index)
         });
     }
-    
+    if(props.getTime){
+        instance.on('routesfound', function (e) {
+            var time = e.routes[0].summary.totalTime
+            console.log("ES Route Time: "+Math.round(time % 3600 / 60)+" minutes");
+            props.handleTime(time)
+        });
+    }
 
-    
-    
     return instance;
     
 };
-
-
-
 
 const RoutingMachine = createControlComponent(createRoutingMachineLayer);
 

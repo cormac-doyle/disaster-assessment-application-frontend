@@ -82,12 +82,18 @@ export default class DisasterLocations extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.userLocation !== this.props.userLocation) {
-            this.setState({minDistFound:false})
-            this.setState({minDistance: 99999999})
-
+            this.setState({
+                evacPoints: [],
+                minDistFound:false,
+                minDistance: 99999999,
+                minDistanceIndex: null
+            })
+            
+            
             this.state.disasters.map((disaster, idx) =>
                 this.getEvacRoutes(disaster)
             )
+            
         }
       }
 
@@ -249,10 +255,11 @@ export default class DisasterLocations extends Component {
                 <RoutingMachine 
                     
                     waypoints = {[
-                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                         L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
+                        L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                     ]}
-                    routeTravelMode={"walking"} 
+                    routeTravelMode={"walking"}
+                    animationClassName = {"evac-route-line"}
                 />
             </>
 
@@ -269,7 +276,7 @@ export default class DisasterLocations extends Component {
             )
             // console.log("user distance to disaster: "+ distanceToDisaster)
             // console.log("disaster radius: "+ disaster.radius)
-
+            
             if(isPointWithinRadius(
                 {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
                     {latitude:disaster.lat, longitude: disaster.long},
