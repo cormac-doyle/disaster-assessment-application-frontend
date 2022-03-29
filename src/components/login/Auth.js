@@ -1,11 +1,11 @@
 import { useLocation, Navigate } from "react-router-dom"
 
 const setToken = (token) => {
-    console.log("Applying token:" + token)
+    // console.log("Applying token:" + token)
     localStorage.setItem('magicToken', token)
 };
 
-const fetchToken = (token) => {
+const fetchToken = () => {
     return localStorage.getItem('magicToken')
 };
 

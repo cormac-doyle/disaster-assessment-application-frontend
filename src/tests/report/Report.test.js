@@ -6,39 +6,12 @@ import MapDisaster from "../../components/map/MapDisaster";
 import ReportDisasterPopUp from "../../components/report/ReportDisasterPopUp";
 import { Modal } from "react-bootstrap";
 import { fetchResponseJson } from '../../components/fetchResponseJson';
+import UserStatus from "../../components/UserStatus"
 
 test('check if map exists', () => {
     const { container } = render(<MapDisaster />)
     expect(container.childElementCount).toEqual(1);
 });
-
-// test("mock fetch call, empty response",
-//     async () => {
-
-//         //const fakeResponse = [];
-
-//         // jest.spyOn(window, "fetch").mockImplementation(() => {
-//         //     const fetchResponse = {
-//         //         json: () => Promise.resolve(fakeResponse),
-//         //     };
-//         //     return Promise.resolve(fetchResponse);
-//         // });
-
-//         const { container } = render(<Report />);
-//         expect(container.state.items).toEqual([]);
-//         window.fetch.mockRestore();
-
-//         // act(() => {
-
-//         // });
-//     }
-// );
-
-
-
-
-
-
 
 
 
