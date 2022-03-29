@@ -46,9 +46,9 @@ ReactDOM.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/report" element={<Report />} />
-        <Route path="/login" element={<WithNavigate />} />
-        <Route path="/disaster_verification" element={<RequireToken><Verify /></RequireToken>} />
+        <Route path="/" element={<Report />} />
+        <Route path="/" element={<WithNavigate />} />
+        <Route path="/" element={<RequireToken><Verify /></RequireToken>} />
       </Routes>
     </Router>
   </React.StrictMode>,
