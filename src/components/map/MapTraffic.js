@@ -40,7 +40,6 @@ function LocationMarker() {
             </>
         )
     }else{
-        
         return(
             <>
                 <DisasterLocations />

@@ -102,7 +102,6 @@ export default class DisasterLocations extends Component {
     }
 
     handleDistance = (distance,index) => {
-        
         if(distance<this.state.minDistance){
             this.setState({ minDistance: distance});
             this.setState({ minDistanceIndex: index});
