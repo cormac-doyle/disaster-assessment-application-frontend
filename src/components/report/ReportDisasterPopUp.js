@@ -77,7 +77,7 @@ class ReportDisasterPopUp extends Component {
           </Modal.Header>
           <Modal.Body>
             <h3>Would you like to report a disaster at this location?  </h3>
-            <h3>Ar mhaith leat tubaiste a thuairisc ag an suíomh seo?  </h3>
+            <h3>Ar mhaith leat tuairisc a dhéanamh ar thubaiste ar an suíomh seo?  </h3>
             <div>Longitude/Domhanfhad:{this.props.position.lng.toFixed(3)} Latitude/Domhanleithead: {this.props.position.lat.toFixed(3)}</div>
             {this.scaleDropDown()}
             {this.disasterTypeDropDown()}
