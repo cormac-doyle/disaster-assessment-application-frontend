@@ -109,27 +109,27 @@ describe("test getDisasterIcons", () => {
     );
 });
 
-// describe("test getDisasterName", () => {
-//     test.each(disasterNameParams)(
-//         `should return correct enumeration`,
-//         (input, result) => {
-//             const output = disasterLocations.getDisasterName(input)
+describe("test getDisasterName", () => {
+    test.each(disasterNameParams)(
+        `should return correct enumeration`,
+        (input, result) => {
+            const output = disasterLocations.getDisasterName(input)
 
-//             expect(output).toEqual(result);
-//         }
-//     );
-// });
+            expect(output).toEqual(result);
+        }
+    );
+});
 
-// describe("test getDisasterColor", () => {
-//     test.each(disasterColorParams)(
-//         `should return correct enumeration`,
-//         (input, result) => {
-//             const output = disasterLocations.getDisasterColor(input)
+describe("test getDisasterColor", () => {
+    test.each(disasterColorParams)(
+        `should return correct enumeration`,
+        (input, result) => {
+            const output = disasterLocations.getDisasterColor(input)
 
-//             expect(output).toEqual(result);
-//         }
-//     );
-// });
+            expect(output).toEqual(result);
+        }
+    );
+});
 
 
 // jest.mock('../../../components/map/display_emergency_services_locations/DisasterLocations', () => ({
