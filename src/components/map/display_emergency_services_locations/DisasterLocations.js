@@ -101,7 +101,7 @@ export default class DisasterLocations extends Component {
                 return MeteorIcon
             case 6:
                 return StormIcon
-            case 7:
+            default:
                 return AlertIcon
         }
     }
@@ -122,7 +122,7 @@ export default class DisasterLocations extends Component {
                 return "Meteor"
             case 6:
                 return "Storm"
-            case 7:
+            default:
                 return "Other"
         }
     }
@@ -143,7 +143,7 @@ export default class DisasterLocations extends Component {
                 return "orange"
             case 6:
                 return "blue"
-            case 7:
+            default:
                 return "grey"
         }
     }
