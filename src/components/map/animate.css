@@ -1,7 +1,7 @@
 path.animate {
     stroke-dasharray: 1920;
     stroke-dashoffset: 1920;
-    animation: dash 70s linear 0.5s forwards;
+    animation: dash 20s linear 0.5s forwards;
 }
 
 @keyframes dash {
