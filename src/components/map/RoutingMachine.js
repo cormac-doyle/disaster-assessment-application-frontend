@@ -12,7 +12,7 @@ const createRoutingMachineLayer = (props) => {
     if(props.lineColor){
         lineColor=props.lineColor
     }
-    var lineWeight=7
+    var lineWeight=10
     if(props.lineWeight){
         lineWeight = props.lineWeight
     }
