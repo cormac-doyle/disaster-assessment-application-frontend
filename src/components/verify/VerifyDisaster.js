@@ -26,14 +26,11 @@ export default class VerifyDisaster extends Component {
     }
 
     getDisasterColor(verified) {
-        if (verified === true) {
+        if (verified) {
             return "green"
         }
-        if (verified === false) {
-            return "red"
-        }
         else {
-            return "grey"
+            return "red"
         }
     }
 
