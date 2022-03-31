@@ -6,62 +6,6 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 
-const FloodIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/flood.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const FireIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/fire.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const TrafficIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/crash.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
-
-const BioHazardIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/biohazard.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const MeteorIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/meteor.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const StormIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/storm.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const AlertIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/alert.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
-const DisturbanceIcon = L.icon({
-    iconUrl: require("../map/display_emergency_services_locations/images/disturbance.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
-
-
 export default class VerifyDisaster extends Component {
 
     constructor(props) {
@@ -81,59 +25,6 @@ export default class VerifyDisaster extends Component {
         // console.log(responseJson)
     }
 
-    getDisasterIcon(id) {
-        if (id === 0) {
-            return FireIcon
-        }
-        else if (id === 1) {
-            return FloodIcon
-        }
-        else if (id === 2) {
-            return TrafficIcon
-        }
-        else if (id === 3) {
-            return DisturbanceIcon
-        }
-        else if (id === 4) {
-            return BioHazardIcon
-        }
-        else if (id === 5) {
-            return MeteorIcon
-        }
-        else if (id === 6) {
-            return StormIcon
-        }
-        else if (id === 7) {
-            return AlertIcon
-        }
-    }
-
-    getDisasterName(type) {
-        if (type === 0) {
-            return "Fire"
-        }
-        if (type === 1) {
-            return "Flood"
-        }
-        if (type === 2) {
-            return "Traffic Incident"
-        }
-        if (type === 3) {
-            return "Public Disturbance"
-        }
-        if (type === 4) {
-            return "Bio Hazard"
-        }
-        if (type === 5) {
-            return "Meteor"
-        }
-        if (type === 6) {
-            return "Storm"
-        }
-        if (type === 7) {
-            return "Other"
-        }
-    }
     getDisasterColor(verified) {
         if (verified === true) {
             return "green"
@@ -252,9 +143,9 @@ export default class VerifyDisaster extends Component {
                             radius={disaster.radius}
                             color={this.getDisasterColor(disaster.verified)}>
 
-                            <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
+                            <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisaster(disaster.disaster_type).icon}>
                                 <Popup>
-                                    {/* {this.getDisasterName(disaster.disaster_type)} */}
+                                    {/* {this.getDisaster(disaster.disaster_type).name} */}
                                     <form>
                                         <label>
                                             Scale:

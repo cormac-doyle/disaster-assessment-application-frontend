@@ -8,62 +8,7 @@ import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
 import RoutingMachine from ".././RoutingMachine";
 import EmergencyServiceRoutes from './EmergencyServiceRoutes';
-
-
-const FloodIcon = L.icon({
-    iconUrl: require("./images/flood.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const FireIcon = L.icon({
-    iconUrl: require("./images/fire.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const TrafficIcon = L.icon({
-    iconUrl: require("./images/crash.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
-
-const BioHazardIcon = L.icon({
-    iconUrl: require("./images/biohazard.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const MeteorIcon = L.icon({
-    iconUrl: require("./images/meteor.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const StormIcon = L.icon({
-    iconUrl: require("./images/storm.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [2, -40],
-});
-
-const AlertIcon = L.icon({
-    iconUrl: require("./images/alert.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
-const DisturbanceIcon = L.icon({
-    iconUrl: require("./images/disturbance.png"),
-    iconSize: [60, 60],
-    iconAnchor: [30, 30],
-    popupAnchor: [2, -40],
-});
+import getDisaster from '../../DisasterTypes/DisasterWrapper';
 
 
 export default class DisasterLocations extends Component {
@@ -85,68 +30,6 @@ export default class DisasterLocations extends Component {
         })
     }
 
-    getDisasterIcon(id) {
-        switch (id) {
-            case 0:
-                return FireIcon
-            case 1:
-                return FloodIcon
-            case 2:
-                return TrafficIcon
-            case 3:
-                return DisturbanceIcon
-            case 4:
-                return BioHazardIcon
-            case 5:
-                return MeteorIcon
-            case 6:
-                return StormIcon
-            default:
-                return AlertIcon
-        }
-    }
-
-    getDisasterName(type) {
-        switch (type) {
-            case 0:
-                return "Fire"
-            case 1:
-                return "Flood"
-            case 2:
-                return "Traffic Incident"
-            case 3:
-                return "Public Disturbance"
-            case 4:
-                return "Bio Hazard"
-            case 5:
-                return "Meteor"
-            case 6:
-                return "Storm"
-            default:
-                return "Other"
-        }
-    }
-
-    getDisasterColor(type) {
-        switch (type) {
-            case 0:
-                return "red"
-            case 1:
-                return "blue"
-            case 2:
-                return "grey"
-            case 3:
-                return "grey"
-            case 4:
-                return "yellow"
-            case 5:
-                return "orange"
-            case 6:
-                return "blue"
-            default:
-                return "grey"
-        }
-    }
 
     render() {
         if (this.state.disasters.length > 0) {
@@ -158,9 +41,9 @@ export default class DisasterLocations extends Component {
                                 key={`marker-${idx}`}
                                 center={[disaster.lat, disaster.long]}
                                 radius={disaster.radius}
-                                color={this.getDisasterColor(disaster.disaster_type)}>
-                                <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
-                                    <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
+                                color={getDisaster(disaster.disaster_type).colour}>
+                                <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
+                                    <Popup>{getDisaster(disaster.disaster_type).name}</Popup>
                                 </Marker>
                             </Circle>
                             {this.displayEvacRoutes(disaster)}
