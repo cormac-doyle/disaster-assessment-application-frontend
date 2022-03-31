@@ -1,4 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import Auth, { setToken, fetchToken } from '../../components/login/Auth';
-import { BrowserRouter } from "react-router-dom";
+import { setToken, fetchToken, RequireToken } from '../../components/login/Auth';
 
+
+test('token set and fetched', () => {
+    setToken('something')
+    expect(fetchToken() == 'something')
+});
+
+// TODO test require token
