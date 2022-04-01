@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import cookies from 'js-cookie'
-import i18next from 'i18next';
+
 
 
 function getLanguage() {
