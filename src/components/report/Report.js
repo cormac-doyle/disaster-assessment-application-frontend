@@ -16,6 +16,7 @@ class Report extends Component {
         super(props);
         this.state = {
             items: [],
+            language:'eng'
         }
     }
 
@@ -27,6 +28,8 @@ class Report extends Component {
         })
     }
 
+   
+
     render() {
         return (<>
             <nav>
@@ -34,9 +37,9 @@ class Report extends Component {
             <main>
 
                 <Title />
-                <ReportDisasterText/>
+                <ReportDisasterText />
                 <UserStatus items={this.state.items}></UserStatus>
-                <Map />
+                <Map/>
 
             </main>
         </>)

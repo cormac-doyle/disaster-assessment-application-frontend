@@ -150,7 +150,6 @@ export default class DisasterLocations extends Component {
             return AlertIcon
         }
     }
-
     getDisasterName(type) {
         if (type === 0) {
             return "Fire"
@@ -263,9 +262,7 @@ export default class DisasterLocations extends Component {
                 />
             </>
 
-        }
-        
-            
+        }     
     }
 
     getEvacRoutes(disaster) {
