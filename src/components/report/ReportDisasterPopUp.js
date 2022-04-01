@@ -1,33 +1,65 @@
 import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
+import cookies from 'js-cookie'
+import i18next from 'i18next';
 
 
+function getLanguage() {
+  const currentLanguageCode = cookies.get('i18next')
+  return currentLanguageCode
+}
 
 class ReportDisasterPopUp extends Component {
   langTextMap={
     "Disaster Report" : 
-      {"ire":"Tuairisc Thubaiste",
-      "eng":"Disaster Report"}, 
+      {"ga":"Tuairisc Thubaiste",
+      "en":"Disaster Report"}, 
     "Would you like to report a disaster at this location?": 
-      {"ire":"Ar mhaith leat tuairisc a dhéanamh ar thubaiste ar an suíomh seo?", 
-        "eng":"Would you like to report a disaster at this location?"},
+      {"ga":"Ar mhaith leat tuairisc a dhéanamh ar thubaiste ar an suíomh seo?", 
+        "en":"Would you like to report a disaster at this location?"},
     "Longitude": 
-      {"ire":"Domhanfhad",
-        "eng":"Longitude"},
+      {"ga":"Domhanfhad",
+        "en":"Longitude"},
     "Latitude": 
-      {"ire":"Domhanleithead", 
-        "eng":"Latitude"},
+      {"ga":"Domhanleithead", 
+        "en":"Latitude"},
     "Disaster Radius":
-      {"ire":"Raon Tubaiste", 
-      "eng":"Disaster Radius"},
+      {"ga":"Raon Tubaiste", 
+      "en":"Disaster Radius"},
     "Disaster Type": 
-      {"ire":"Saghas Tubaiste",
-      "eng":"Disaster Type"},
+      {"ga":"Saghas Tubaiste",
+      "en":"Disaster Type"},
     "Select Scale": 
-      {"ire":"Roghnaigh Scála",
-      "eng":"Select Scale"}
-  
+      {"ga":"Roghnaigh Scála",
+      "en":"Select Scale"},
+    "FIRE":
+      {"ga":"TINE",
+      "en":"FIRE"},
+    "FLOOD":
+      {"ga":"TUILE",
+      "en":"FLOOD"},
+      "TRAFFIC INCIDENT":
+      {"ga":"EACHTRA TRÁCHT",
+      "en":"TRAFFIC INCIDENT"},
+      "PUBLIC DISTURBANCE":
+      {"ga":"ACHRANN POBLACH",
+      "en":"PUBLIC DISTURBANCE"},
+      "BIO HAZARD":
+      {"ga":"BITHGHUAIS",
+      "en":"BIO HAZARD"},
+      "METEOR":
+      {"ga":"DREIGE",
+      "en":"METEOR"},
+      "STORM":
+      {"ga":"STOIRM",
+      "en":"STORM"},
+      "OTHER":
+      {"ga":"EILE",
+      "en":"OTHER"},
+      "Confirm":
+      {"ga":"Deimhnigh",
+      "en":"Confirm"},
   }
   
   constructor(props) {
@@ -36,7 +68,7 @@ class ReportDisasterPopUp extends Component {
       type: -1,
       scale: -1,
       radius: 0,
-      language: "eng"
+      language: props.language
     };
   }
 
@@ -90,6 +122,7 @@ class ReportDisasterPopUp extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <Modal
@@ -100,12 +133,12 @@ class ReportDisasterPopUp extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title>
-              <h1>{ this.langTextMap["Disaster Report"][this.state.language]} </h1>
+              <h1>{ this.langTextMap["Disaster Report"][getLanguage()]} </h1>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h3>{ this.langTextMap["Would you like to report a disaster at this location?"][this.state.language]}  </h3>
-            <div>{ this.langTextMap["Longitude"][this.state.language]} {this.props.position.lng.toFixed(3)} { this.langTextMap["Latitude"][this.state.language]} {this.props.position.lat.toFixed(3)}</div>
+            <h3>{ this.langTextMap["Would you like to report a disaster at this location?"][getLanguage()]}  </h3>
+            <div>{ this.langTextMap["Longitude"][getLanguage()]} {this.props.position.lng.toFixed(3)} { this.langTextMap["Latitude"][getLanguage()]} {this.props.position.lat.toFixed(3)}</div>
             {this.scaleDropDown()}
             {this.disasterTypeDropDown()}
             {this.disasterRadius()}
@@ -113,7 +146,7 @@ class ReportDisasterPopUp extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={() => this.confirmButtonClick()}>
-              Confirm
+            { this.langTextMap["Confirm"][getLanguage()]}
             </Button>
           </Modal.Footer>
         </Modal>
@@ -127,7 +160,7 @@ class ReportDisasterPopUp extends Component {
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
           
-          { this.langTextMap["Disaster Radius"][this.state.language]}
+          { this.langTextMap["Disaster Radius"][getLanguage()]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -153,18 +186,18 @@ class ReportDisasterPopUp extends Component {
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
 
-          { this.langTextMap["Disaster Type"][this.state.language]}
+          { this.langTextMap["Disaster Type"][getLanguage()]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>FIRE/TINE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>FLOOD/TUILE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>TRAFFIC INCIDENT/EACHTRA TRÁCHT</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>PUBLIC DISTURBANCE/ACHRANN POBLACH</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>BIO HAZARD/BITHGHUAIS</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}>METEOR/DREIGE</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}>STORM/STOIRM</Dropdown.Item>
-          <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>OTHER/EILE</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 0 })}>{ this.langTextMap["FIRE"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 1 })}>{ this.langTextMap["FLOOD"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 2 })}>{ this.langTextMap["TRAFFIC INCIDENT"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 3 })}>{ this.langTextMap["PUBLIC DISTURBANCE"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 4 })}>{ this.langTextMap["BIO HAZARD"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 5 })}> { this.langTextMap["METEOR"][getLanguage()]} </Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 6 })}> { this.langTextMap["STORM"][getLanguage()]}</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={() => this.setState({ type: 7 })}>{ this.langTextMap["OTHER"][getLanguage()]}</Dropdown.Item>
 
         </Dropdown.Menu>
       </Dropdown>
@@ -177,7 +210,7 @@ class ReportDisasterPopUp extends Component {
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
           
-          { this.langTextMap["Select Scale"][this.state.language]}
+          { this.langTextMap["Select Scale"][getLanguage()]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

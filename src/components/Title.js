@@ -79,7 +79,6 @@ export default function Title(props) {
                                                     onClick={() => {
                                                         i18next.changeLanguage(code)
                                                         
-                                                        props.getLanguage(code)
                                                     }}
                                                 >
                                                     <button className="dropdown-item">

@@ -17,7 +17,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const Map = () => {
+const Map = (props) => {
   const defaultPosition = [53.348, -6.2603]; // Dublin City Centre
 
   return (
