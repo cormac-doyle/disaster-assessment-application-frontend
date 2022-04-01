@@ -2,14 +2,41 @@ import React, { Component } from "react";
 import "./ReportDisasterPopUp.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 
-class ReportDisasterPopUp extends Component {
 
+
+class ReportDisasterPopUp extends Component {
+  langTextMap={
+    "Disaster Report" : 
+      {"ire":"Tuairisc Thubaiste",
+      "eng":"Disaster Report"}, 
+    "Would you like to report a disaster at this location?": 
+      {"ire":"Ar mhaith leat tuairisc a dhéanamh ar thubaiste ar an suíomh seo?", 
+        "eng":"Would you like to report a disaster at this location?"},
+    "Longitude": 
+      {"ire":"Domhanfhad",
+        "eng":"Longitude"},
+    "Latitude": 
+      {"ire":"Domhanleithead", 
+        "eng":"Latitude"},
+    "Disaster Radius":
+      {"ire":"Raon Tubaiste", 
+      "eng":"Disaster Radius"},
+    "Disaster Type": 
+      {"ire":"Saghas Tubaiste",
+      "eng":"Disaster Type"},
+    "Select Scale": 
+      {"ire":"Roghnaigh Scála",
+      "eng":"Select Scale"}
+  
+  }
+  
   constructor(props) {
     super(props);
     this.state = {
       type: -1,
       scale: -1,
-      radius: 0
+      radius: 0,
+      language: "eng"
     };
   }
 
@@ -18,7 +45,8 @@ class ReportDisasterPopUp extends Component {
       this.setState(() => ({
         type: -1,
         scale: -1,
-        radius: 0
+        radius: 0,
+        language: this.props.language
       }))
     }
   }
@@ -72,13 +100,12 @@ class ReportDisasterPopUp extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title>
-              <h1>Disaster Report/Tuairisc Thubaiste</h1>
+              <h1>{ this.langTextMap["Disaster Report"][this.state.language]} </h1>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h3>Would you like to report a disaster at this location?  </h3>
-            <h3>Ar mhaith leat tuairisc a dhéanamh ar thubaiste ar an suíomh seo?  </h3>
-            <div>Longitude/Domhanfhad:{this.props.position.lng.toFixed(3)} Latitude/Domhanleithead: {this.props.position.lat.toFixed(3)}</div>
+            <h3>{ this.langTextMap["Would you like to report a disaster at this location?"][this.state.language]}  </h3>
+            <div>{ this.langTextMap["Longitude"][this.state.language]} {this.props.position.lng.toFixed(3)} { this.langTextMap["Latitude"][this.state.language]} {this.props.position.lat.toFixed(3)}</div>
             {this.scaleDropDown()}
             {this.disasterTypeDropDown()}
             {this.disasterRadius()}
@@ -99,7 +126,8 @@ class ReportDisasterPopUp extends Component {
     return <>
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Radius/Raon Tubaiste
+          
+          { this.langTextMap["Disaster Radius"][this.state.language]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -124,7 +152,8 @@ class ReportDisasterPopUp extends Component {
     return <>
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Disaster Type/Saghas Tubaiste
+
+          { this.langTextMap["Disaster Type"][this.state.language]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -147,7 +176,8 @@ class ReportDisasterPopUp extends Component {
     return <>
       <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle id="dropdown-autoclose-true">
-          Select Scale/Roghnaigh Scála
+          
+          { this.langTextMap["Select Scale"][this.state.language]}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

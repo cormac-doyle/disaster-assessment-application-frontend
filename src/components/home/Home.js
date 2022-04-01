@@ -19,7 +19,13 @@ class Home extends Component {
         fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/add_all_services');
         this.state = {
             items: [],
+            language:"eng"
         }
+    }
+
+    getLanguage = (lang) => {
+        console.log("Language code: " + lang)
+        this.setState({language:lang})
     }
 
     render() {
@@ -27,10 +33,9 @@ class Home extends Component {
             <nav>
             </nav>
             <main>
-                <Title />
+                <Title getLanguage={this.getLanguage} />
                 <GDPRAlert />
-                <Map />
-
+                <Map language={this.state.language}/>
             </main>
         </>)
     }

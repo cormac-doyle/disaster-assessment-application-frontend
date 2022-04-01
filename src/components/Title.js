@@ -25,7 +25,7 @@ const languages = [
 ]
 
 
-export default function Title() {
+export default function Title(props) {
     const currentLanguageCode = cookies.get('i18next') || 'en'
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
     const { t } = useTranslation()
@@ -78,6 +78,8 @@ export default function Title() {
                                                     })}
                                                     onClick={() => {
                                                         i18next.changeLanguage(code)
+                                                        
+                                                        props.getLanguage(code)
                                                     }}
                                                 >
                                                     <button className="dropdown-item">
