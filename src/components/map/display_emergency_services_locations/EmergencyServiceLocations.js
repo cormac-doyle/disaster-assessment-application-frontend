@@ -5,6 +5,8 @@ import {
 } from "react-leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
+import {LeafletTrackingMarker} from 'react-leaflet-tracking-marker'
+
 
 const HospitalIcon = L.icon({
   iconUrl: require("./images/hospital.png"),
@@ -26,6 +28,9 @@ const FirestationIcon = L.icon({
   iconAnchor: [10, 41],
   popupAnchor: [2, -40],
 });
+
+
+
 export default class EmergencyServiceLocations extends Component {
 
   constructor(props) {
@@ -42,7 +47,7 @@ export default class EmergencyServiceLocations extends Component {
       markers: [],
     }
   }
-
+  
 
 
   get_icon(id) {
@@ -61,6 +66,7 @@ export default class EmergencyServiceLocations extends Component {
     if (this.state.markers.length > 0) {
       return (
         <>
+          <LeafletTrackingMarker icon={PoliceIcon} position={[53.358, -6.2603]} previousPosition={[53.356, -6.2603]} duration={1000} />
           {this.state.markers.map((location, idx) =>
             <>
               <Marker key={`marker-${idx}`} position={[location.lat, location.long]} icon={this.get_icon(location.type)} >
