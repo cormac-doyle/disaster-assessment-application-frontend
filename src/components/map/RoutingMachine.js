@@ -46,10 +46,21 @@ const createRoutingMachineLayer = (props) => {
     if(props.getDistance){
         instance.on('routesfound', function (e) {
             var distance = e.routes[0].summary.totalDistance
-            console.log("Evac Route Found Distance: "+distance);
+            console.log("Evac Route Found Distance: " + distance);
+
             props.handleDistance(distance,props.index)
         });
     }
+
+    if(props.getRouteCoords){
+        instance.on('routesfound', function (e) {
+            var coordinates = e.routes[0].coordinates
+            
+            props.handleCoords(coordinates)
+        });
+    }
+
+
     if(props.getTime){
         instance.on('routesfound', function (e) {
             var time = e.routes[0].summary.totalTime

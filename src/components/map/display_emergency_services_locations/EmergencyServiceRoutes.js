@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import RoutingMachine from '../RoutingMachine';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
+import {LeafletTrackingMarker} from 'react-leaflet-tracking-marker'
+
+
+const FireTruckIcon = L.icon({
+    iconUrl: require("./images/fireTruckIcon.png"),
+    iconSize: [45, 45],
+    iconAnchor: [10, 41],
+    popupAnchor: [2, -40],
+  });
 
 export default class EmergencyServiceRoutes extends Component {
 
@@ -9,10 +18,16 @@ export default class EmergencyServiceRoutes extends Component {
         super(props);
         this.state = {
             emergency_services: [],
+            fireTruckCoords: [],
+            fireTruckIndex:0,
+            
         }
     }
+   
 
     componentDidMount() {
+
+        
         return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
@@ -25,8 +40,34 @@ export default class EmergencyServiceRoutes extends Component {
     handleTime = (time) => {
         console.log("Received time")
     }
+    handleFireTruckCoords = (coords) => {
+        
+        this.setState(
+            {
+            fireTruckCoords:coords,
+            
+        })
+
+        console.log("Received FireTruck Coords: "+this.state.fireTruckCoords)
+
+        for (let index = 0; index < this.state.fireTruckCoords.length-1; index++) {
+            setTimeout(() => {
+                
+            this.setState(prevState=>{
+                return{
+                    fireTruckIndex: prevState.fireTruckIndex + 1,
+                }
+            });
+                
+            }, 2000  * (index+1));
+        }
+    }
 
     render() {
+        return (<>
+        {this.animateFireTruck()}
+        {this.routeFireBrigades()}</>)
+        
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
@@ -40,8 +81,26 @@ export default class EmergencyServiceRoutes extends Component {
         }
 
     }
+    animateFireTruck(){
+        if(this.state.fireTruckCoords.length>0){
+            return <LeafletTrackingMarker icon={FireTruckIcon} position={this.state.fireTruckCoords[this.state.fireTruckIndex]} previousPosition={this.state.fireTruckCoords[this.state.fireTruckIndex-1]} duration={2000} />
+        }
+    }
 
     routeFireBrigades() {
+        //Just using this temporarily for testing
+        return <RoutingMachine 
+                        lineColor="#ff5900"
+                        routeTravelMode={"walking"} 
+                        animationClassName='evac-route-line'
+                        getTime={true}
+                        handleTime={this.handleTime}
+                        getRouteCoords={true}
+                        handleCoords={this.handleFireTruckCoords}
+                        waypoints={[
+                            L.latLng(53.358, -6.2603),
+                            L.latLng(53.358, -6.2653),
+                        ]} />
         if (this.state.emergency_services[this.props.disaster.id]["fire_brigade"]) {
             return (<>
                 {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
