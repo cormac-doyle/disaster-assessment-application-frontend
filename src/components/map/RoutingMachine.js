@@ -55,8 +55,7 @@ const createRoutingMachineLayer = (props) => {
     if(props.getRouteCoords){
         instance.on('routesfound', function (e) {
             var coordinates = e.routes[0].coordinates
-            
-            props.handleCoords(coordinates)
+            props.handleCoords(coordinates,props.getRouteCoords)
         });
     }
 
