@@ -1,0 +1,11 @@
+path.fire {
+    stroke-dasharray: 16;
+    animation: dash 22s linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }

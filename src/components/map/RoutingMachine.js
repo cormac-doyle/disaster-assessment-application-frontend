@@ -1,8 +1,12 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
-import "./animate.css"
-import "./evac-route-line.css"
+
+import "./css-polyline-animations/police.css"
+import "./css-polyline-animations/fire.css"
+import "./css-polyline-animations/ambulance.css"
+import "./css-polyline-animations/army.css"
+
 
 
 
@@ -27,11 +31,7 @@ const createRoutingMachineLayer = (props) => {
                 styles: [{color:lineColor, weight:lineWeight, className: props.animationClassName }]
             },
             show: false,
-            addWaypoints: false,
-            routeWhileDragging: true,
-            draggableWaypoints: false,
             fitSelectedRoutes: false,
-            showAlternatives: false
         });
     
 

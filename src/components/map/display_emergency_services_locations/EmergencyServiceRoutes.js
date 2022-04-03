@@ -99,13 +99,13 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     render() {
-        return<>{this.testRoute("#ff5900","fireTruckRouteCoords",L.latLng(53.358,-6.2782))}
+        return<>{this.testRoute("#ff5900","fireTruckRouteCoords",L.latLng(53.358,-6.2782),'fire')}
                 {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#f54242","ambulanceRouteCoords",L.latLng(53.348,-6.2702))}
+                {this.testRoute("#f54242","ambulanceRouteCoords",L.latLng(53.348,-6.2702),'ambulance')}
                 {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#2509b3","policeCarRouteCoords",L.latLng(53.339,-6.2702))}
+                {this.testRoute("#2509b3","policeCarRouteCoords",L.latLng(53.339,-6.2702),'police')}
                 {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#1b6932","armyRouteCoords",L.latLng(53.359,-6.292))}
+                {this.testRoute("#1b6932","armyRouteCoords",L.latLng(53.39,-6.292),'army')}
                 {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
 
                 </>
@@ -146,17 +146,17 @@ export default class EmergencyServiceRoutes extends Component {
         }
     }
     
-    testRoute(lineColor, esTypeCoords,location){
+    testRoute(lineColor, esTypeCoords,location,animClassName){
         return <RoutingMachine 
         lineColor={lineColor}
         routeTravelMode={"walking"} 
-        animationClassName='evac-route-line'
+        animationClassName={animClassName}
         getTime={true}
         handleTime={this.handleTime}
         getRouteCoords={esTypeCoords}
         handleCoords={this.handleAnimation}
         waypoints={[
-        L.latLng(53.34943976641769,-6.285295486450195),
+        L.latLng(53.355222991969484,-6.297140121459961),
         location,
         
     ]} />

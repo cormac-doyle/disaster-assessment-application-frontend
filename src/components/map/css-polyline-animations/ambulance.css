@@ -1,0 +1,11 @@
+path.ambulance {
+    stroke-dasharray: 19;
+    animation: dash 25s linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }

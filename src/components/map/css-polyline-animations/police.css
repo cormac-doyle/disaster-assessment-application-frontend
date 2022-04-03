@@ -1,6 +1,6 @@
-path.evac-route-line {
+path.police {
     stroke-dasharray: 20;
-    animation: dash 20s linear;
+    animation: dash 14s linear;
     animation-iteration-count: infinite;
   }
   
