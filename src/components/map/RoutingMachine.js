@@ -6,6 +6,8 @@ import "./css-polyline-animations/police.css"
 import "./css-polyline-animations/fire.css"
 import "./css-polyline-animations/ambulance.css"
 import "./css-polyline-animations/army.css"
+import "./css-polyline-animations/evacuation.css"
+
 
 
 
@@ -30,8 +32,15 @@ const createRoutingMachineLayer = (props) => {
             lineOptions: {
                 styles: [{color:lineColor, weight:lineWeight, className: props.animationClassName }]
             },
+            
             show: false,
             fitSelectedRoutes: false,
+            routeWhileDragging: true,
+            waypointMode: 'snap',
+            addWaypoints:true
+            //draggableWaypoints:false
+            
+            
         });
     
 

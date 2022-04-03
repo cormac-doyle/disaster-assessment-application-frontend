@@ -1,6 +1,6 @@
 path.ambulance {
-    stroke-dasharray: 19;
-    animation: dash 25s linear;
+    stroke-dasharray: 20;
+    animation: dash 22s linear;
     animation-iteration-count: infinite;
   }
   

@@ -21,7 +21,7 @@ const FloodIcon = L.icon({
 
 const FireIcon = L.icon({
     iconUrl: require("./images/fire.png"),
-    iconSize: [40, 40],
+    iconSize: [50, 50],
     iconAnchor: [20, 20],
     popupAnchor: [2, -40],
 });
@@ -260,7 +260,7 @@ export default class DisasterLocations extends Component {
                         L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                     ]}
                     routeTravelMode={"walking"}
-                    animationClassName = {"evac-route-line"}
+                    animationClassName = {"evacuation"}
                 />
             </>
 

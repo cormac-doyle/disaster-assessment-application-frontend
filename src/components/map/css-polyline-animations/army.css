@@ -1,6 +1,6 @@
 path.army {
-    stroke-dasharray: 18;
-    animation: dash 18s linear;
+    stroke-dasharray: 25;
+    animation: dash 25s linear;
     animation-iteration-count: infinite;
   }
   

@@ -1,6 +1,6 @@
 path.fire {
-    stroke-dasharray: 16;
-    animation: dash 22s linear;
+    stroke-dasharray: 20;
+    animation: dash 18s linear;
     animation-iteration-count: infinite;
   }
   

@@ -1,6 +1,6 @@
 path.evacuation {
-    stroke-dasharray: 17;
-    animation: dash 19s linear;
+    stroke-dasharray: 20;
+    animation: dash 20s linear;
     animation-iteration-count: infinite;
   }
   

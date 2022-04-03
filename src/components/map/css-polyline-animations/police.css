@@ -1,6 +1,6 @@
 path.police {
     stroke-dasharray: 20;
-    animation: dash 14s linear;
+    animation: dash 12s linear;
     animation-iteration-count: infinite;
   }
   

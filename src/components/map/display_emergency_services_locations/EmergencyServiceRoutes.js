@@ -156,7 +156,7 @@ export default class EmergencyServiceRoutes extends Component {
         getRouteCoords={esTypeCoords}
         handleCoords={this.handleAnimation}
         waypoints={[
-        L.latLng(53.355222991969484,-6.297140121459961),
+        L.latLng(53.34986679315392,-6.2879133224487305),
         location,
         
     ]} />
