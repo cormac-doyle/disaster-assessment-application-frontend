@@ -20,6 +20,7 @@
     "js-cookie": "^2.2.1",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
+    "leaflet.smooth_marker_bouncing": "^2.0.1",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-alert": "^7.0.3",

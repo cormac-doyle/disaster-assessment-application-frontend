@@ -8,28 +8,53 @@ import {LeafletTrackingMarker} from 'react-leaflet-tracking-marker'
 const FireTruckIcon = L.icon({
     iconUrl: require("./images/fireTruckIcon.png"),
     iconSize: [45, 45],
-    
   });
-
+  const FireTruckIconFlipped = L.icon({
+    iconUrl: require("./images/fireTruckIconFlipped.png"),
+    iconSize: [45, 45],
+  });
 
   const PoliceCarIcon = L.icon({
     iconUrl: require("./images/policeCarIcon.png"),
-    iconSize: [60, 60],
-
+    iconSize: [50, 50],
+  });
+  const PoliceCarIconFlipped = L.icon({
+    iconUrl: require("./images/policeCarIconFlipped.png"),
+    iconSize: [50, 50],
+  });
+  const AmbulanceIcon = L.icon({
+    iconUrl: require("./images/abulanceIcon.png"),
+    iconSize: [50, 50],
+  });
+  const AmbulanceIconFlipped = L.icon({
+    iconUrl: require("./images/ambulanceIconFlipped.png"),
+    iconSize: [50, 50],
+  });
+  const ArmyTankIcon = L.icon({
+    iconUrl: require("./images/armyTankIcon.png"),
+    iconSize: [50, 50],
+  });
+  const ArmyTankIconFlipped = L.icon({
+    iconUrl: require("./images/armyTankIconFlipped.png"),
+    iconSize: [50, 50],
   });
 
 export default class EmergencyServiceRoutes extends Component {
-    vehicleSpeed = 1000
+
+    vehicleSpeed = 400
+
     constructor(props) {
         super(props);
         this.state = {
             emergency_services: [],
             fireTruckRouteCoords: [],
-            fireTruckRouteCoordsIndex:0,
+            fireTruckRouteCoordsIndex:1,
             policeCarRouteCoords: [],
-            policeCarRouteCoordsIndex:0,
+            policeCarRouteCoordsIndex:1,
             ambulanceRouteCoords: [],
-            ambulanceRouteCoordsIndex:0
+            ambulanceRouteCoordsIndex:1,
+            armyRouteCoords: [],
+            armyRouteCoordsIndex:1,
         }
     }
    
@@ -48,17 +73,20 @@ export default class EmergencyServiceRoutes extends Component {
         console.log("Received time")
     }
     handleAnimation = (coords, emergencyServiceType) => {
+        
+        coords.reverse()
         var emergencyServiceTypeIndex = emergencyServiceType + "Index"
         this.setState(
             {
              [emergencyServiceType]:coords,
             })
+        console.log("Animating: "+emergencyServiceType)
         console.log("Received Route Coords: "+this.state[emergencyServiceType])
         for (let index = 0; index < this.state[emergencyServiceType].length; index++) {
             setTimeout(() => {
             if(this.state[emergencyServiceTypeIndex]===this.state[emergencyServiceType].length-1){
                 this.setState({[emergencyServiceType]:[]})
-                this.setState({[emergencyServiceTypeIndex]:0})
+                this.setState({[emergencyServiceTypeIndex]:1})
             }else{
                 this.setState(prevState=>{
                     return{
@@ -71,51 +99,73 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     render() {
-        
+        return<>{this.testRoute("#ff5900","fireTruckRouteCoords",L.latLng(53.358,-6.2782))}
+                {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
+                {this.testRoute("#f54242","ambulanceRouteCoords",L.latLng(53.348,-6.2702))}
+                {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
+                {this.testRoute("#2509b3","policeCarRouteCoords",L.latLng(53.339,-6.2702))}
+                {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
+                {this.testRoute("#1b6932","armyRouteCoords",L.latLng(53.359,-6.292))}
+                {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
+
+                </>
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
                     {this.routeFireBrigades()}
-                    {this.animateFireTruck()}
                     {this.routePolice()}
-                    {this.animatePoliceCar()}
+                    
                     {this.routeAmbulances()}
+
+                    {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
+                    {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
+                    {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
+
+
+
+                    
                 </>
             )
         } else {
             return null;
         }
+    }
 
-    }
-    animateFireTruck(){
-        if(this.state.fireTruckRouteCoords.length>0){
+    animateIcon(icon,flippedIcon, polyline, index, speed){
+        if(polyline.length>0){
+            var animateIcon = icon
+            if(polyline[index-1].lng >polyline[index].lng){
+                animateIcon = flippedIcon
+            }
             return <LeafletTrackingMarker 
-            icon={FireTruckIcon} 
-            position={this.state.fireTruckRouteCoords[this.state.fireTruckRouteCoordsIndex]} 
-            previousPosition={this.state.fireTruckRouteCoords[this.state.fireTruckRouteCoordsIndex-1]} 
-            duration={this.vehicleSpeed} />
+            icon={animateIcon} 
+            position={[polyline[index].lat ,polyline[index].lng]} 
+            previousPosition={[polyline[index-1].lat ,polyline[index-1].lng]}
+            duration={speed} />
+            
         }
     }
-    animatePoliceCar(){
-        if(this.state.policeCarRouteCoords.length>0){
-            return <LeafletTrackingMarker 
-            icon={PoliceCarIcon} 
-            position={this.state.policeCarRouteCoords[this.state.policeCarRouteCoordsIndex]} 
-            previousPosition={this.state.policeCarRouteCoords[this.state.policeCarRouteCoordsIndex-1]} 
-            duration={this.vehicleSpeed} />
-        }
+    
+    testRoute(lineColor, esTypeCoords,location){
+        return <RoutingMachine 
+        lineColor={lineColor}
+        routeTravelMode={"walking"} 
+        animationClassName='evac-route-line'
+        getTime={true}
+        handleTime={this.handleTime}
+        getRouteCoords={esTypeCoords}
+        handleCoords={this.handleAnimation}
+        waypoints={[
+        L.latLng(53.34943976641769,-6.285295486450195),
+        location,
+        
+    ]} />
     }
-    animateAmbulance(){
-        if(this.state.ambulanceRouteCoords.length>0){
-            return <LeafletTrackingMarker 
-            icon={PoliceCarIcon} 
-            position={this.state.ambulanceRouteCoords[this.state.ambulanceRouteCoordsIndex]} 
-            previousPosition={this.state.ambulanceRouteCoords[this.state.ambulanceRouteCoordsIndex-1]} 
-            duration={this.vehicleSpeed} />
-        }
-    }
+
     routeFireBrigades() {
+        
         if (this.state.emergency_services[this.props.disaster.id]["fire_brigade"]) {
+            console.log("Routing fire")
             return (<>
                 {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
@@ -140,13 +190,16 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     routeAmbulances() {
+        
         if (this.state.emergency_services[this.props.disaster.id]["ambulance"]) {
             return (<>
                 {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#f54242"
                         routeTravelMode={"walking"} 
-                        animationClassName='animate'
+                        animationClassName='evac-route-line'
+                        getRouteCoords={"ambulanceRouteCoords"}
+            handleCoords={this.handleAnimation}
                         waypoints={[
                             L.latLng(hospital_loc.lat, hospital_loc.long),
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),

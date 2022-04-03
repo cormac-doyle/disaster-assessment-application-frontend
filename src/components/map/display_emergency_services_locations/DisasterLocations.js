@@ -11,6 +11,7 @@ import EmergencyServiceRoutes from './EmergencyServiceRoutes';
 import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
 
 
+
 const FloodIcon = L.icon({
     iconUrl: require("./images/flood.png"),
     iconSize: [60, 60],
@@ -59,6 +60,7 @@ const AlertIcon = L.icon({
     iconAnchor: [30, 30],
     popupAnchor: [2, -40],
 });
+
 const DisturbanceIcon = L.icon({
     iconUrl: require("./images/disturbance.png"),
     iconSize: [50, 50],
@@ -252,7 +254,7 @@ export default class DisasterLocations extends Component {
         }else{
             return <>
                 <RoutingMachine 
-                    
+                    lineColor="#0095ff"
                     waypoints = {[
                         L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
                         L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
