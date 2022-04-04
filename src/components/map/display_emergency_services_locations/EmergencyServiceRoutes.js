@@ -171,36 +171,21 @@ export default class EmergencyServiceRoutes extends Component {
     routeES(esType) {
         
         var lineWeight=10
+        var animationClassName=esType
         if(this.props.disaster.already_addressed===true || this.state[esType+"_animation"]!==true){
-            console.log("ANIMATION DONE: "+this.props.disaster.id+" " +esType+ this.state[esType+"_animation"])
             lineWeight=5
-            return (<>
-                {this.state.emergency_services[this.props.disaster.id][esType].map((location, idx) => <>
-                    <RoutingMachine key={`route-${idx}`}
-                        lineColor={this.colorMap[esType]}
-                        routeTravelMode={"walking"} 
-                        lineWeight={lineWeight}
-
-                        getRouteCoords={esType}
-                        handleCoords={this.handleAnimation}
-                        waypoints={[
-                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
-                            L.latLng(location.lat, location.long),
-                        ]} />
-                </>
-                )}
-            </>);
-            
-            
+            animationClassName=''
         }
         
         if (this.state.emergency_services[this.props.disaster.id][esType]) {
+            console.log("ANIMATION NOT DONE: "+this.props.disaster.id+" " +esType+ this.state[esType+"_animation"])
+
             return (<>
                 {this.state.emergency_services[this.props.disaster.id][esType].map((location, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor={this.colorMap[esType]}
                         routeTravelMode={"walking"} 
-                        animationClassName={esType}
+                        animationClassName={animationClassName}
                         lineWeight={lineWeight}
 
                         getRouteCoords={esType}
