@@ -68,7 +68,6 @@ export default class DisasterLocations extends Component {
         }
     }
 
-
     render() {
 
         if (this.state.disasters.length > 0) {
