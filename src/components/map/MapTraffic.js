@@ -6,6 +6,13 @@ import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
 
+const LocationIcon = L.icon({
+  iconUrl: require("./location.png"),
+  iconSize: [50, 50],
+  
+  popupAnchor: [2, -40],
+});
+
 const center = {
     lat: 53.348,
     lng: -6.2603,
@@ -39,6 +46,7 @@ function DraggableMarker() {
     return (
         <>
         <Marker
+        icon={LocationIcon}
         draggable={draggable}
         eventHandlers={eventHandlers}
         position={position}
@@ -46,8 +54,8 @@ function DraggableMarker() {
         <Popup minWidth={90}>
           <span onClick={toggleDraggable}>
             {draggable
-              ? 'Marker is now draggable'
-              : 'User Location. Click here to make marker draggable'}
+              ? 'Location is now draggable'
+              : 'User Location. Click here to make location draggable'}
           </span>
         </Popup>
       </Marker>
