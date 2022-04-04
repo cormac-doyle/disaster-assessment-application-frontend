@@ -16,11 +16,14 @@ class Home extends Component {
     constructor(props) {
         super(props);
         //call this to add all services to database (CORS issue error atm)
-        fetchResponseJson('http://localhost:8000/api/1/add_all_services');
+        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/add_all_services');
         this.state = {
             items: [],
+
         }
     }
+
+
 
     render() {
         return (<>
@@ -30,7 +33,6 @@ class Home extends Component {
                 <Title />
                 <GDPRAlert />
                 <Map />
-
             </main>
         </>)
     }
