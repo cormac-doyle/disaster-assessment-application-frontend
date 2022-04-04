@@ -211,6 +211,7 @@ export default class DisasterLocations extends Component {
             return (
                 <>
                     {this.state.disasters.map((disaster, idx) =>
+                        
                         <>
                             <Circle
                                 key={`marker-${idx}`}
@@ -225,7 +226,7 @@ export default class DisasterLocations extends Component {
                             <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
                         </>
                     )}
-
+                    
                     {this.displayEvacRoute()}
                     
                 </>

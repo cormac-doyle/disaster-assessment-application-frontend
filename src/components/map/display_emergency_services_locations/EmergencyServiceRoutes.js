@@ -99,28 +99,20 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     render() {
-        return<>{this.testRoute("#ff5900","fireTruckRouteCoords",L.latLng(53.358,-6.2782),'fire')}
-                {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#f54242","ambulanceRouteCoords",L.latLng(53.348,-6.2702),'ambulance')}
-                {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#2509b3","policeCarRouteCoords",L.latLng(53.339,-6.2702),'police')}
-                {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
-                {this.testRoute("#1b6932","armyRouteCoords",L.latLng(53.39,-6.292),'army')}
-                {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
-
-                </>
+        
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
                     {this.routeFireBrigades()}
                     {this.routePolice()}
-                    
                     {this.routeAmbulances()}
 
                     {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
-                    {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
                     {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
+                    {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
+                    {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
 
+                    
 
 
                     
@@ -156,7 +148,7 @@ export default class EmergencyServiceRoutes extends Component {
         getRouteCoords={esTypeCoords}
         handleCoords={this.handleAnimation}
         waypoints={[
-        L.latLng(53.34986679315392,-6.2879133224487305),
+        L.latLng(53.35020784203037,-6.284823417663575),
         location,
         
     ]} />
@@ -171,14 +163,15 @@ export default class EmergencyServiceRoutes extends Component {
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#ff5900"
                         routeTravelMode={"walking"} 
-                        animationClassName='evac-route-line'
+                        animationClassName='fire'
                         getTime={true}
                         handleTime={this.handleTime}
                         getRouteCoords={"fireTruckRouteCoords"}
                         handleCoords={this.handleAnimation}
                         waypoints={[
-                            L.latLng(fire_station_loc.lat, fire_station_loc.long),
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                            L.latLng(fire_station_loc.lat, fire_station_loc.long),
+
                         ]} />
                 </>
                 )}
@@ -197,12 +190,13 @@ export default class EmergencyServiceRoutes extends Component {
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#f54242"
                         routeTravelMode={"walking"} 
-                        animationClassName='evac-route-line'
+                        animationClassName='ambulance'
                         getRouteCoords={"ambulanceRouteCoords"}
-            handleCoords={this.handleAnimation}
+                        handleCoords={this.handleAnimation}
                         waypoints={[
-                            L.latLng(hospital_loc.lat, hospital_loc.long),
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                            L.latLng(hospital_loc.lat, hospital_loc.long),
+
                         ]} />
                 </>
                 )}
@@ -219,10 +213,13 @@ export default class EmergencyServiceRoutes extends Component {
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#2509b3"
                         routeTravelMode={"walking"} 
-                        animationClassName='animate'
+                        animationClassName='police'
+                        getRouteCoords={"policeCarRouteCoords"}
+                        handleCoords={this.handleAnimation}
                         waypoints={[
-                            L.latLng(police_station_loc.lat, police_station_loc.long),
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                            L.latLng(police_station_loc.lat, police_station_loc.long),
+                            
                         ]} />
                 </>
                 )}
