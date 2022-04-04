@@ -96,7 +96,6 @@ export default class VerifyDisaster extends Component {
 
 
     handleClick = (e, s, r, type) => {
-
         console.log(s)
 
         if (type === "verify") {
@@ -115,8 +114,6 @@ export default class VerifyDisaster extends Component {
             this.completeDisaster(e);
 
         }
-
-
     }
 
     handleEntailmentRequest(e) {
