@@ -47,14 +47,23 @@ export default class EmergencyServiceRoutes extends Component {
         super(props);
         this.state = {
             emergency_services: [],
+
             fireTruckRouteCoords: [],
             fireTruckRouteCoordsIndex:1,
+            fireTruckRouteCoordsIsComplete:false,
+
             policeCarRouteCoords: [],
             policeCarRouteCoordsIndex:1,
+            policeCarRouteCoordsIsComplete:false,
+
             ambulanceRouteCoords: [],
             ambulanceRouteCoordsIndex:1,
+            ambulanceRouteCoordsIsComplete:false,
+
             armyRouteCoords: [],
             armyRouteCoordsIndex:1,
+            armyRouteCoordsIsComplete:false,
+
         }
     }
    
@@ -73,7 +82,6 @@ export default class EmergencyServiceRoutes extends Component {
         console.log("Received time")
     }
     handleAnimation = (coords, emergencyServiceType) => {
-        
         coords.reverse()
         var emergencyServiceTypeIndex = emergencyServiceType + "Index"
         this.setState(
@@ -87,6 +95,8 @@ export default class EmergencyServiceRoutes extends Component {
             if(this.state[emergencyServiceTypeIndex]===this.state[emergencyServiceType].length-1){
                 this.setState({[emergencyServiceType]:[]})
                 this.setState({[emergencyServiceTypeIndex]:1})
+                this.setState({[emergencyServiceType + "IsComplete"]:true})
+
             }else{
                 this.setState(prevState=>{
                     return{
@@ -107,20 +117,30 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routePolice()}
                     {this.routeAmbulances()}
 
-                    {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
-                    {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
-                    {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
-                    {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
-
-                    
-
-
+                    {this.showESAnimations(this.props.disaster.already_addressed)}
                     
                 </>
             )
         } else {
             return null;
         }
+    }
+    showESroutes(){
+        
+    }
+
+    showESAnimations(alreadyAdressed){
+        if(alreadyAdressed===false){
+            return <>
+            {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fireTruckRouteCoords,this.state.fireTruckRouteCoordsIndex,this.vehicleSpeed)}
+            {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulanceRouteCoords,this.state.ambulanceRouteCoordsIndex,this.vehicleSpeed)}
+            {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.policeCarRouteCoords,this.state.policeCarRouteCoordsIndex,this.vehicleSpeed)}
+            {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.armyRouteCoords,this.state.armyRouteCoordsIndex,this.vehicleSpeed)}
+            
+            </>
+            
+        }
+        
     }
 
     animateIcon(icon,flippedIcon, polyline, index, speed){
@@ -155,78 +175,82 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     routeFireBrigades() {
-        
-        if (this.state.emergency_services[this.props.disaster.id]["fire_brigade"]) {
-            console.log("Routing fire")
-            return (<>
-                {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
-                    <RoutingMachine key={`route-${idx}`}
-                        lineColor="#ff5900"
-                        routeTravelMode={"walking"} 
-                        animationClassName='fire'
-                        getTime={true}
-                        handleTime={this.handleTime}
-                        getRouteCoords={"fireTruckRouteCoords"}
-                        handleCoords={this.handleAnimation}
-                        waypoints={[
-                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
-                            L.latLng(fire_station_loc.lat, fire_station_loc.long),
-
-                        ]} />
-                </>
-                )}
-            </>);
-        } else {
-            return null;
+        if(this.state.fireTruckRouteCoordsIsComplete===false){
+            if (this.state.emergency_services[this.props.disaster.id]["fire_brigade"]) {
+                console.log("Routing fire")
+                return (<>
+                    {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
+                        <RoutingMachine key={`route-${idx}`}
+                            lineColor="#ff5900"
+                            routeTravelMode={"walking"} 
+                            animationClassName='fire'
+                            getTime={true}
+                            handleTime={this.handleTime}
+                            getRouteCoords={"fireTruckRouteCoords"}
+                            handleCoords={this.handleAnimation}
+                            waypoints={[
+                                L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                                L.latLng(fire_station_loc.lat, fire_station_loc.long),
+    
+                            ]} />
+                    </>
+                    )}
+                </>);
+            }
         }
+        
 
     }
 
     routeAmbulances() {
-        
-        if (this.state.emergency_services[this.props.disaster.id]["ambulance"]) {
-            return (<>
-                {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
-                    <RoutingMachine key={`route-${idx}`}
-                        lineColor="#f54242"
-                        routeTravelMode={"walking"} 
-                        animationClassName='ambulance'
-                        getRouteCoords={"ambulanceRouteCoords"}
-                        handleCoords={this.handleAnimation}
-                        waypoints={[
-                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
-                            L.latLng(hospital_loc.lat, hospital_loc.long),
-
-                        ]} />
-                </>
-                )}
-            </>);
-        } else {
-            return <></>;
+        if(this.state.ambulanceRouteCoordsIsComplete===false){
+            if (this.state.emergency_services[this.props.disaster.id]["ambulance"]) {
+                return (<>
+                    {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
+                        <RoutingMachine key={`route-${idx}`}
+                            lineColor="#f54242"
+                            routeTravelMode={"walking"} 
+                            animationClassName='ambulance'
+                            getRouteCoords={"ambulanceRouteCoords"}
+                            handleCoords={this.handleAnimation}
+                            waypoints={[
+                                L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                                L.latLng(hospital_loc.lat, hospital_loc.long),
+    
+                            ]} />
+                    </>
+                    )}
+                </>);
+            } else {
+                return <></>;
+            }
         }
+        
     }
 
     routePolice() {
-        if (this.state.emergency_services[this.props.disaster.id]["police"]) {
-            return (<>
-                {this.state.emergency_services[this.props.disaster.id]["police"].map((police_station_loc, idx) => <>
-                    <RoutingMachine key={`route-${idx}`}
-                        lineColor="#2509b3"
-                        routeTravelMode={"walking"} 
-                        animationClassName='police'
-                        getRouteCoords={"policeCarRouteCoords"}
-                        handleCoords={this.handleAnimation}
-                        waypoints={[
-                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
-                            L.latLng(police_station_loc.lat, police_station_loc.long),
-                            
-                        ]} />
-                </>
-                )}
-            </>);
-        } else {
-            return <></>;
+        if(this.state.policeCarRouteCoordsIsComplete===false){
+            if (this.state.emergency_services[this.props.disaster.id]["police"]) {
+                return (<>
+                    {this.state.emergency_services[this.props.disaster.id]["police"].map((police_station_loc, idx) => <>
+                        <RoutingMachine key={`route-${idx}`}
+                            lineColor="#2509b3"
+                            routeTravelMode={"walking"} 
+                            animationClassName='police'
+                            getRouteCoords={"policeCarRouteCoords"}
+                            handleCoords={this.handleAnimation}
+                            waypoints={[
+                                L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                                L.latLng(police_station_loc.lat, police_station_loc.long),
+                            ]} />
+                    </>
+                    )}
+                </>);
+            } else {
+                return <></>;
+            }
         }
+        
     }
 
 }
