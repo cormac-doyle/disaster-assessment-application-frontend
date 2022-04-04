@@ -4,6 +4,8 @@ import {
     Marker,
     Popup
 } from "react-leaflet";
+import getDisaster from '../DisasterTypes/DisasterWrapper';
+
 
 export default class VerifyDisaster extends Component {
 
@@ -136,7 +138,7 @@ export default class VerifyDisaster extends Component {
                             radius={disaster.radius}
                             color={this.getDisasterColor(disaster.verified)}>
 
-                            <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisaster(disaster.disaster_type).icon}>
+                            <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
                                 <Popup>
                                     {/* {this.getDisaster(disaster.disaster_type).name} */}
                                     <form>
