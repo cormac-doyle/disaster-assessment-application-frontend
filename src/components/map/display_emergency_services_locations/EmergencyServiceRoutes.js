@@ -13,12 +13,12 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson('http://localhost:8000/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson
             })
-            console.log("ES routes: "+JSON.stringify(this.state.emergency_services))
+            console.log("ES routes: " + JSON.stringify(this.state.emergency_services))
         })
     }
 
@@ -33,6 +33,7 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeFireBrigades()}
                     {this.routePolice()}
                     {this.routeAmbulances()}
+                    {this.routeTransportServices()}
                 </>
             )
         } else {
@@ -47,7 +48,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["fire_brigade"].map((fire_station_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#ff5900"
-                        routeTravelMode={"walking"} 
+                        routeTravelMode={"walking"}
                         animationClassName='animate'
                         getTime={true}
                         handleTime={this.handleTime}
@@ -70,7 +71,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#f54242"
-                        routeTravelMode={"walking"} 
+                        routeTravelMode={"walking"}
                         animationClassName='animate'
                         waypoints={[
                             L.latLng(hospital_loc.lat, hospital_loc.long),
@@ -90,10 +91,31 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.state.emergency_services[this.props.disaster.id]["police"].map((police_station_loc, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor="#2509b3"
-                        routeTravelMode={"walking"} 
+                        routeTravelMode={"walking"}
                         animationClassName='animate'
                         waypoints={[
                             L.latLng(police_station_loc.lat, police_station_loc.long),
+                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                        ]} />
+                </>
+                )}
+            </>);
+        } else {
+            return <></>;
+        }
+    }
+
+
+    routeTransportServices() {
+        if (this.state.emergency_services[this.props.disaster.id]["transport_services"]) {
+            return (<>
+                {this.state.emergency_services[this.props.disaster.id]["transport_services"].map((transport_station_loc, idx) => <>
+                    <RoutingMachine key={`route-${idx}`}
+                        lineColor="#00F9FF"
+                        routeTravelMode={"walking"}
+                        animationClassName='animate'
+                        waypoints={[
+                            L.latLng(transport_station_loc.lat, transport_station_loc.long),
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
                         ]} />
                 </>

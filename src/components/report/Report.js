@@ -3,7 +3,7 @@ import { Component } from 'react/cjs/react.production.min';
 import Map from "../map/MapDisaster"
 import Title from "../Title"
 import UserStatus from "../UserStatus";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchResponseJson } from '../fetchResponseJson'
@@ -20,7 +20,7 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
+        return fetchResponseJson('http://localhost:8000/api/1/handshake').then((responseJson) => {
             this.setState({
                 items: responseJson
             })
@@ -34,7 +34,7 @@ class Report extends Component {
             <main>
 
                 <Title />
-                <ReportDisasterText/>
+                <ReportDisasterText />
                 <UserStatus items={this.state.items}></UserStatus>
                 <Map />
 
@@ -45,7 +45,7 @@ class Report extends Component {
 };
 
 function ReportDisasterText() {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     return (
         <h1>
             {t("report_disaster")}

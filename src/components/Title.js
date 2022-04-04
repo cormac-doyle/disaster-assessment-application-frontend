@@ -27,6 +27,7 @@ const languages = [
 
 export default function Title() {
     const currentLanguageCode = cookies.get('i18next') || 'en'
+    let funMode = false;
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
     const { t } = useTranslation()
     const pathname = window.location.pathname;
@@ -35,8 +36,7 @@ export default function Title() {
         // console.log('Setting page stuff')
         document.body.dir = currentLanguage.dir
         document.title = t('app_title')
-    }, [currentLanguage, t])
-
+    }, [currentLanguage, t, funMode])
 
     return (
         <div>
@@ -90,6 +90,20 @@ export default function Title() {
                                     </ul>
                                 </div>
                             </Nav.Item>
+                            {/* <Nav.Item>
+                                <div className="dropdown">
+                                    <button
+                                        className="btn btn-link dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton2"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    //onClick={() => { funMode = funMode ^ 1 }}
+                                    >
+                                        <GlobeIcon />
+                                    </button>
+                                </div>
+                            </Nav.Item> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

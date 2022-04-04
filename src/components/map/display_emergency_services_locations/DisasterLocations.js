@@ -84,43 +84,43 @@ export default class DisasterLocations extends Component {
         if (prevProps.userLocation !== this.props.userLocation) {
             this.setState({
                 evacPoints: [],
-                minDistFound:false,
+                minDistFound: false,
                 minDistance: 99999999,
                 minDistanceIndex: null
             })
-            
-            
+
+
             this.state.disasters.map((disaster, idx) =>
                 this.getEvacRoutes(disaster)
             )
-            
+
         }
-      }
+    }
 
     componentDidMount() {
-        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson
             })
-            console.log("Disasters: "+JSON.stringify(this.state.disasters))
+            console.log("Disasters: " + JSON.stringify(this.state.disasters))
 
             // this.state.disasters.map((disaster, idx) =>
             //     this.getEvacRoutes(disaster)
             // )
         })
-        
-        
+
+
     }
 
-    handleDistance = (distance,index) => {
-        if(distance<this.state.minDistance){
-            this.setState({ minDistance: distance});
-            this.setState({ minDistanceIndex: index});
+    handleDistance = (distance, index) => {
+        if (distance < this.state.minDistance) {
+            this.setState({ minDistance: distance });
+            this.setState({ minDistanceIndex: index });
         }
-        if(index===this.state.evacPoints.length-1){
-            console.log("Minimum Dist: "+this.state.minDistance)
-            this.setState({minDistFound: true})
+        if (index === this.state.evacPoints.length - 1) {
+            console.log("Minimum Dist: " + this.state.minDistance)
+            this.setState({ minDistFound: true })
         }
     }
 
@@ -205,7 +205,7 @@ export default class DisasterLocations extends Component {
     }
 
     render() {
-        
+
         if (this.state.disasters.length > 0) {
             return (
                 <>
@@ -220,81 +220,81 @@ export default class DisasterLocations extends Component {
                                     <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
                                 </Marker>
                             </Circle>
-                            
+
                             <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
                         </>
                     )}
 
                     {this.displayEvacRoute()}
-                    
+
                 </>
             )
         } else {
             return null
         }
     }
-    
-    displayEvacRoute(){
-        if(!this.state.minDistFound){
-            return <>{this.state.evacPoints.map((evacPoint,idx) =>
-                <RoutingMachine 
+
+    displayEvacRoute() {
+        if (!this.state.minDistFound) {
+            return <>{this.state.evacPoints.map((evacPoint, idx) =>
+                <RoutingMachine
                     getDistance={true}
                     handleDistance={this.handleDistance}
                     index={idx}
                     key={`route-${idx}`}
-                    waypoints = {[
+                    waypoints={[
                         L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                         L.latLng(evacPoint.latitude, evacPoint.longitude),
                     ]}
-                    lineWeight ={0.01}
-                    routeTravelMode={"walking"} 
+                    lineWeight={0.01}
+                    routeTravelMode={"walking"}
                 />
             )}</>
-        }else{
+        } else {
             return <>
-                <RoutingMachine 
-                    
-                    waypoints = {[
+                <RoutingMachine
+
+                    waypoints={[
                         L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
                         L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                     ]}
                     routeTravelMode={"walking"}
-                    animationClassName = {"evac-route-line"}
+                    animationClassName={"evac-route-line"}
                 />
             </>
 
         }
-        
-            
+
+
     }
 
     getEvacRoutes(disaster) {
-        if(this.props.userLocation){
+        if (this.props.userLocation) {
             let distanceToDisaster = getDistance(
-                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
-                {latitude:disaster.lat, longitude: disaster.long}
+                { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
+                { latitude: disaster.lat, longitude: disaster.long }
             )
             // console.log("user distance to disaster: "+ distanceToDisaster)
             // console.log("disaster radius: "+ disaster.radius)
-            
-            if(isPointWithinRadius(
-                {latitude: this.props.userLocation[0],longitude: this.props.userLocation[1] },
-                    {latitude:disaster.lat, longitude: disaster.long},
+
+            if (isPointWithinRadius(
+                { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
+                { latitude: disaster.lat, longitude: disaster.long },
                 disaster.radius
-            )){
-                this.setEvacPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1],distanceToDisaster)
-            }else{
+            )) {
+                this.setEvacPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1], distanceToDisaster)
+            } else {
                 return null;
             }
-        } else{
+        } else {
             return null;
         }
-        
+
     }
 
 
-   
-    setEvacPoints(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster){
+
+    setEvacPoints(disasterLat, disasterLong, disasterRadius, userLat, userLong, distanceToDisaster) {
         let evacPoints = []
 
         let bearing = getRhumbLineBearing(
@@ -306,12 +306,12 @@ export default class DisasterLocations extends Component {
             let evacPoint = computeDestinationPoint(
                 { latitude: disasterLat, longitude: disasterLong },
                 disasterRadius,
-                (bearing+(i*2.5 - 25)));
+                (bearing + (i * 2.5 - 25)));
             evacPoints.push(evacPoint);
         }
-        
+
         this.setState({
-            evacPoints : evacPoints
+            evacPoints: evacPoints
         })
     }
 }
