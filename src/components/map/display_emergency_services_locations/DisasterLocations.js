@@ -96,9 +96,9 @@ export default class DisasterLocations extends Component {
                     key={`marker-${idx}`}
                     center={[disaster.lat, disaster.long]}
                     radius={0}
-                    color={this.getDisasterColor(disaster.disaster_type)}>
-                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
-                        <Popup>{"This " + this.getDisasterName(disaster.disaster_type) + " disaster has not been verified yet"}</Popup>
+                    color={getDisaster(disaster.disaster_type).colour}>
+                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
+                        <Popup>{"This " + getDisaster(disaster.disaster_type).name + " disaster has not been verified yet"}</Popup>
                     </Marker>
                 </Circle>;
                 <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
@@ -111,9 +111,9 @@ export default class DisasterLocations extends Component {
                     key={`marker-${idx}`}
                     center={[disaster.lat, disaster.long]}
                     radius={disaster.radius}
-                    color={this.getDisasterColor(disaster.disaster_type)}>
-                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={this.getDisasterIcon(disaster.disaster_type)}>
-                        <Popup>{this.getDisasterName(disaster.disaster_type)}</Popup>
+                    color={getDisaster(disaster.disaster_type).colour}>
+                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
+                        <Popup>{getDisaster(disaster.disaster_type).name}</Popup>
                     </Marker>
                 </Circle>;
                 <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>

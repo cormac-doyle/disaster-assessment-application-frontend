@@ -50,19 +50,23 @@ export default class EmergencyServiceRoutes extends Component {
 
             fireTruckRouteCoords: [],
             fireTruckRouteCoordsIndex:1,
-            fireTruckRouteCoordsIsComplete:false,
+            fireTruckRouteCoordsIsComplete:"",
+            
 
             policeCarRouteCoords: [],
             policeCarRouteCoordsIndex:1,
-            policeCarRouteCoordsIsComplete:false,
+            policeCarRouteCoordsIsComplete:"",
+            
 
             ambulanceRouteCoords: [],
             ambulanceRouteCoordsIndex:1,
-            ambulanceRouteCoordsIsComplete:false,
+            ambulanceRouteCoordsIsComplete:"",
+            
 
             armyRouteCoords: [],
             armyRouteCoordsIndex:1,
-            armyRouteCoordsIsComplete:false,
+            armyRouteCoordsIsComplete:"",
+            
 
         }
     }
@@ -95,7 +99,8 @@ export default class EmergencyServiceRoutes extends Component {
             if(this.state[emergencyServiceTypeIndex]===this.state[emergencyServiceType].length-1){
                 this.setState({[emergencyServiceType]:[]})
                 this.setState({[emergencyServiceTypeIndex]:1})
-                this.setState({[emergencyServiceType + "IsComplete"]:true})
+                this.setState({[emergencyServiceTypeIndex+"IsComplete"]:"complete"})
+                
 
             }else{
                 this.setState(prevState=>{
@@ -174,7 +179,7 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     routeFireBrigades() {
-        if(this.state.fireTruckRouteCoordsIsComplete===false){
+        if(this.props.disaster.already_addressed===false && this.state.fireTruckRouteCoordsIsComplete==="complete"){
             if (this.state.emergency_services[this.props.disaster.id]["fire_brigade"]) {
                 console.log("Routing fire")
                 return (<>
@@ -202,7 +207,7 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     routeAmbulances() {
-        if(this.state.ambulanceRouteCoordsIsComplete===false){
+        if(this.props.disaster.already_addressed===false && this.state.ambulanceRouteCoordsIsComplete==="complete"){
             if (this.state.emergency_services[this.props.disaster.id]["ambulance"]) {
                 return (<>
                     {this.state.emergency_services[this.props.disaster.id]["ambulance"].map((hospital_loc, idx) => <>
@@ -224,11 +229,10 @@ export default class EmergencyServiceRoutes extends Component {
                 return <></>;
             }
         }
-        
     }
 
     routePolice() {
-        if(this.state.policeCarRouteCoordsIsComplete===false){
+        if(this.props.disaster.already_addressed===false && this.state.policeCarRouteCoordsIsComplete==="complete"){
             if (this.state.emergency_services[this.props.disaster.id]["police"]) {
                 return (<>
                     {this.state.emergency_services[this.props.disaster.id]["police"].map((police_station_loc, idx) => <>
