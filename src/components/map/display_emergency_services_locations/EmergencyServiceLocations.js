@@ -7,7 +7,7 @@ import getES from '../../ESTypes/ESWrapper';
 import { fetchResponseJson } from '../../fetchResponseJson'
 
 export default class EmergencyServiceLocations extends Component {
-
+  count = 0
   constructor(props) {
     super(props);
     fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/emergency_services').then((responseJson) => {
@@ -20,6 +20,8 @@ export default class EmergencyServiceLocations extends Component {
     })
     this.state = {
       markers: [],
+      carPosIndex: 1,
+      carPosPrevIndex: 0
     }
   }
 
@@ -27,6 +29,7 @@ export default class EmergencyServiceLocations extends Component {
     if (this.state.markers.length > 0) {
       return (
         <>
+
           {this.state.markers.map((location, idx) =>
             <>
               <Marker key={`marker-${idx}`} position={[location.lat, location.long]} icon={getES(location.type).icon} >

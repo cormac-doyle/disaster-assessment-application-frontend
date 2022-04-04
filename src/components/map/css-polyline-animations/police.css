@@ -1,0 +1,11 @@
+path.police {
+    stroke-dasharray: 20;
+    animation: dash 12s linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
