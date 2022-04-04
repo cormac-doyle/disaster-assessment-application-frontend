@@ -4,7 +4,6 @@ import {
     Marker,
     Popup
 } from "react-leaflet";
-import L from "leaflet";
 
 export default class VerifyDisaster extends Component {
 
