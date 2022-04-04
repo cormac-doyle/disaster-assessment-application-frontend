@@ -1,8 +1,14 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
-import "./animate.css"
-import "./evac-route-line.css"
+
+import "./css-polyline-animations/police.css"
+import "./css-polyline-animations/fire.css"
+import "./css-polyline-animations/ambulance.css"
+import "./css-polyline-animations/army.css"
+import "./css-polyline-animations/evacuation.css"
+
+
 
 
 
@@ -26,12 +32,15 @@ const createRoutingMachineLayer = (props) => {
             lineOptions: {
                 styles: [{color:lineColor, weight:lineWeight, className: props.animationClassName }]
             },
+            
             show: false,
-            addWaypoints: false,
+            fitSelectedRoutes: false,
             routeWhileDragging: true,
-            draggableWaypoints: false,
-            fitSelectedRoutes: true,
-            showAlternatives: false
+            waypointMode: 'snap',
+            addWaypoints:true
+            //draggableWaypoints:false
+            
+            
         });
     
 
@@ -46,10 +55,20 @@ const createRoutingMachineLayer = (props) => {
     if(props.getDistance){
         instance.on('routesfound', function (e) {
             var distance = e.routes[0].summary.totalDistance
-            console.log("Evac Route Found Distance: "+distance);
+            console.log("Evac Route Found Distance: " + distance);
+
             props.handleDistance(distance,props.index)
         });
     }
+
+    if(props.getRouteCoords){
+        instance.on('routesfound', function (e) {
+            var coordinates = e.routes[0].coordinates
+            props.handleCoords(coordinates,props.getRouteCoords)
+        });
+    }
+
+
     if(props.getTime){
         instance.on('routesfound', function (e) {
             var time = e.routes[0].summary.totalTime

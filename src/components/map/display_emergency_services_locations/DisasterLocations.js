@@ -11,16 +11,17 @@ import EmergencyServiceRoutes from './EmergencyServiceRoutes';
 import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
 
 
+
 const FloodIcon = L.icon({
     iconUrl: require("./images/flood.png"),
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
+    iconSize: [60, 60],
+    
     popupAnchor: [2, -40],
 });
 
 const FireIcon = L.icon({
     iconUrl: require("./images/fire.png"),
-    iconSize: [40, 40],
+    iconSize: [50, 50],
     iconAnchor: [20, 20],
     popupAnchor: [2, -40],
 });
@@ -59,9 +60,10 @@ const AlertIcon = L.icon({
     iconAnchor: [30, 30],
     popupAnchor: [2, -40],
 });
+
 const DisturbanceIcon = L.icon({
     iconUrl: require("./images/disturbance.png"),
-    iconSize: [60, 60],
+    iconSize: [50, 50],
     iconAnchor: [30, 30],
     popupAnchor: [2, -40],
 });
@@ -209,6 +211,7 @@ export default class DisasterLocations extends Component {
             return (
                 <>
                     {this.state.disasters.map((disaster, idx) =>
+                        
                         <>
                             <Circle
                                 key={`marker-${idx}`}
@@ -223,7 +226,7 @@ export default class DisasterLocations extends Component {
                             <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
                         </>
                     )}
-
+                    
                     {this.displayEvacRoute()}
                     
                 </>
@@ -252,13 +255,13 @@ export default class DisasterLocations extends Component {
         }else{
             return <>
                 <RoutingMachine 
-                    
+                    lineColor="#0095ff"
                     waypoints = {[
                         L.latLng(this.state.evacPoints[this.state.minDistanceIndex].latitude, this.state.evacPoints[this.state.minDistanceIndex].longitude),
                         L.latLng(this.props.userLocation[0], this.props.userLocation[1]),
                     ]}
                     routeTravelMode={"walking"}
-                    animationClassName = {"evac-route-line"}
+                    animationClassName = {"evacuation"}
                 />
             </>
 
