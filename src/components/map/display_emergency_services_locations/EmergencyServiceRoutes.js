@@ -2,42 +2,42 @@ import React, { Component } from 'react'
 import RoutingMachine from '../RoutingMachine';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
-import {LeafletTrackingMarker} from 'react-leaflet-tracking-marker'
+import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
 
 
 const FireTruckIcon = L.icon({
-    iconUrl: require("./images/fireTruckIcon.png"),
+    iconUrl: require("../../ESTypes/images/fireTruckIcon.png"),
     iconSize: [45, 45],
-  });
-  const FireTruckIconFlipped = L.icon({
-    iconUrl: require("./images/fireTruckIconFlipped.png"),
+});
+const FireTruckIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/fireTruckIconFlipped.png"),
     iconSize: [45, 45],
-  });
+});
 
-  const PoliceCarIcon = L.icon({
-    iconUrl: require("./images/policeCarIcon.png"),
+const PoliceCarIcon = L.icon({
+    iconUrl: require("../../ESTypes/images/policeCarIcon.png"),
     iconSize: [50, 50],
-  });
-  const PoliceCarIconFlipped = L.icon({
-    iconUrl: require("./images/policeCarIconFlipped.png"),
+});
+const PoliceCarIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/policeCarIconFlipped.png"),
     iconSize: [50, 50],
-  });
-  const AmbulanceIcon = L.icon({
-    iconUrl: require("./images/abulanceIcon.png"),
+});
+const AmbulanceIcon = L.icon({
+    iconUrl: require("../../ESTypes/images/abulanceIcon.png"),
     iconSize: [50, 50],
-  });
-  const AmbulanceIconFlipped = L.icon({
-    iconUrl: require("./images/ambulanceIconFlipped.png"),
+});
+const AmbulanceIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/ambulanceIconFlipped.png"),
     iconSize: [50, 50],
-  });
-  const ArmyTankIcon = L.icon({
-    iconUrl: require("./images/armyTankIcon.png"),
+});
+const ArmyTankIcon = L.icon({
+    iconUrl: require("../../ESTypes/images/armyTankIcon.png"),
     iconSize: [50, 50],
-  });
-  const ArmyTankIconFlipped = L.icon({
-    iconUrl: require("./images/armyTankIconFlipped.png"),
+});
+const ArmyTankIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/armyTankIconFlipped.png"),
     iconSize: [50, 50],
-  });
+});
 
 export default class EmergencyServiceRoutes extends Component {
 
@@ -66,7 +66,7 @@ export default class EmergencyServiceRoutes extends Component {
 
         }
     }
-   
+
 
     componentDidMount() {
         return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
@@ -74,7 +74,7 @@ export default class EmergencyServiceRoutes extends Component {
             this.setState({
                 emergency_services: responseJson
             })
-            console.log("ES routes: "+JSON.stringify(this.state.emergency_services))
+            console.log("ES routes: " + JSON.stringify(this.state.emergency_services))
         })
     }
 
@@ -86,10 +86,10 @@ export default class EmergencyServiceRoutes extends Component {
         var emergencyServiceTypeIndex = emergencyServiceType + "Index"
         this.setState(
             {
-             [emergencyServiceType]:coords,
+                [emergencyServiceType]: coords,
             })
-        console.log("Animating: "+emergencyServiceType)
-        console.log("Received Route Coords: "+this.state[emergencyServiceType])
+        console.log("Animating: " + emergencyServiceType)
+        console.log("Received Route Coords: " + this.state[emergencyServiceType])
         for (let index = 0; index < this.state[emergencyServiceType].length; index++) {
             setTimeout(() => {
             if(this.state[emergencyServiceTypeIndex]===this.state[emergencyServiceType].length-1){
@@ -109,7 +109,7 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
     render() {
-        
+
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
@@ -143,35 +143,34 @@ export default class EmergencyServiceRoutes extends Component {
         
     }
 
-    animateIcon(icon,flippedIcon, polyline, index, speed){
-        if(polyline.length>0){
+    animateIcon(icon, flippedIcon, polyline, index, speed) {
+        if (polyline.length > 0) {
             var animateIcon = icon
-            if(polyline[index-1].lng >polyline[index].lng){
+            if (polyline[index - 1].lng > polyline[index].lng) {
                 animateIcon = flippedIcon
             }
-            return <LeafletTrackingMarker 
-            icon={animateIcon} 
-            position={[polyline[index].lat ,polyline[index].lng]} 
-            previousPosition={[polyline[index-1].lat ,polyline[index-1].lng]}
-            duration={speed} />
-            
+            return <LeafletTrackingMarker
+                icon={animateIcon}
+                position={[polyline[index].lat, polyline[index].lng]}
+                previousPosition={[polyline[index - 1].lat, polyline[index - 1].lng]}
+                duration={speed} />
         }
     }
-    
-    testRoute(lineColor, esTypeCoords,location,animClassName){
-        return <RoutingMachine 
-        lineColor={lineColor}
-        routeTravelMode={"walking"} 
-        animationClassName={animClassName}
-        getTime={true}
-        handleTime={this.handleTime}
-        getRouteCoords={esTypeCoords}
-        handleCoords={this.handleAnimation}
-        waypoints={[
-        L.latLng(53.35020784203037,-6.284823417663575),
-        location,
-        
-    ]} />
+
+    testRoute(lineColor, esTypeCoords, location, animClassName) {
+        return <RoutingMachine
+            lineColor={lineColor}
+            routeTravelMode={"walking"}
+            animationClassName={animClassName}
+            getTime={true}
+            handleTime={this.handleTime}
+            getRouteCoords={esTypeCoords}
+            handleCoords={this.handleAnimation}
+            waypoints={[
+                L.latLng(53.35020784203037, -6.284823417663575),
+                location,
+
+            ]} />
     }
 
     routeFireBrigades() {
@@ -250,7 +249,5 @@ export default class EmergencyServiceRoutes extends Component {
                 return <></>;
             }
         }
-        
     }
-
 }
