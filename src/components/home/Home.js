@@ -19,18 +19,20 @@ class Home extends Component {
         fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/add_all_services');
         this.state = {
             items: [],
+            
         }
     }
+
+    
 
     render() {
         return (<>
             <nav>
             </nav>
             <main>
-                <Title />
+                <Title  />
                 <GDPRAlert />
                 <Map />
-
             </main>
         </>)
     }

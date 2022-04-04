@@ -1,0 +1,11 @@
+path.evac-route-line {
+    stroke-dasharray: 20;
+    animation: dash 20s linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }

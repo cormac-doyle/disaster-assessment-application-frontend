@@ -42,7 +42,7 @@ test('submit button should be enabled when email address is not empty', () => {
 
     const { getByLabelText, getByRole } = render(<BrowserRouter><Login /></BrowserRouter>);
     const input = getByLabelText(/EMAIL/i);
-    fireEvent.change(input, { 'target': { 'value': 'khkghkghkghk' } });
+    fireEvent.change(input, { 'target': { 'value': 'According to all known laws of aviation, there is no way a bee should be able to fly' } });
     const submitBtn = getByRole('button', { name: 'Submit' });
 
     expect(submitBtn).not.toHaveAttribute('disabled');

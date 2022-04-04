@@ -35,7 +35,7 @@ function LocationMarker() {
     )
 }
 */
-export function AddMarker() {
+export function AddMarker(props) {
   const [position, setPosition] = useState(null);
   const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
 
@@ -54,6 +54,7 @@ export function AddMarker() {
         show={reportDisasterPopup}
         onHide={setReportDisasterPopup}
         position={position}
+        
       >
         <h1>Report Disaster At this Location?</h1>
       </ReportDisasterPopUp>
