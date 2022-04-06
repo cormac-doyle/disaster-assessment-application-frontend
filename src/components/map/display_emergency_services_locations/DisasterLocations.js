@@ -76,33 +76,56 @@ export default class DisasterLocations extends Component {
                     {this.state.disasters.map((disaster, idx) =>
 
                         <>
-                            <Circle
-                                key={`marker-${idx}`}
-                                center={[disaster.lat, disaster.long]}
-                                radius={disaster.radius}
-                                color={getDisaster(disaster.disaster_type).colour}>
-                                <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
-                                    <Popup>{getDisaster(disaster.disaster_type).name}</Popup>
-                                </Marker>
-                            </Circle>
-
-                            <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
+                            {this.displayDisaster(idx, disaster)}
+                            
                         </>
                     )}
-
-                    {this.displayEvacRoute()}
-
+                    
                 </>
             )
         } else {
             return null
         }
     }
+    
+    displayDisaster(idx, disaster) {
 
-    displayEvacRoute() {
-        if (!this.state.minDistFound) {
-            return <>{this.state.evacPoints.map((evacPoint, idx) =>
-                <RoutingMachine
+        if(disaster.verified===false){
+            return <>
+                <Circle
+                    key={`marker-${idx}`}
+                    center={[disaster.lat, disaster.long]}
+                    radius={0}
+                    color={getDisaster(disaster.disaster_type).colour}>
+                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
+                        <Popup>{"This " + getDisaster(disaster.disaster_type).name + " disaster has not been verified yet"}</Popup>
+                    </Marker>
+                </Circle>;
+                <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
+            </>
+        }
+
+        if(disaster.verified===true && disaster.completed===false){
+            return <>
+                <Circle
+                    key={`marker-${idx}`}
+                    center={[disaster.lat, disaster.long]}
+                    radius={disaster.radius}
+                    color={getDisaster(disaster.disaster_type).colour}>
+                    <Marker key={`marker-${idx}`} position={[disaster.lat, disaster.long]} icon={getDisaster(disaster.disaster_type).icon}>
+                        <Popup>{getDisaster(disaster.disaster_type).name}</Popup>
+                    </Marker>
+                </Circle>;
+                <EmergencyServiceRoutes disaster={disaster}></EmergencyServiceRoutes>
+                {this.displayEvacRoute()}
+            </>
+        }
+    }
+
+    displayEvacRoute(){
+        if(!this.state.minDistFound){
+            return <>{this.state.evacPoints.map((evacPoint,idx) =>
+                <RoutingMachine 
                     getDistance={true}
                     handleDistance={this.handleDistance}
                     index={idx}
@@ -127,7 +150,6 @@ export default class DisasterLocations extends Component {
                     animationClassName={"evacuation"}
                 />
             </>
-
         }
     }
 
