@@ -32,3 +32,14 @@ export const Police = {
         popupAnchor: [2, -40],
     })
 }
+
+export const Army = {
+    name: "Army",
+
+    icon: L.icon({
+        iconUrl: require("./images/army.png"),
+        iconSize: [50, 50],
+        iconAnchor: [10, 41],
+        popupAnchor: [2, -40],
+    })
+}
