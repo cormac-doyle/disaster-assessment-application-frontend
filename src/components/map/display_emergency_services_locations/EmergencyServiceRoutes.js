@@ -56,7 +56,7 @@ export default class EmergencyServiceRoutes extends Component {
         "ambulance": "#f54242",
 
     }
-    vehicleSpeed = 100
+    vehicleSpeed = 500
 
     constructor(props) {
         super(props);
