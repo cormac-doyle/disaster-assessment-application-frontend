@@ -42,7 +42,7 @@ export default class DisasterLocations extends Component {
     }
 
     componentDidMount() {
-        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson
@@ -77,20 +77,20 @@ export default class DisasterLocations extends Component {
 
                         <>
                             {this.displayDisaster(idx, disaster)}
-                            
+
                         </>
                     )}
-                    
+
                 </>
             )
         } else {
             return null
         }
     }
-    
+
     displayDisaster(idx, disaster) {
 
-        if(disaster.verified===false){
+        if (disaster.verified === false) {
             return <>
                 <Circle
                     key={`marker-${idx}`}
@@ -105,7 +105,7 @@ export default class DisasterLocations extends Component {
             </>
         }
 
-        if(disaster.verified===true && disaster.completed===false){
+        if (disaster.verified === true && disaster.completed === false) {
             return <>
                 <Circle
                     key={`marker-${idx}`}
@@ -122,10 +122,10 @@ export default class DisasterLocations extends Component {
         }
     }
 
-    displayEvacRoute(){
-        if(!this.state.minDistFound){
-            return <>{this.state.evacPoints.map((evacPoint,idx) =>
-                <RoutingMachine 
+    displayEvacRoute() {
+        if (!this.state.minDistFound) {
+            return <>{this.state.evacPoints.map((evacPoint, idx) =>
+                <RoutingMachine
                     getDistance={true}
                     handleDistance={this.handleDistance}
                     index={idx}

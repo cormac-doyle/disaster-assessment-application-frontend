@@ -4,6 +4,15 @@ import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
 
+const BusIcon = L.icon({
+    iconUrl: require("../../ESTypes/images/bus.png"),
+    iconSize: [45, 45],
+});
+
+const BusIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/busFlipped.png"),
+    iconSize: [45, 45],
+});
 
 const FireTruckIcon = L.icon({
     iconUrl: require("../../ESTypes/images/fireTruckIcon.png"),
@@ -40,11 +49,11 @@ const ArmyTankIconFlipped = L.icon({
 });
 
 export default class EmergencyServiceRoutes extends Component {
-    colorMap={
-        "police":"#2509b3",
-        "fire_brigade":"#ff5900",
-        "army":"#00960f",
-        "ambulance":"#f54242",
+    colorMap = {
+        "police": "#2509b3",
+        "fire_brigade": "#ff5900",
+        "army": "#00960f",
+        "ambulance": "#f54242",
 
     }
     vehicleSpeed = 100
@@ -55,32 +64,37 @@ export default class EmergencyServiceRoutes extends Component {
             emergency_services: [],
 
             fire_brigade_coords: [],
-            fire_brigade_index:1,
-            fire_brigade_animation:true,
-            
+            fire_brigade_index: 1,
+            fire_brigade_animation: true,
+
             police_coords: [],
-            police_index:1,
-            police_animation:true,
-            
+            police_index: 1,
+            police_animation: true,
+
             ambulance_coords: [],
-            ambulance_index:1,
-            ambulance_animation:true,
-            
+            ambulance_index: 1,
+            ambulance_animation: true,
+
             army_coords: [],
-            army_index:1,
-            army_animation:true,
-            
+            army_index: 1,
+            army_animation: true,
+
+            ts_coords: [],
+            ts_index: 1,
+            ts_animation: true
 
         }
     }
 
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson('http://localhost:8000/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson
-            })
+
+            }
+            )
             console.log("ES routes: " + JSON.stringify(this.state.emergency_services))
         })
     }
@@ -103,18 +117,18 @@ export default class EmergencyServiceRoutes extends Component {
         console.log("Received Route Coords: " + this.state[emergencyServiceTypeCoords])
         for (let index = 0; index < this.state[emergencyServiceTypeCoords].length; index++) {
             setTimeout(() => {
-            if(this.state[emergencyServiceTypeIndex]===this.state[emergencyServiceTypeCoords].length-1){
-                this.setState({[emergencyServiceTypeCoords]:[]})
-                this.setState({[emergencyServiceTypeIndex]:1})
-                this.setState({[emergencyServiceTypeAnimationStatus]:false})
-            }else{
-                this.setState(prevState=>{
-                    return{
-                        [emergencyServiceTypeIndex]: prevState[emergencyServiceTypeIndex] + 1,
-                    }
-                });
-            }
-            }, this.vehicleSpeed  * (index+1));
+                if (this.state[emergencyServiceTypeIndex] === this.state[emergencyServiceTypeCoords].length - 1) {
+                    this.setState({ [emergencyServiceTypeCoords]: [] })
+                    this.setState({ [emergencyServiceTypeIndex]: 1 })
+                    this.setState({ [emergencyServiceTypeAnimationStatus]: false })
+                } else {
+                    this.setState(prevState => {
+                        return {
+                            [emergencyServiceTypeIndex]: prevState[emergencyServiceTypeIndex] + 1,
+                        }
+                    });
+                }
+            }, this.vehicleSpeed * (index + 1));
         }
     }
 
@@ -126,31 +140,32 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeES("fire_brigade")}
                     {this.routeES("police")}
                     {this.routeES("ambulance")}
+                    {this.routeES("transport_services")}
                     {this.routeES("army")}
 
 
                     {this.showESAnimations(this.props.disaster.already_addressed)}
-                    
+
                 </>
             )
         } else {
             return null;
         }
     }
-    showESroutes(){
-        
+    showESroutes() {
+
     }
 
-    showESAnimations(alreadyAdressed){
-        if(alreadyAdressed===false){
+    showESAnimations(alreadyAdressed) {
+        if (alreadyAdressed === false) {
             return <>
-            {this.animateIcon(FireTruckIcon,FireTruckIconFlipped,this.state.fire_brigade_coords,this.state.fire_brigade_index,this.vehicleSpeed)}
-            {this.animateIcon(AmbulanceIcon,AmbulanceIconFlipped,this.state.ambulance_coords,this.state.ambulance_index,this.vehicleSpeed)}
-            {this.animateIcon(PoliceCarIcon,PoliceCarIconFlipped,this.state.police_coords,this.state.police_index,this.vehicleSpeed)}
-            {this.animateIcon(ArmyTankIcon,ArmyTankIconFlipped,this.state.army_coords,this.state.army_index,this.vehicleSpeed)}
-            
+                {this.animateIcon(FireTruckIcon, FireTruckIconFlipped, this.state.fire_brigade_coords, this.state.fire_brigade_index, this.vehicleSpeed)}
+                {this.animateIcon(AmbulanceIcon, AmbulanceIconFlipped, this.state.ambulance_coords, this.state.ambulance_index, this.vehicleSpeed)}
+                {this.animateIcon(PoliceCarIcon, PoliceCarIconFlipped, this.state.police_coords, this.state.police_index, this.vehicleSpeed)}
+                {this.animateIcon(ArmyTankIcon, ArmyTankIconFlipped, this.state.army_coords, this.state.army_index, this.vehicleSpeed)}
+                {this.animateIcon(BusIcon, BusIconFlipped, this.state.ts_coords, this.state.ts_index, this.vehicleSpeed)}
             </>
-            
+
         }
     }
 
@@ -169,24 +184,24 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
 
-    
+
     routeES(esType) {
-        
-        var lineWeight=10
-        var animationClassName=esType
-        if(this.props.disaster.already_addressed===true || this.state[esType+"_animation"]!==true){
-            lineWeight=5
-            animationClassName=''
+
+        var lineWeight = 10
+        var animationClassName = esType
+        if (this.props.disaster.already_addressed === true || this.state[esType + "_animation"] !== true) {
+            lineWeight = 5
+            animationClassName = ''
         }
-        
+
         if (this.state.emergency_services[this.props.disaster.id][esType]) {
-            console.log("ANIMATION NOT DONE: "+this.props.disaster.id+" " +esType+ this.state[esType+"_animation"])
+            console.log("ANIMATION NOT DONE: " + this.props.disaster.id + " " + esType + this.state[esType + "_animation"])
 
             return (<>
                 {this.state.emergency_services[this.props.disaster.id][esType].map((location, idx) => <>
                     <RoutingMachine key={`route-${idx}`}
                         lineColor={this.colorMap[esType]}
-                        routeTravelMode={"walking"} 
+                        routeTravelMode={"walking"}
                         animationClassName={animationClassName}
                         lineWeight={lineWeight}
 
@@ -202,6 +217,6 @@ export default class EmergencyServiceRoutes extends Component {
         } else {
             return <></>;
         }
-        
+
     }
 }

@@ -78,7 +78,7 @@ export default function Title(props) {
                                                     })}
                                                     onClick={() => {
                                                         i18next.changeLanguage(code)
-                                                        
+
                                                     }}
                                                 >
                                                     <button className="dropdown-item">
@@ -91,7 +91,7 @@ export default function Title(props) {
                                     </ul>
                                 </div>
                             </Nav.Item>
-                            
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
