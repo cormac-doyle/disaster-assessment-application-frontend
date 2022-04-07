@@ -41,3 +41,7 @@ describe("test getES Icons", () => {
         }
     );
 });
+
+test('default is police', () => {
+    expect(getES().name).toEqual('Police')
+});
