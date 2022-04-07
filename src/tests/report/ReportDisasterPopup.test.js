@@ -19,3 +19,11 @@ test('Test disasterRadius button exists', () => {
     render(disasterTypeDropDown(reportDisasterPopUp))
     expect(screen.getByRole("button")).toBeTruthy()
 });
+
+// test("confirmButtonClick", () => {
+//     const { getByRole } = render(<ReportDisasterPopUp language={"en"} position={{ lng: 123.4444, lat: 123.4444 }} />)
+//     const button = getByRole('button')
+//     fireEvent.click(button)
+
+
+// });

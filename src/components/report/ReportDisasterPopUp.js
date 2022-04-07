@@ -4,13 +4,10 @@ import { Modal, Button, Dropdown } from "react-bootstrap";
 import cookies from 'js-cookie'
 import langTextMap from "./popupTranslation"
 
-
-
 export function getLanguage() {
   const currentLanguageCode = cookies.get('i18next')
   return currentLanguageCode
 }
-
 
 export function disasterRadius(parent) {
 
@@ -32,11 +29,9 @@ export function disasterRadius(parent) {
         <Dropdown.Item href="#" onClick={() => parent.setState({ radius: 700 })}>700m</Dropdown.Item>
         <Dropdown.Item href="#" onClick={() => parent.setState({ radius: 800 })}>800m</Dropdown.Item>
         <Dropdown.Item href="#" onClick={() => parent.setState({ radius: 900 })}>900m</Dropdown.Item>
-
       </Dropdown.Menu>
     </Dropdown>
   </>
-
 }
 
 export function disasterTypeDropDown(parent) {
@@ -148,7 +143,6 @@ class ReportDisasterPopUp extends Component {
   }
 
   render() {
-
     return (
       <div>
         <Modal
