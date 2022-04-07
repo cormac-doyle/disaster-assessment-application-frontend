@@ -4,6 +4,15 @@ import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
 
+const BusIcon = L.icon({
+    iconUrl: require("../../ESTypes/images/bus.png"),
+    iconSize: [45, 45],
+});
+
+const BusIconFlipped = L.icon({
+    iconUrl: require("../../ESTypes/images/busFlipped.png"),
+    iconSize: [45, 45],
+});
 
 const FireTruckIcon = L.icon({
     iconUrl: require("../../ESTypes/images/fireTruckIcon.png"),
@@ -55,16 +64,20 @@ export default class EmergencyServiceRoutes extends Component {
             ambulanceRouteCoordsIndex: 1,
             armyRouteCoords: [],
             armyRouteCoordsIndex: 1,
+            transportServiceRouteCoords: [],
+            transportServiceRouteCoordsIndex: 1
         }
     }
 
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson('http://localhost:8000/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson
-            })
+
+            }
+            )
             console.log("ES routes: " + JSON.stringify(this.state.emergency_services))
         })
     }
@@ -106,11 +119,14 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeFireBrigades()}
                     {this.routePolice()}
                     {this.routeAmbulances()}
+                    {this.routeTransportServices()}
+
 
                     {this.animateIcon(FireTruckIcon, FireTruckIconFlipped, this.state.fireTruckRouteCoords, this.state.fireTruckRouteCoordsIndex, this.vehicleSpeed)}
                     {this.animateIcon(AmbulanceIcon, AmbulanceIconFlipped, this.state.ambulanceRouteCoords, this.state.ambulanceRouteCoordsIndex, this.vehicleSpeed)}
                     {this.animateIcon(PoliceCarIcon, PoliceCarIconFlipped, this.state.policeCarRouteCoords, this.state.policeCarRouteCoordsIndex, this.vehicleSpeed)}
                     {this.animateIcon(ArmyTankIcon, ArmyTankIconFlipped, this.state.armyRouteCoords, this.state.armyRouteCoordsIndex, this.vehicleSpeed)}
+                    {this.animateIcon(BusIcon, BusIconFlipped, this.state.transportServiceRouteCoords, this.state.transportServiceRouteCoordsIndex, this.vehicleSpeed)}
 
 
                 </>
@@ -216,6 +232,29 @@ export default class EmergencyServiceRoutes extends Component {
                         waypoints={[
                             L.latLng(this.props.disaster.lat, this.props.disaster.long),
                             L.latLng(police_station_loc.lat, police_station_loc.long),
+
+                        ]} />
+                </>
+                )}
+            </>);
+        } else {
+            return <></>;
+        }
+    }
+
+    routeTransportServices() {
+        if (this.state.emergency_services[this.props.disaster.id]["transport_services"]) {
+            return (<>
+                {this.state.emergency_services[this.props.disaster.id]["transport_services"].map((transport_service_loc, idx) => <>
+                    <RoutingMachine key={`route-${idx}`}
+                        lineColor="#2509b3"
+                        routeTravelMode={"walking"}
+                        animationClassName='transport_services'
+                        getRouteCoords={"transportServiceRouteCoords"}
+                        handleCoords={this.handleAnimation}
+                        waypoints={[
+                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
+                            L.latLng(transport_service_loc.lat, transport_service_loc.long),
 
                         ]} />
                 </>

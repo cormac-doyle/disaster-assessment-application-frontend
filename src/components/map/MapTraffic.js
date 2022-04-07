@@ -5,6 +5,7 @@ import "./Map.css";
 import 'leaflet/dist/leaflet.css';
 import EmergencyServiceLocations from './display_emergency_services_locations/EmergencyServiceLocations';
 import DisasterLocations from './display_emergency_services_locations/DisasterLocations';
+import TransportServiceLocations from './display_emergency_services_locations/TransportServiceLocations';
 
 const LocationIcon = L.icon({
   iconUrl: require("./location.png"),
@@ -127,6 +128,7 @@ const Map = () => {
 
       <DraggableMarker />
       <EmergencyServiceLocations />
+      <TransportServiceLocations />
 
     </MapContainer>
 

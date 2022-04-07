@@ -10,7 +10,7 @@ export default class EmergencyServiceLocations extends Component {
   count = 0
   constructor(props) {
     super(props);
-    fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/emergency_services').then((responseJson) => {
+    fetchResponseJson('http://localhost:8000/api/1/emergency_services').then((responseJson) => {
 
       this.setState({
         markers: responseJson

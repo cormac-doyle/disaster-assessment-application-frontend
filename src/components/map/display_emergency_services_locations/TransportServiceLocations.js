@@ -7,7 +7,7 @@ import { fetchResponseJson } from '../../fetchResponseJson'
 import L from "leaflet";
 
 const BusIcon = L.icon({
-    iconUrl: require("./images/bus-stop.png"),
+    iconUrl: require("../../ESTypes/images/bus-stop.png"),
     iconSize: [40, 40],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
