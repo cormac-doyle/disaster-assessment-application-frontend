@@ -8,7 +8,9 @@ function getES(id) {
             return ESAttributes.FireStation
         case 2:
             return ESAttributes.Hospital
-
+        case 3:
+            return ESAttributes.Army
+    
         default:
             return ESAttributes.Police
     }

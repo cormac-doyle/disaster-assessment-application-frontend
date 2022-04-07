@@ -42,7 +42,7 @@ export default class DisasterLocations extends Component {
     }
 
     componentDidMount() {
-        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        fetchResponseJson('http://localhost:8000/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson

@@ -44,43 +44,43 @@ const createRoutingMachineLayer = (props) => {
     });
 
 
-};
 
 
 
-if (props.routeTravelMode === "walking") {
-    instance.options.router.options.profile = "mapbox/walking"
-    //console.log("route distance: " + instance.router)
-} else {
-    instance.options.router.options.profile = "mapbox/driving-traffic"
-}
 
-if (props.getDistance) {
-    instance.on('routesfound', function (e) {
-        var distance = e.routes[0].summary.totalDistance
-        console.log("Evac Route Found Distance: " + distance);
+    if (props.routeTravelMode === "walking") {
+        instance.options.router.options.profile = "mapbox/walking"
+        //console.log("route distance: " + instance.router)
+    } else {
+        instance.options.router.options.profile = "mapbox/driving-traffic"
+    }
 
-        props.handleDistance(distance, props.index)
-    });
-}
+    if (props.getDistance) {
+        instance.on('routesfound', function (e) {
+            var distance = e.routes[0].summary.totalDistance
+            console.log("Evac Route Found Distance: " + distance);
 
-if (props.getRouteCoords) {
-    instance.on('routesfound', function (e) {
-        var coordinates = e.routes[0].coordinates
-        props.handleCoords(coordinates, props.getRouteCoords)
-    });
-}
+            props.handleDistance(distance, props.index)
+        });
+    }
+
+    if (props.getRouteCoords) {
+        instance.on('routesfound', function (e) {
+            var coordinates = e.routes[0].coordinates
+            props.handleCoords(coordinates, props.getRouteCoords)
+        });
+    }
 
 
-if (props.getTime) {
-    instance.on('routesfound', function (e) {
-        var time = e.routes[0].summary.totalTime
-        console.log("ES Route Time: " + Math.round(time % 3600 / 60) + " minutes");
-        props.handleTime(time)
-    });
-}
+    if (props.getTime) {
+        instance.on('routesfound', function (e) {
+            var time = e.routes[0].summary.totalTime
+            console.log("ES Route Time: " + Math.round(time % 3600 / 60) + " minutes");
+            props.handleTime(time)
+        });
+    }
 
-return instance;
+    return instance;
 
 };
 

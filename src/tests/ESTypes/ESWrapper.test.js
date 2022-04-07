@@ -3,6 +3,13 @@ import L from "leaflet";
 
 const ESIconParams = [
     //[param, result]
+    [3, L.icon({
+        iconUrl: "army.png",
+        iconSize: [50, 50],
+        iconAnchor: [10, 41],
+        popupAnchor: [2, -40],
+    })],
+
     [2, L.icon({
         iconUrl: "hospital.png",
         iconSize: [40, 40],
@@ -24,8 +31,6 @@ const ESIconParams = [
         popupAnchor: [2, -40],
     })]
 ];
-
-
 
 
 //run parameterised test on enumerations

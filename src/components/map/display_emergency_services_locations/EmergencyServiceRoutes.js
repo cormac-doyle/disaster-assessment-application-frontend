@@ -141,6 +141,8 @@ export default class EmergencyServiceRoutes extends Component {
                     {this.routeES("police")}
                     {this.routeES("ambulance")}
                     {this.routeES("transport_services")}
+                    {this.routeES("army")}
+
 
                     {this.showESAnimations(this.props.disaster.already_addressed)}
 
