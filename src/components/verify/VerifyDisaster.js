@@ -37,6 +37,8 @@ export default class VerifyDisaster extends Component {
 
     async verifyDisaster(details, newScale, newDisaster) {
 
+        var verified_disaster = false
+
         const requestOptions = {
             method: "post",
             //mode: 'no-cors',
@@ -50,16 +52,37 @@ export default class VerifyDisaster extends Component {
             }),
         };
 
+        const requestOptions2 = {
+            method: "get",
+            headers: {
+                "Content-type": "application/json",
+            }
+        };
 
         await fetch("https://ase-backend-2.herokuapp.com/api/1/disaster_verification", requestOptions)
             .then(() => {
-                alert("Disaster " + details.id + " has been verified");
+                //alert("Disaster " + details.id + " has been verified");
+                verified_disaster = true;
                 console.log("Verified: " + details.id)
                 window.location.reload(false);
             }).catch(error => {
                 alert("Verification failed...");
                 console.log(error)
 
+            });
+
+        const nearest_services = await fetch("https://ase-backend-2.herokuapp.com/api/1/get_nearest_services/", requestOptions2)
+            .then(response => {
+                if (!response.ok) { throw response }
+                return response.json()
+            })
+            .then(() => {
+                //alert("nearest services found");
+                console.log("Fetched nearest services.")
+                if (verified_disaster = true)
+                    alert("Disaster verified and nearest services found");
+            }).catch(error => {
+                console.log("Failed to fetch nearest services:" + error)
             });
 
     }
