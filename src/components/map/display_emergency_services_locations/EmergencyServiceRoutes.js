@@ -47,7 +47,7 @@ export default class EmergencyServiceRoutes extends Component {
         "ambulance":"#f54242",
 
     }
-    vehicleSpeed = 100
+    vehicleSpeed = 500
 
     constructor(props) {
         super(props);
@@ -69,8 +69,7 @@ export default class EmergencyServiceRoutes extends Component {
             army_coords: [],
             army_index:1,
             army_animation:true,
-            
-
+        
         }
     }
 
@@ -89,6 +88,7 @@ export default class EmergencyServiceRoutes extends Component {
         console.log("Received time")
     }
     handleAnimation = (coords, emergencyServiceType) => {
+        if(emergencyServiceType==="bus")
         coords.reverse()
         var emergencyServiceTypeIndex = emergencyServiceType + "_index"
         var emergencyServiceTypeCoords = emergencyServiceType + "_coords"
