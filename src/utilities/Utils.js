@@ -1,7 +1,8 @@
 // Get disasters
+import {urlVar} from '../url_confg'
 export default async function fetchDisasters() {
 
-
+console.log(urlVar)
 
 
     const requestOptions = {
@@ -11,7 +12,7 @@ export default async function fetchDisasters() {
         }
     };
 
-    const disasters = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions)
+    const disasters = await fetch(urlVar+"/api/1/disasters-civ/", requestOptions)
         .then(response => {
             if (!response.ok) { throw response }
             return response.json()

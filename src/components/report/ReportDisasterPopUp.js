@@ -3,6 +3,8 @@ import "./ReportDisasterPopUp.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import cookies from 'js-cookie'
 import langTextMap from "./popupTranslation"
+import {urlVar} from '../../url_confg'
+
 
 export function getLanguage() {
   const currentLanguageCode = cookies.get('i18next')
@@ -129,7 +131,7 @@ class ReportDisasterPopUp extends Component {
     };
 
     try {
-      let disasterLocationJSON = await fetch("https://ase-backend-2.herokuapp.com/api/1/disasters-civ/", requestOptions).then(response => response.json());
+      let disasterLocationJSON = await fetch(urlVar+"/api/1/disasters-civ/", requestOptions).then(response => response.json());
 
       alert("Disaster Reported: " + JSON.stringify(disasterLocationJSON));
       this.props.onHide();
