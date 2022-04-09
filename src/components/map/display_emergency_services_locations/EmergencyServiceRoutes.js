@@ -52,8 +52,9 @@ export default class EmergencyServiceRoutes extends Component {
     colorMap = {
         "police": "#2509b3",
         "fire_brigade": "#ff5900",
-        "army": "#00960f",
+        "army": "#1ec904",
         "ambulance": "#f54242",
+        "transport_services":"#e9ed07"
 
     }
     vehicleSpeed = 300
@@ -79,9 +80,9 @@ export default class EmergencyServiceRoutes extends Component {
             army_index: 1,
             army_animation: true,
 
-            ts_coords: [],
-            ts_index: 1,
-            ts_animation: true
+            transport_services_coords: [],
+            transport_services_index: 1,
+            transport_services_animation: true
 
         }
     }
@@ -103,7 +104,18 @@ export default class EmergencyServiceRoutes extends Component {
         console.log("Received time")
     }
     handleAnimation = (coords, emergencyServiceType) => {
-        coords.reverse()
+        if(emergencyServiceType==="transport_services"){
+            var coordsRevered=coords.slice().reverse()
+            coordsRevered.push(coords[0])
+            coordsRevered.push(coords[0])
+            coordsRevered.push(coords[0])
+            coordsRevered.push(coords[0])
+            coords = coordsRevered.concat(coords)
+        }else{
+            coords.reverse()
+
+        }
+        
         var emergencyServiceTypeIndex = emergencyServiceType + "_index"
         var emergencyServiceTypeCoords = emergencyServiceType + "_coords"
         var emergencyServiceTypeAnimationStatus = emergencyServiceType + "_animation"
@@ -163,7 +175,7 @@ export default class EmergencyServiceRoutes extends Component {
                 {this.animateIcon(AmbulanceIcon, AmbulanceIconFlipped, this.state.ambulance_coords, this.state.ambulance_index, this.vehicleSpeed)}
                 {this.animateIcon(PoliceCarIcon, PoliceCarIconFlipped, this.state.police_coords, this.state.police_index, this.vehicleSpeed)}
                 {this.animateIcon(ArmyTankIcon, ArmyTankIconFlipped, this.state.army_coords, this.state.army_index, this.vehicleSpeed)}
-                {this.animateIcon(BusIcon, BusIconFlipped, this.state.ts_coords, this.state.ts_index, this.vehicleSpeed)}
+                {this.animateIcon(BusIcon, BusIconFlipped, this.state.transport_services_coords, this.state.transport_services_index, this.vehicleSpeed)}
             </>
 
         }
