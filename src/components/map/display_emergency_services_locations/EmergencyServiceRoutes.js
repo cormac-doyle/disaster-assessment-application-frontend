@@ -52,7 +52,7 @@ export default class EmergencyServiceRoutes extends Component {
     colorMap = {
         "police": "#2509b3",
         "fire_brigade": "#ff5900",
-        "army": "#1ec904",
+        "army": "#0d6100",
         "ambulance": "#f54242",
         "transport_services":"#e9ed07"
 
@@ -203,7 +203,8 @@ export default class EmergencyServiceRoutes extends Component {
         var animationClassName = esType
         if (this.props.disaster.already_addressed === true || this.state[esType + "_animation"] !== true) {
             lineWeight = 5
-            animationClassName = ''
+            animationClassName = ""
+            
         }
 
         if (this.state.emergency_services[this.props.disaster.id][esType]) {

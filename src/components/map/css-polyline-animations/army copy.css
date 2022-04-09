@@ -1,6 +1,6 @@
-path.transport_services {
-    stroke-dasharray: 20;
-    animation: dash 18s linear;
+path.army {
+    stroke-dasharray: 25;
+    animation: dash 25s linear;
     animation-iteration-count: infinite;
   }
   

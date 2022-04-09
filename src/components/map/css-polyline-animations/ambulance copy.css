@@ -1,6 +1,6 @@
-path.transport_services {
+path.ambulance {
     stroke-dasharray: 20;
-    animation: dash 18s linear;
+    animation: dash 22s linear;
     animation-iteration-count: infinite;
   }
   
