@@ -56,7 +56,7 @@ export default class EmergencyServiceRoutes extends Component {
         "ambulance": "#f54242",
 
     }
-    vehicleSpeed = 500
+    vehicleSpeed = 300
 
     constructor(props) {
         super(props);
@@ -88,7 +88,7 @@ export default class EmergencyServiceRoutes extends Component {
 
 
     componentDidMount() {
-        return fetchResponseJson('http://localhost:8000/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson
@@ -195,7 +195,7 @@ export default class EmergencyServiceRoutes extends Component {
         }
 
         if (this.state.emergency_services[this.props.disaster.id][esType]) {
-            console.log("ANIMATION NOT DONE: " + this.props.disaster.id + " " + esType + this.state[esType + "_animation"])
+            //console.log("ANIMATION NOT DONE: " + this.props.disaster.id + " " + esType + this.state[esType + "_animation"])
 
             return (<>
                 {this.state.emergency_services[this.props.disaster.id][esType].map((location, idx) => <>
