@@ -36,7 +36,7 @@ const createRoutingMachineLayer = (props) => {
         show: false,
         fitSelectedRoutes: false,
         routeWhileDragging: true,
-
+        waypointMode: "snap",
         addWaypoints: true
         //draggableWaypoints:false
 
