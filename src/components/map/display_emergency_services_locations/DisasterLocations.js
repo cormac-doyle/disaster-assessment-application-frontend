@@ -154,7 +154,7 @@ export default class DisasterLocations extends Component {
     }
 
     getEvacRoutes(disaster) {
-        if(disaster.verified==true&&disaster.completed==false){
+        if(disaster.verified===true&&disaster.completed===false){
             if (this.props.userLocation) {
                 let distanceToDisaster = getDistance(
                     { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
