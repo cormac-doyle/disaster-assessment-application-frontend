@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import RoutingMachine from '../RoutingMachine';
+import RoutingMachineNew from '../RoutingMachineNew';
+
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
 
 const BusIcon = L.icon({
     iconUrl: require("../../ESTypes/images/bus.png"),
-    iconSize: [45, 45],
+    iconSize: [50, 50],
 });
 
 const BusIconFlipped = L.icon({
     iconUrl: require("../../ESTypes/images/busFlipped.png"),
-    iconSize: [45, 45],
+    iconSize: [50, 50],
 });
 
 const FireTruckIcon = L.icon({
@@ -149,11 +151,11 @@ export default class EmergencyServiceRoutes extends Component {
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
-                    {this.routeES("fire_brigade")}
-                    {this.routeES("police")}
-                    {this.routeES("ambulance")}
-                    {this.routeES("transport_services")}
-                    {this.routeES("army")}
+                    {this.routeESAnim("fire_brigade",this.props.disaster)}
+                    {this.routeESAnim("police",this.props.disaster)}
+                    {this.routeESAnim("ambulance",this.props.disaster)}
+                    {this.routeESAnim("transport_services",this.props.disaster)}
+                    {this.routeESAnim("army",this.props.disaster)}
 
 
                     {this.showESAnimations(this.props.disaster.already_addressed)}
@@ -197,39 +199,45 @@ export default class EmergencyServiceRoutes extends Component {
 
 
 
-    routeES(esType) {
-
-        var lineWeight = 10
-        var animationClassName = esType
-        if (this.props.disaster.already_addressed === true || this.state[esType + "_animation"] !== true) {
-            lineWeight = 5
-            animationClassName = ""
+    routeESAnim(esType,disaster) {
+        var routingMachine
+        
+        if (this.state.emergency_services[disaster.id][esType].length>0){
+            if (this.props.disaster.already_addressed === true || this.state[esType + "_animation"] === false) {
             
+            
+                return <RoutingMachineNew
+                    lineColor={this.colorMap[esType]}
+                    routeTravelMode={"walking"}
+                    animationClassName={""}
+                    lineWeight={5}
+
+                    waypoints={[
+                        L.latLng(disaster.lat, disaster.long),
+                        L.latLng(this.state.emergency_services[this.props.disaster.id][esType][0].lat, this.state.emergency_services[this.props.disaster.id][esType][0].long),
+                    ]} />
+    }
+
+    else  {
+        
+        return <RoutingMachine
+                    lineColor={this.colorMap[esType]}
+                    routeTravelMode={"walking"}
+                    animationClassName={esType}
+                    lineWeight={10}
+
+                    getRouteCoords={esType}
+                    handleCoords={this.handleAnimation}
+                    waypoints={[
+                        L.latLng(disaster.lat, disaster.long),
+                        L.latLng(this.state.emergency_services[disaster.id][esType][0].lat, this.state.emergency_services[disaster.id][esType][0].long),
+                    ]} />
+        
+    } 
         }
+        
 
-        if (this.state.emergency_services[this.props.disaster.id][esType]) {
-            //console.log("ANIMATION NOT DONE: " + this.props.disaster.id + " " + esType + this.state[esType + "_animation"])
-
-            return (<>
-                {this.state.emergency_services[this.props.disaster.id][esType].map((location, idx) => <>
-                    <RoutingMachine key={`route-${idx}`}
-                        lineColor={this.colorMap[esType]}
-                        routeTravelMode={"walking"}
-                        animationClassName={animationClassName}
-                        lineWeight={lineWeight}
-
-                        getRouteCoords={esType}
-                        handleCoords={this.handleAnimation}
-                        waypoints={[
-                            L.latLng(this.props.disaster.lat, this.props.disaster.long),
-                            L.latLng(location.lat, location.long),
-                        ]} />
-                </>
-                )}
-            </>);
-        } else {
-            return <></>;
-        }
+        return routingMachine
 
     }
 }
