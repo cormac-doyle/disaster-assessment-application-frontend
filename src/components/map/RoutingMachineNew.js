@@ -46,10 +46,6 @@ const createRoutingMachineLayer = (props) => {
     });
     
 
-
-
-
-
     if (props.routeTravelMode === "walking") {
         instance.options.router.options.profile = "mapbox/walking"
         //console.log("route distance: " + instance.router)
@@ -86,6 +82,6 @@ const createRoutingMachineLayer = (props) => {
 
 };
 
-const RoutingMachine = createControlComponent(createRoutingMachineLayer);
+const RoutingMachineNew = createControlComponent(createRoutingMachineLayer);
 
-export default RoutingMachine;
+export default RoutingMachineNew;

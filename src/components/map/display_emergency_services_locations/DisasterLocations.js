@@ -154,26 +154,29 @@ export default class DisasterLocations extends Component {
     }
 
     getEvacRoutes(disaster) {
-        if (this.props.userLocation) {
-            let distanceToDisaster = getDistance(
-                { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
-                { latitude: disaster.lat, longitude: disaster.long }
-            )
-            // console.log("user distance to disaster: "+ distanceToDisaster)
-            // console.log("disaster radius: "+ disaster.radius)
-
-            if (isPointWithinRadius(
-                { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
-                { latitude: disaster.lat, longitude: disaster.long },
-                disaster.radius
-            )) {
-                this.setEvacPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1], distanceToDisaster)
+        if(disaster.verified==true&&disaster.completed==false){
+            if (this.props.userLocation) {
+                let distanceToDisaster = getDistance(
+                    { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
+                    { latitude: disaster.lat, longitude: disaster.long }
+                )
+                // console.log("user distance to disaster: "+ distanceToDisaster)
+                // console.log("disaster radius: "+ disaster.radius)
+    
+                if (isPointWithinRadius(
+                    { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
+                    { latitude: disaster.lat, longitude: disaster.long },
+                    disaster.radius
+                )) {
+                    this.setEvacPoints(disaster.lat, disaster.long, disaster.radius, this.props.userLocation[0], this.props.userLocation[1], distanceToDisaster)
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
-        } else {
-            return null;
         }
+        
 
     }
 
