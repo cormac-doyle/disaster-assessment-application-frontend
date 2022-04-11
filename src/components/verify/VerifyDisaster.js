@@ -52,7 +52,7 @@ export default class VerifyDisaster extends Component {
 
         await fetch("https://ase-backend-2.herokuapp.com/api/1/disaster_verification", requestOptions)
             .then(() => {
-                alert("Disaster " + details.id + " has been verified");
+                alert("Disaster " + details.id + " has been verified. The relevant emergency services have been notified.");
                 console.log("Verified: " + details.id)
                 window.location.reload(false);
             }).catch(error => {
