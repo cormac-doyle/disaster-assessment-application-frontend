@@ -5,7 +5,7 @@ import RoutingMachineNew from '../RoutingMachineNew';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
-import { getDistance } from 'geolib';
+
 
 const BusIcon = L.icon({
     iconUrl: require("../../ESTypes/images/bus.png"),
