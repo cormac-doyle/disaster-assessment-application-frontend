@@ -113,9 +113,7 @@ export default class EmergencyServiceRoutes extends Component {
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
-            for(let index=0;index<coords.length;index++){
-                if(getDistance())
-            }
+           
             coords = coordsRevered.concat(coords)
         }else{
             coords.reverse()
