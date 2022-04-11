@@ -5,6 +5,7 @@ import RoutingMachineNew from '../RoutingMachineNew';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
+import { getDistance } from 'geolib';
 
 const BusIcon = L.icon({
     iconUrl: require("../../ESTypes/images/bus.png"),
@@ -112,6 +113,9 @@ export default class EmergencyServiceRoutes extends Component {
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
+            for(let index=0;index<coords.length;index++){
+                if(getDistance())
+            }
             coords = coordsRevered.concat(coords)
         }else{
             coords.reverse()

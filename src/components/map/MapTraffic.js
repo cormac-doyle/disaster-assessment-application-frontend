@@ -15,8 +15,9 @@ const LocationIcon = L.icon({
 });
 
 const center = {
-  lat: 53.348,
-  lng: -6.2603,
+  
+  lat: 53.34196,
+  lng: -6.25395,
 }
 
 L.Icon.Default.mergeOptions({
