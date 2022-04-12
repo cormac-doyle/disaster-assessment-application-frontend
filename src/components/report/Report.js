@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchResponseJson } from '../fetchResponseJson'
+import {urlVar} from '../../url_confg'
 
 
 
@@ -21,7 +22,7 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/handshake').then((responseJson) => {
+        return fetchResponseJson(urlVar+'/api/1/handshake').then((responseJson) => {
             this.setState({
                 items: responseJson
             })

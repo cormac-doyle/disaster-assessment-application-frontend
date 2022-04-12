@@ -10,7 +10,7 @@ import RoutingMachine from ".././RoutingMachine";
 import EmergencyServiceRoutes from './EmergencyServiceRoutes';
 import getDisaster from '../../DisasterTypes/DisasterWrapper';
 import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
-
+import {urlVar} from '../../../url_confg'
 export default class DisasterLocations extends Component {
 
     constructor(props) {
@@ -42,7 +42,7 @@ export default class DisasterLocations extends Component {
     }
 
     componentDidMount() {
-        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/disasters').then((responseJson) => {
+        fetchResponseJson(urlVar + '/api/1/disasters').then((responseJson) => {
 
             this.setState({
                 disasters: responseJson

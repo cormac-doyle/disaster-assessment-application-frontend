@@ -3,6 +3,8 @@ import RoutingMachine from '../RoutingMachine';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
+import {urlVar} from '../../../url_confg'
+
 
 
 const FireTruckIcon = L.icon({
@@ -76,7 +78,7 @@ export default class EmergencyServiceRoutes extends Component {
 
 
     componentDidMount() {
-        return fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson(urlVar+'/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson

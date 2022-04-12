@@ -9,6 +9,7 @@ import { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { useTranslation } from "react-i18next";
 import { fetchResponseJson } from "../fetchResponseJson";
+import {urlVar} from '../../url_confg'
 
 
 class Home extends Component {
@@ -16,7 +17,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         //call this to add all services to database (CORS issue error atm)
-        fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/add_all_services');
+        fetchResponseJson(urlVar + '/api/1/add_all_services');
         this.state = {
             items: [],
             

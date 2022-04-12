@@ -5,12 +5,13 @@ import {
 } from "react-leaflet";
 import getES from '../../ESTypes/ESWrapper';
 import { fetchResponseJson } from '../../fetchResponseJson'
+import {urlVar} from '../../../url_confg'
 
 export default class EmergencyServiceLocations extends Component {
   count = 0
   constructor(props) {
     super(props);
-    fetchResponseJson('https://ase-backend-2.herokuapp.com/api/1/emergency_services').then((responseJson) => {
+    fetchResponseJson(urlVar+'/api/1/emergency_services').then((responseJson) => {
 
       this.setState({
         markers: responseJson
