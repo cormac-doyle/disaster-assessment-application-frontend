@@ -7,6 +7,7 @@ import { Button, Form, Container } from "react-bootstrap";
 import Title from "../Title";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { urlVar } from '../../url_confg'
 
 class Login extends Component {
 
@@ -41,7 +42,7 @@ class Login extends Component {
 
 
 
-        fetch("https://ase-backend-2.herokuapp.com/api/1/login", requestOptions)
+        fetch(urlVar + "/api/1/login", requestOptions)
             .then(response => {
                 if (!response.ok) { throw response }
                 return response.json()
