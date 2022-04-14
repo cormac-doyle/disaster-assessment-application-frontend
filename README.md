@@ -11,9 +11,9 @@
 ![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
 
 # Extra Features
--> Report Disasters
+-> Report Disasters (Location, Scale, Radius, Type)
 
--> Emergency Service Login
+-> Secure Emergency Service Login
 
 -> Emergency Service Verification of Disaster
 
