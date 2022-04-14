@@ -16,6 +16,8 @@ To install:
 
 ### Clone this repository
 
+### Navigate to src/url_confg.js and change the url to (http://localhost:3000
+
 In the project directory, you can run:
 
 ### `npm install`
