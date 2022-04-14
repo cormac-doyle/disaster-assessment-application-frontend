@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { urlVar } from '../../url_confg'
 
 class Login extends Component {
-
+    // class to store login details and utility
     constructor(props) {
         super(props);
         this.state = {
@@ -104,22 +104,26 @@ class Login extends Component {
 };
 
 function TranslatedTextEmail() {
+    // returns translation of email
     const { t } = useTranslation()
     return t("EMAIL")
 }
 
 function TranslatedTextPassword() {
+    // returns translation of password 
     const { t } = useTranslation()
     return t("PASSWORD")
 }
 
 function TranslatedTextButton() {
+    // returns translation of submit
     const { t } = useTranslation()
     return t("Submit")
 }
 
 
 function WithNavigate(props) {
+    // navigation flag
     let navigate = useNavigate();
     return <Login {...props} navigate={navigate} />
 

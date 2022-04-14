@@ -1,7 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom"
 
 const setToken = (token) => {
-    // console.log("Applying token:" + token)
     localStorage.setItem('magicToken', token)
 };
 
@@ -10,7 +9,7 @@ const fetchToken = () => {
 };
 
 function RequireToken({ children }) {
-
+    // requires authentication
     let auth = fetchToken()
     let location = useLocation()
 
