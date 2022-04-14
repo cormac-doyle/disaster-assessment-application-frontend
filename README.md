@@ -1,6 +1,7 @@
 # Demo
-### Animated Icons To Display Emergency Services and Evacuation Routes
-### Route users out of disaster zones
+### -> Display Disaster Xones
+### -> Animated Icons To Display Emergency Services and Evacuation Routes
+### -> Route users out of disaster zones
 
 ![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
 
