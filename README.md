@@ -1,5 +1,7 @@
 # Demo
-## Animated Icons To Display Emergency Services and Evacuation Routes to route users out of disaster zones
+### Animated Icons To Display Emergency Services and Evacuation Routes
+### Route users out of disaster zones
+
 ![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
 
 # Netlify Deployment
