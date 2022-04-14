@@ -1,3 +1,5 @@
+//translation map for report modal
+
 let langTextMap = {
     "Disaster Report":
     {

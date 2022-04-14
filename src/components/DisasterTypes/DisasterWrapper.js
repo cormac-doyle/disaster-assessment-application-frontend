@@ -1,5 +1,6 @@
 import * as DisasterAttributes from "./DisasterAttributes"
 
+//returns Disaster objects
 function getDisaster(id) {
     switch (id) {
         case 0:

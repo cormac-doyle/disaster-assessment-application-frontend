@@ -11,6 +11,7 @@ export function getLanguage() {
   return currentLanguageCode
 }
 
+//disaster radius dropdown menu
 export function disasterRadius(parent) {
 
   return <>
@@ -36,6 +37,7 @@ export function disasterRadius(parent) {
   </>
 }
 
+//disaster type dropdown
 export function disasterTypeDropDown(parent) {
   return <>
     <Dropdown className="d-inline mx-2">
@@ -60,6 +62,7 @@ export function disasterTypeDropDown(parent) {
   </>
 }
 
+//disaster scale dropdown
 export function scaleDropDown(parent) {
   return <>
     <Dropdown className="d-inline mx-2">
@@ -112,6 +115,7 @@ class ReportDisasterPopUp extends Component {
     }
   }
 
+  //post disaster details to backend
   async postDisasterLocation() {
     const requestOptions = {
       method: "post",

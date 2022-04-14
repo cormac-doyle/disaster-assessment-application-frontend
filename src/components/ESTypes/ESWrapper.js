@@ -1,5 +1,6 @@
 import * as ESAttributes from "./ESAttributes"
 
+//returns ES objects
 function getES(id) {
     switch (id) {
         case 0:
@@ -10,7 +11,7 @@ function getES(id) {
             return ESAttributes.Hospital
         case 3:
             return ESAttributes.Army
-    
+
         default:
             return ESAttributes.Police
     }

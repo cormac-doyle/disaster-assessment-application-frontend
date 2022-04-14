@@ -18,15 +18,15 @@ export default class VerifyDisaster extends Component {
     }
 
     async componentDidMount() {
-
+        //gets disasters
         const response = await fetch(urlVar + "/api/1/disasters/?skip=0&limit=100&completed=False")
         const responseJson = await response.json()
         this.setState({
             disasters: responseJson
         })
-        // console.log(responseJson)
     }
 
+    //colours disasters based on verification
     getDisasterColor(verified) {
         if (verified) {
             return "green"
@@ -36,6 +36,7 @@ export default class VerifyDisaster extends Component {
         }
     }
 
+    //sends the post request to verify the disaster
     async verifyDisaster(details, newScale, newDisaster) {
 
         const requestOptions = {
@@ -66,6 +67,7 @@ export default class VerifyDisaster extends Component {
     }
 
 
+    //sends the post request to mark a disaster as complete
     async completeDisaster(details) {
 
         const requestOptions = {
@@ -96,7 +98,7 @@ export default class VerifyDisaster extends Component {
 
 
 
-
+    //handles button clicks for verifying/ending disaster
     handleClick = (e, s, r, type) => {
         console.log(s)
 
@@ -132,7 +134,7 @@ export default class VerifyDisaster extends Component {
             return (
                 <>
                     {this.state.disasters.map((disaster, idx) =>
-
+                        //Circles for disasters
                         <Circle
                             key={`marker-${idx}`}
                             center={[disaster.lat, disaster.long]}
