@@ -13,7 +13,7 @@ const BusIcon = L.icon({
     popupAnchor: [2, -40],
 });
 
-
+//display icons of transport service locations
 export default class TransportServiceLocations extends Component {
 
     constructor(props) {

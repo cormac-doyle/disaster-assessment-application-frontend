@@ -7,34 +7,7 @@ import {
 } from "react-leaflet";
 import ReportDisasterPopUp from "../report/ReportDisasterPopUp";
 
-// const icon = L.icon({
-//     iconSize: [25, 41],
-//     iconAnchor: [10, 41],
-//     popupAnchor: [2, -40],
-//     iconUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-icon.png",
-//     shadowUrl: "https://unpkg.com/leaflet@1.7/dist/images/marker-shadow.png"
-// });
-/*
-function LocationMarker() {
-    const [position, setPosition] = useState(null)
-    const map = useMapEvents({
-        click() {
-            
-            map.locate()
-        },
-        locationfound(e) {
-            setPosition(e.latlng)
-            map.flyTo(e.latlng, map.getZoom())
-        },
-    })
-
-    return position === null ? null : (
-        <Marker position={position}>
-            <Popup>There you are...</Popup>
-        </Marker>
-    )
-}
-*/
+//add a location marker on click for reporting disaster
 export function AddMarker(props) {
   const [position, setPosition] = useState(null);
   const [reportDisasterPopup, setReportDisasterPopup] = useState(false);
@@ -54,7 +27,7 @@ export function AddMarker(props) {
         show={reportDisasterPopup}
         onHide={setReportDisasterPopup}
         position={position}
-        
+
       >
         <h1>Report Disaster At this Location?</h1>
       </ReportDisasterPopUp>

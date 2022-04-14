@@ -10,9 +10,9 @@ import "./css-polyline-animations/evacuation.css"
 import "./css-polyline-animations/transport_services.css"
 
 
-
+//In-progress routing with animated lines
 const createRoutingMachineLayer = (props) => {
-    
+
     var lineColor = "#6FA1EC"
     if (props.lineColor) {
         lineColor = props.lineColor
@@ -29,10 +29,11 @@ const createRoutingMachineLayer = (props) => {
         waypoints: props.waypoints,
         createMarker: function () { return null; },
         lineOptions: {
-            styles: [{ 
-                color: lineColor, 
-                weight: lineWeight, 
-                className: props.animationClassName }]
+            styles: [{
+                color: lineColor,
+                weight: lineWeight,
+                className: props.animationClassName
+            }]
         },
 
         show: false,
@@ -44,7 +45,7 @@ const createRoutingMachineLayer = (props) => {
 
 
     });
-    
+
 
 
 

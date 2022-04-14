@@ -13,8 +13,7 @@ L.Icon.Default.mergeOptions({
 });
 
 
-
-
+//map of Dublin displaying both unverified and verified disasters using OpenStreetMaps and TomTom
 const Map = () => {
 
     const defaultPosition = [53.348, -6.2603];  // Dublin City Centre

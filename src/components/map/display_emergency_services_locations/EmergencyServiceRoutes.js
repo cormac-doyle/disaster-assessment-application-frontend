@@ -5,10 +5,10 @@ import RoutingMachineNew from '../RoutingMachineNew';
 import L from "leaflet";
 import { fetchResponseJson } from '../../fetchResponseJson';
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
-import {urlVar} from '../../../url_confg'
+import { urlVar } from '../../../url_confg'
 
 
-
+//icons for emergency services routing
 const BusIcon = L.icon({
     iconUrl: require("../../ESTypes/images/bus.png"),
     iconSize: [50, 50],
@@ -53,15 +53,17 @@ const ArmyTankIconFlipped = L.icon({
     iconSize: [50, 50],
 });
 
+//different colours for different emergency services
 export default class EmergencyServiceRoutes extends Component {
     colorMap = {
         "police": "#2509b3",
         "fire_brigade": "#ff5900",
         "army": "#0d6100",
         "ambulance": "#f54242",
-        "transport_services":"#e9ed07"
+        "transport_services": "#e9ed07"
 
     }
+    //set speed for emergency services vehicles
     vehicleSpeed = 300
 
     constructor(props) {
@@ -92,9 +94,9 @@ export default class EmergencyServiceRoutes extends Component {
         }
     }
 
-
+    //get nearest emergency services
     componentDidMount() {
-        return fetchResponseJson(urlVar+'/api/1/get_nearest_services').then((responseJson) => {
+        return fetchResponseJson(urlVar + '/api/1/get_nearest_services').then((responseJson) => {
 
             this.setState({
                 emergency_services: responseJson
@@ -108,20 +110,21 @@ export default class EmergencyServiceRoutes extends Component {
     handleTime = (time) => {
         console.log("Received time")
     }
+    //set up animation of emergency services vehicles
     handleAnimation = (coords, emergencyServiceType) => {
-        if(emergencyServiceType==="transport_services"){
-            var coordsRevered=coords.slice().reverse()
+        if (emergencyServiceType === "transport_services") {
+            var coordsRevered = coords.slice().reverse()
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
             coordsRevered.push(coords[0])
-           
+
             coords = coordsRevered.concat(coords)
-        }else{
+        } else {
             coords.reverse()
 
         }
-        
+
         var emergencyServiceTypeIndex = emergencyServiceType + "_index"
         var emergencyServiceTypeCoords = emergencyServiceType + "_coords"
         var emergencyServiceTypeAnimationStatus = emergencyServiceType + "_animation"
@@ -150,16 +153,17 @@ export default class EmergencyServiceRoutes extends Component {
         }
     }
 
+    //render the routing on the map
     render() {
 
         if (this.state.emergency_services[this.props.disaster.id]) {
             return (
                 <>
-                    {this.routeESAnim("fire_brigade",this.props.disaster)}
-                    {this.routeESAnim("police",this.props.disaster)}
-                    {this.routeESAnim("ambulance",this.props.disaster)}
-                    {this.routeESAnim("transport_services",this.props.disaster)}
-                    {this.routeESAnim("army",this.props.disaster)}
+                    {this.routeESAnim("fire_brigade", this.props.disaster)}
+                    {this.routeESAnim("police", this.props.disaster)}
+                    {this.routeESAnim("ambulance", this.props.disaster)}
+                    {this.routeESAnim("transport_services", this.props.disaster)}
+                    {this.routeESAnim("army", this.props.disaster)}
 
 
                     {this.showESAnimations(this.props.disaster.already_addressed)}
@@ -174,6 +178,7 @@ export default class EmergencyServiceRoutes extends Component {
 
     }
 
+    //animations for emergency service vehicles
     showESAnimations(alreadyAdressed) {
         if (alreadyAdressed === false) {
             return <>
@@ -187,6 +192,7 @@ export default class EmergencyServiceRoutes extends Component {
         }
     }
 
+    //animation of individual icons
     animateIcon(icon, flippedIcon, polyline, index, speed) {
         if (polyline.length > 0) {
             var animateIcon = icon
@@ -202,14 +208,14 @@ export default class EmergencyServiceRoutes extends Component {
     }
 
 
-
-    routeESAnim(esType,disaster) {
+    //routing for emergency services
+    routeESAnim(esType, disaster) {
         var routingMachine
-        
-        if (this.state.emergency_services[disaster.id][esType].length>0){
+
+        if (this.state.emergency_services[disaster.id][esType].length > 0) {
             if (this.props.disaster.already_addressed === true || this.state[esType + "_animation"] === false) {
-            
-            
+
+
                 return <RoutingMachineNew
                     lineColor={this.colorMap[esType]}
                     routeTravelMode={"walking"}
@@ -220,11 +226,11 @@ export default class EmergencyServiceRoutes extends Component {
                         L.latLng(disaster.lat, disaster.long),
                         L.latLng(this.state.emergency_services[this.props.disaster.id][esType][0].lat, this.state.emergency_services[this.props.disaster.id][esType][0].long),
                     ]} />
-    }
+            }
 
-    else  {
-        
-        return <RoutingMachine
+            else {
+
+                return <RoutingMachine
                     lineColor={this.colorMap[esType]}
                     routeTravelMode={"walking"}
                     animationClassName={esType}
@@ -236,10 +242,10 @@ export default class EmergencyServiceRoutes extends Component {
                         L.latLng(disaster.lat, disaster.long),
                         L.latLng(this.state.emergency_services[disaster.id][esType][0].lat, this.state.emergency_services[disaster.id][esType][0].long),
                     ]} />
-        
-    } 
+
+            }
         }
-        
+
 
         return routingMachine
 

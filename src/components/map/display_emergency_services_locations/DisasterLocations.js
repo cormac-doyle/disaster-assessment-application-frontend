@@ -10,9 +10,10 @@ import RoutingMachine from ".././RoutingMachine";
 import EmergencyServiceRoutes from './EmergencyServiceRoutes';
 import getDisaster from '../../DisasterTypes/DisasterWrapper';
 import { getDistance, isPointWithinRadius, getRhumbLineBearing, computeDestinationPoint } from 'geolib';
-import {urlVar} from '../../../url_confg'
+import { urlVar } from '../../../url_confg'
 export default class DisasterLocations extends Component {
 
+    //display disaster locations with radius and disaster type icon 
     constructor(props) {
         super(props);
         this.state = {
@@ -154,7 +155,7 @@ export default class DisasterLocations extends Component {
     }
 
     getEvacRoutes(disaster) {
-        if(disaster.verified===true&&disaster.completed===false){
+        if (disaster.verified === true && disaster.completed === false) {
             if (this.props.userLocation) {
                 let distanceToDisaster = getDistance(
                     { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
@@ -162,7 +163,7 @@ export default class DisasterLocations extends Component {
                 )
                 // console.log("user distance to disaster: "+ distanceToDisaster)
                 // console.log("disaster radius: "+ disaster.radius)
-    
+
                 if (isPointWithinRadius(
                     { latitude: this.props.userLocation[0], longitude: this.props.userLocation[1] },
                     { latitude: disaster.lat, longitude: disaster.long },
@@ -176,7 +177,7 @@ export default class DisasterLocations extends Component {
                 return null;
             }
         }
-        
+
 
     }
 

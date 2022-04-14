@@ -7,6 +7,7 @@ import getES from '../../ESTypes/ESWrapper';
 import { fetchResponseJson } from '../../fetchResponseJson'
 import { urlVar } from '../../../url_confg'
 
+//display emergency services locations with icons
 export default class EmergencyServiceLocations extends Component {
   count = 0
   constructor(props) {

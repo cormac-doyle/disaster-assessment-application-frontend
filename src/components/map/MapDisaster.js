@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
-
+//Map of Dublin using OpenStreetMaps and TomTom
 const Map = (props) => {
   const defaultPosition = [53.348, -6.2603]; // Dublin City Centre
 
