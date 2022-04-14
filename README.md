@@ -4,7 +4,7 @@
 
 # Netlify Deployment
 
-Project has been deployed on netlify here: https://disaster-assessment-application.netlify.app/
+Project has been deployed on netlify here: (https://disaster-assessment-application.netlify.app/)
 
 # Deploying the Disaster Assesment Application Locally
 
@@ -16,7 +16,7 @@ To install:
 
 ### Clone this repository
 
-### Navigate to src/url_confg.js and change the url to (http://localhost:3000
+### Navigate to src/url_confg.js and change the url to (http://localhost:3000)
 
 In the project directory, you can run:
 
