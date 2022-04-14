@@ -1,11 +1,16 @@
 # Fronte Disaster Assessment Application
+
+![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
+
+# Features
+
 -> Display Disaster Zones
 
--> Disaster Assessment
+-> Disaster Assessment 
 
 -> Animated Icons To Display Emergency Services and Evacuation Routes
 
--> Route users out of disaster zones
+-> Evacuation routes users out of disaster zones
 
 -> Report Disasters (Location, Scale, Radius, Type)
 
@@ -14,7 +19,6 @@
 -> Emergency Service Verification of Disaster
 
 
-![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
 
 # Back End
 
