@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Deploying the Disaster Assesment Application Locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
