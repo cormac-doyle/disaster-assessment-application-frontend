@@ -1,4 +1,4 @@
-# Demo
+# Fronte End Features
 -> Display Disaster Zones
 
 -> Disaster Assessment
@@ -7,10 +7,6 @@
 
 -> Route users out of disaster zones
 
-
-![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
-
-# Extra Features
 -> Report Disasters (Location, Scale, Radius, Type)
 
 -> Secure Emergency Service Login
@@ -18,6 +14,11 @@
 -> Emergency Service Verification of Disaster
 
 
+![disaster_demo](https://user-images.githubusercontent.com/57908067/163417833-334d18ae-9527-464b-bea0-6d19cb00373d.gif)
+
+# Back End
+
+Backend is written using python and FastAPI. GitHub Repo can be found here: (https://github.com/tmulligan98/ase-project-backend)
 
 # Netlify Deployment
 
