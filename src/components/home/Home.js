@@ -9,22 +9,20 @@ import { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { useTranslation } from "react-i18next";
 import { fetchResponseJson } from "../fetchResponseJson";
-import {urlVar} from '../../url_confg'
+import { urlVar } from '../../url_confg'
 
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-        //call this to add all services to database (CORS issue error atm)
+        //call this to add all services to database
         fetchResponseJson(urlVar + '/api/1/add_all_services');
         this.state = {
             items: [],
 
         }
     }
-
-
 
     render() {
         return (<>
@@ -42,6 +40,7 @@ class Home extends Component {
 export default Home;
 
 
+//Banner which shows on the frontpage, declaring GDPR statement
 function GDPRAlert() {
     const [show, setShow] = useState(true);
     const { t } = useTranslation();
